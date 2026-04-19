@@ -125,7 +125,7 @@ export default function ContactPage() {
                     name="service"
                     className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl pl-4 pr-10 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none appearance-none transition-colors duration-200"
                   >
-                    <option disabled selected value="">
+                    <option value="" disabled>
                       Select a service
                     </option>
                     <option value="web">Website Development</option>
@@ -146,7 +146,7 @@ export default function ContactPage() {
                     name="budget"
                     className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl pl-4 pr-10 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none appearance-none transition-colors duration-200"
                   >
-                    <option disabled selected value="">
+                    <option value="" disabled>
                       Select a range
                     </option>
                     <option value="under25k">Under ₹25,000</option>

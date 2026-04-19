@@ -82,7 +82,7 @@ export default function ServicesPage() {
                 key={service.id}
                 id={service.id}
                 className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${
-                  i % 2 === 1 ? "md:direction-rtl" : ""
+                  i % 2 === 1 ? "md:flex-row-reverse" : ""
                 }`}
               >
                 <div className={i % 2 === 1 ? "md:order-2" : ""}>
@@ -106,7 +106,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                 </div>
-                <div className={`${i % 2 === 1 ? "md:order-1" : ""}`}>
+                <div className={`${i % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
                   <div className="bg-surface-container-lowest rounded-2xl p-12 shadow-sm border border-outline-variant/10 flex items-center justify-center min-h-[300px]">
                     <div className="text-center space-y-4">
                       <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary-container to-primary rounded-3xl flex items-center justify-center shadow-lg">
