@@ -1,240 +1,192 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Core colors matching UX design */
-  --color-background: #fafafa;
-  --color-surface: #ffffff;
-  --color-surface-dim: #d9dadb;
-  --color-surface-bright: #f8f9fa;
-  --color-surface-container-low: #f3f4f6;
-  --color-surface-container: #f9fafb;
-  --color-surface-container-highest: #e1e3e4;
-  --color-surface-container-high: #e7e8e9;
-  --color-surface-variant: #e1e3e4;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-tint: #2563eb;
+  --color-background: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-container-low: #F6F5F5;
+  --color-surface-container: #F0EFEE;
+  --color-surface-container-highest: #E9E8E8;
+  --color-on-surface: #1C1B1F;
+  --color-on-surface-variant: #505F60;
+  --color-outline: #938F99;
+  --color-outline-variant: #D4C7E6;
+  --color-primary: #5B81E2;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #E1E0F5;
+  --color-on-primary-container: #21005D;
 
-  /* Primary colors */
-  --color-primary: #2563eb;
-  --color-on-primary: #ffffff;
-  --color-primary-container: #dbeafe;
-  --color-on-primary-container: #1e3a8a;
-  --color-primary-fixed: #dbeafe;
-  --color-primary-fixed-dim: #93c5fd;
-  --color-on-primary-fixed: #001452;
-  --color-on-primary-fixed-variant: #0038b6;
-  --color-inverse-primary: #b7c4ff;
+  /* Service-specific color families - consistent naming convention */
+  /* Each service has: container (light bg), text (primary color), gradient-end (darker shade for gradients) */
+  
+  /* Web Development - Blue */
+  --color-service-web: #3B82F6;
+  --color-service-web-container: #DBEAFE;
+  --color-service-web-gradient-end: #2563EB;
 
-  /* Secondary colors */
-  --color-secondary: #4459a8;
-  --color-on-secondary: #ffffff;
-  --color-secondary-container: #95aafe;
-  --color-on-secondary-container: #253b89;
-  --color-secondary-fixed: #dde1ff;
-  --color-secondary-fixed-dim: #b7c4ff;
-  --color-on-secondary-fixed: #001452;
-  --color-on-secondary-fixed-variant: #2b418f;
+  /* Mobile Apps - Emerald/Green */
+  --color-service-mobile: #10B981;
+  --color-service-mobile-container: #D1FAE5;
+  --color-service-mobile-gradient-end: #059669;
 
-  /* Tertiary colors */
-  --color-tertiary: #952200;
-  --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #bf3003;
-  --color-on-tertiary-container: #ffddd5;
-  --color-tertiary-fixed: #ffdbd2;
-  --color-tertiary-fixed-dim: #ffb4a1;
-  --color-on-tertiary-fixed: #3c0800;
-  --color-on-tertiary-fixed-variant: #891e00;
+  /* UI/UX Design - Purple */
+  --color-service-design: #8B5CF6;
+  --color-service-design-container: #EDE9FE;
+  --color-service-design-gradient-end: #7C3AED;
 
-  /* Error colors */
-  --color-error: #ba1a1a;
-  --color-on-error: #ffffff;
-  --color-error-container: #ffdad6;
-  --color-on-error-container: #93000a;
+  /* Cloud Deployment - Indigo */
+  --color-service-cloud: #6366F1;
+  --color-service-cloud-container: #E0E7FF;
+  --color-service-cloud-gradient-end: #4F46E5;
 
-  /* Outline & inverse */
-  --color-outline: #6b7280;
-  --color-outline-variant: #d1d5db;
-  --color-inverse-surface: #2e3132;
-  --color-inverse-on-surface: #f0f1f2;
+  /* Dashboards - Rose */
+  --color-service-dashboard: #F43F5E;
+  --color-service-dashboard-container: #FFE4E6;
+  --color-service-dashboard-gradient-end: #E11D48;
 
-  /* On-colors */
-  --color-on-surface: #111827;
-  --color-on-surface-variant: #4b5563;
-  --color-on-background: #111827;
+  /* Support - Amber/Orange */
+  --color-service-support: #F59E0B;
+  --color-service-support-container: #FEF3C7;
+  --color-service-support-gradient-end: #D97706;
 
-  /* Border radius */
-  --radius-default: 1rem;
-  --radius-lg: 2rem;
-  --radius-xl: 3rem;
-  --radius-full: 9999px;
+  /* Semantic color modifiers for offers, discounts, promotions */
+  --color-promo: #EF4444;
+  --color-promo-container: #FEE2E2;
+  --color-promo-on-container: #7F1D1D;
+  --color-discount: #10B981;
+  --color-discount-container: #D1FAE5;
+  --color-discount-on-container: #065F46;
 
-  /* Box shadows */
-  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 40px -10px rgba(37, 99, 235, 0.3);
-  --shadow-premium: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
-
-  /* Font families */
-  --font-headline: 'Manrope', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-label: 'Inter', sans-serif;
+  --font-headline: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-label: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 @layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply bg-background text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-headline), sans-serif;
-  }
-
-  .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1;
-    display: inline-block;
-    text-transform: normal;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
+    @apply bg-background text-on-surface font-body antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  .material-symbols-outlined[filled],
-  .material-symbols-filled {
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Service page gradient backgrounds */
+  .gradient-service-web {
+    background: linear-gradient(135deg, var(--color-service-web) 0%, var(--color-service-web-gradient-end) 100%);
+  }
+  
+  .gradient-service-mobile {
+    background: linear-gradient(135deg, var(--color-service-mobile) 0%, var(--color-service-mobile-gradient-end) 100%);
+  }
+  
+  .gradient-service-design {
+    background: linear-gradient(135deg, var(--color-service-design) 0%, var(--color-service-design-gradient-end) 100%);
+  }
+  
+  .gradient-service-cloud {
+    background: linear-gradient(135deg, var(--color-service-cloud) 0%, var(--color-service-cloud-gradient-end) 100%);
+  }
+  
+  .gradient-service-dashboard {
+    background: linear-gradient(135deg, var(--color-service-dashboard) 0%, var(--color-service-dashboard-gradient-end) 100%);
+  }
+  
+  .gradient-service-support {
+    background: linear-gradient(135deg, var(--color-service-support) 0%, var(--color-service-support-gradient-end) 100%);
+  }
+
+  /* Promo/discount banner utility */
+  .promo-banner {
+    @apply px-4 py-2;
+    background: linear-gradient(90deg, var(--color-promo-container) 0%, #FFF1F2 100%);
+    border-left: 3px solid var(--color-promo);
+  }
+
+  .discount-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold;
+    background-color: var(--color-discount-container);
+    color: var(--color-discount-on-container);
   }
 }
 
 @layer utilities {
-  /* Hero gradient - matches design exactly */
-  .hero-gradient {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 100%),
-      radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 0% 100%, rgba(147, 197, 253, 0.1) 0%, transparent 50%);
-  }
-
-  /* Glass panel - matches design spec: 70% opacity + 24px blur */
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-  }
-
-  /* Gradient text - matches design spec */
-  .text-gradient {
-    background: linear-gradient(to right, #1e3a8a, #2563eb, #3b82f6);
+  /* Text gradient utilities */
+  .text-gradient-web {
+    background: linear-gradient(135deg, var(--color-service-web), var(--color-service-web-gradient-end));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Primary button gradient - TL to BR */
-  .btn-primary-gradient {
-    background: linear-gradient(135deg, #0052ff 0%, #003ec7 100%);
+  .text-gradient-mobile {
+    background: linear-gradient(135deg, var(--color-service-mobile), var(--color-service-mobile-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Smooth ease-out-expo transitions (design mandate) */
-  .ease-out-expo {
-    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  .text-gradient-design {
+    background: linear-gradient(135deg, var(--color-service-design), var(--color-service-design-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Ambient shadow - design spec: soft lift */
-  .ambient-shadow {
-    box-shadow: 0 10px 48px -10px rgba(0, 62, 199, 0.04);
+  .text-gradient-cloud {
+    background: linear-gradient(135deg, var(--color-service-cloud), var(--color-service-cloud-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Soft shadow for cards */
-  .soft-lift {
-    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+  .text-gradient-dashboard {
+    background: linear-gradient(135deg, var(--color-service-dashboard), var(--color-service-dashboard-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Ghost border - 15% outline variant */
-  .ghost-border {
-    border: 1px solid rgba(195, 197, 217, 0.15);
+  .text-gradient-support {
+    background: linear-gradient(135deg, var(--color-service-support), var(--color-service-support-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Card hover lift animation */
-  .hover-lift {
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  /* Shadow utilities for services */
+  .shadow-web {
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
   }
 
-  .hover-lift:hover {
-    transform: translateY(-4px);
-  }
-}
-
-/* Float animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+  .shadow-mobile {
+    box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2);
   }
 
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes float-delayed {
-  0%,
-  100% {
-    transform: translateY(0px);
+  .shadow-design {
+    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
   }
 
-  50% {
-    transform: translateY(-20px);
+  .shadow-cloud {
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
   }
-}
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float 7s ease-in-out 2s infinite;
-}
-
-/* Smooth page transitions */
-.page-transition {
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+  .shadow-dashboard {
+    box-shadow: 0 10px 40px rgba(244, 63, 94, 0.2);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .shadow-support {
+    box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
   }
 }
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f3f4f6;
-}
-
-/* Prevent body scroll when mobile menu is open */
-body.no-scroll {
-  overflow: hidden !important;
-  position: fixed !important;
-  width: 100% !important;
-}
-

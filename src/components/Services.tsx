@@ -17,50 +17,90 @@ const services = [
     title: "Website Development",
     description: "Custom websites and web applications built with modern tech stacks for performance, SEO, and scale.",
     href: "/services/web-development",
-    gradient: "from-primary to-blue-600",
-    bgLight: "bg-primary/10",
   },
   {
     icon: Palette,
     title: "UI/UX Design",
     description: "Human-centered design with research-backed interfaces, stunning visuals, and seamless user experiences.",
     href: "/services/ui-ux-design",
-    gradient: "from-primary to-blue-500",
-    bgLight: "bg-primary/10",
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
     description: "Native and cross-platform mobile applications for iOS and Android using React Native and Flutter.",
     href: "/services/mobile-apps",
-    gradient: "from-primary to-blue-600",
-    bgLight: "bg-primary/10",
   },
   {
     icon: Cloud,
     title: "Cloud & Deployment",
     description: "Scalable, secure cloud infrastructure with CI/CD pipeline automation on AWS, GCP, and Azure.",
     href: "/services/cloud-deployment",
-    gradient: "from-primary to-blue-500",
-    bgLight: "bg-primary/10",
   },
   {
     icon: LayoutDashboard,
     title: "Dashboards & CMS",
     description: "Admin panels, content management systems, and real-time dashboards tailored to your workflows.",
     href: "/services/dashboards",
-    gradient: "from-primary to-blue-600",
-    bgLight: "bg-primary/10",
   },
   {
     icon: Headphones,
     title: "Maintenance & Support",
     description: "24/7 monitoring, updates, security patching, and performance optimization for peace of mind.",
     href: "/services/support",
-    gradient: "from-primary to-blue-500",
-    bgLight: "bg-primary/10",
   },
 ];
+
+// Service-specific color configurations for Tailwind compatibility
+const serviceColors: Record<string, { topBar: string; iconBg: string; iconColor: string; hoverText: string; linkColor: string; hoverBg: string }> = {
+  "/services/web-development": {
+    topBar: "bg-gradient-to-r from-service-web to-blue-600",
+    iconBg: "bg-service-web-container",
+    iconColor: "text-service-web",
+    hoverText: "group-hover:text-service-web",
+    linkColor: "text-service-web",
+    hoverBg: "bg-service-web-container/10",
+  },
+  "/services/ui-ux-design": {
+    topBar: "bg-gradient-to-r from-service-uiux to-purple-600",
+    iconBg: "bg-service-uiux-container",
+    iconColor: "text-service-uiux",
+    hoverText: "group-hover:text-service-uiux",
+    linkColor: "text-service-uiux",
+    hoverBg: "bg-service-uiux-container/10",
+  },
+  "/services/mobile-apps": {
+    topBar: "bg-gradient-to-r from-service-mobile to-orange-600",
+    iconBg: "bg-service-mobile-container",
+    iconColor: "text-service-mobile",
+    hoverText: "group-hover:text-service-mobile",
+    linkColor: "text-service-mobile",
+    hoverBg: "bg-service-mobile-container/10",
+  },
+  "/services/cloud-deployment": {
+    topBar: "bg-gradient-to-r from-service-cloud to-indigo-600",
+    iconBg: "bg-service-cloud-container",
+    iconColor: "text-service-cloud",
+    hoverText: "group-hover:text-service-cloud",
+    linkColor: "text-service-cloud",
+    hoverBg: "bg-service-cloud-container/10",
+  },
+  "/services/dashboards": {
+    topBar: "bg-gradient-to-r from-service-dashboard to-emerald-600",
+    iconBg: "bg-service-dashboard-container",
+    iconColor: "text-service-dashboard",
+    hoverText: "group-hover:text-service-dashboard",
+    linkColor: "text-service-dashboard",
+    hoverBg: "bg-service-dashboard-container/10",
+  },
+  "/services/support": {
+    topBar: "bg-gradient-to-r from-service-support to-teal-600",
+    iconBg: "bg-service-support-container",
+    iconColor: "text-service-support",
+    hoverText: "group-hover:text-service-support",
+    linkColor: "text-service-support",
+    hoverBg: "bg-service-support-container/10",
+  },
+};
 
 export default function ServiceCards() {
   return (
@@ -83,23 +123,31 @@ export default function ServiceCards() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, i) => {
           const Icon = service.icon;
+          const colors = serviceColors[service.href] || {
+            topBar: "bg-gradient-to-r from-primary to-blue-600",
+            iconBg: "bg-primary/10",
+            iconColor: "text-primary",
+            hoverText: "group-hover:text-primary",
+            linkColor: "text-primary",
+            hoverBg: "bg-primary/10",
+          };
           return (
             <Link
               key={i}
               href={service.href}
-              className="group relative overflow-hidden rounded-3xl bg-surface border-outline/20 hover:border-primary/20 hover:shadow-xl transition-all duration-500 ease-out-expo"
+              className="group relative overflow-hidden rounded-3xl bg-surface border-outline/20 hover:border-outline/40 hover:shadow-xl transition-all duration-500 ease-out-expo"
             >
-              {/* Gradient top bar */}
-              <div className={`h-1.5 bg-gradient-to-r ${service.gradient}`} />
+              {/* Colored top bar per service */}
+              <div className={`h-1.5 ${colors.topBar}`} />
               
               <div className="p-8 space-y-5">
                 {/* Icon */}
-                <div className={`w-14 h-14 ${service.bgLight} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-                  <Icon className="w-7 h-7 text-primary" />
+                <div className={`w-14 h-14 ${colors.iconBg} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                  <Icon className={`w-7 h-7 ${colors.iconColor}`} />
                 </div>
 
                 {/* Title & Description */}
-                <h4 className="font-headline font-bold text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                <h4 className={`font-headline font-bold text-xl text-on-surface ${colors.hoverText} transition-colors duration-300`}>
                   {service.title}
                 </h4>
                 <p className="text-on-surface-variant font-body leading-relaxed">
@@ -107,14 +155,14 @@ export default function ServiceCards() {
                 </p>
 
                 {/* CTA */}
-                <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+                <div className={`flex items-center ${colors.linkColor} font-semibold group-hover:gap-3 gap-2 transition-all duration-300`}>
                   Explore Service
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>
 
               {/* Hover background effect */}
-              <div className={`absolute inset-0 ${service.bgLight} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
+              <div className={`absolute inset-0 ${colors.hoverBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
             </Link>
           );
         })}
