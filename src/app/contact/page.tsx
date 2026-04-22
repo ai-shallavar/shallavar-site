@@ -1,7 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { useState, useTransition } from "react";
 import {
   Mail,
@@ -101,7 +99,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="pt-28 pb-20">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-blue-50 via-white to-violet-50 pb-20 pt-16">
@@ -376,7 +373,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
       <div className="bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-12 md:p-20 text-center text-white shadow-xl relative overflow-hidden">
         <div className="absolute top-0 left-1/4 w-72 h-72 bg-white rounded-full mix-blend-screen filter blur-[120px] opacity-10" />
         <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-300 rounded-full mix-blend-screen filter blur-[120px] opacity-10" />

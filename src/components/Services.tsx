@@ -64,7 +64,7 @@ const services = [
 
 export default function ServiceCards() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
       {/* Section Header */}
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-container mb-6">

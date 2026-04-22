@@ -1,12 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ServiceCards from "@/components/Services";
 import ProcessFlow from "@/components/ProcessFlow";
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-24 md:py-32">
@@ -72,7 +69,6 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

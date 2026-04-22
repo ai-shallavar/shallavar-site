@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import {
   Code,
@@ -38,7 +36,6 @@ const stats = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 pt-36 pb-24 md:pt-48 md:pb-36">
@@ -186,7 +183,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

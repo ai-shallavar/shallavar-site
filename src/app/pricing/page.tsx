@@ -1,12 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import PricingGrid from "@/components/PricingGrid";
 import CTA from "@/components/CTA";
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <main className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-32">
         {/* Hero */}
         <section className="text-center max-w-3xl mx-auto space-y-6">
@@ -63,7 +60,6 @@ export default function PricingPage() {
 
         <CTA />
       </main>
-      <Footer />
     </div>
   );
 }

@@ -31,12 +31,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary/30 transition-all duration-300">
-                <Bolt className="w-6 h-6 text-white" />
-              </div>
-              <span className="font-headline font-extrabold text-2xl tracking-tight">Shallavar</span>
-            </Link>
+            <div className="relative overflow-hidden mb-6 group w-fit -ml-10">
+              <Link href="/" className="flex items-center gap-3">
+                <img 
+                  src="/logo-full-square.png" 
+                  alt="Shallavar Technologies" 
+                  className="h-28 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
+                />
+              </Link>
+            </div>
             <p className="text-on-surface-variant mb-6 leading-relaxed">Premium digital experiences for ambitious brands. We build, deploy, and scale.</p>
             <div className="flex gap-3">
               {socials.map((social) => (

@@ -1,9 +1,16 @@
-"use client";
+  "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X, Code, Smartphone, Palette, Cloud, Headphones, LayoutDashboard, Rocket, Phone } from "lucide-react";
+
+// Extend Window interface for custom property
+declare global {
+  interface Window {
+    _preventScrollHandler: ((e: TouchEvent) => void) | null;
+  }
+}
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -100,6 +107,63 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      // Store current scroll position
+      const scrollY = window.scrollY;
+      
+      // Set overflow hidden on body to prevent scroll
+      document.body.style.overflow = 'hidden';
+      
+      // For iOS Safari - prevent touchmove from scrolling
+      const preventDefault = (e: TouchEvent) => {
+        // Allow scrolling within the menu itself
+        const target = e.target as HTMLElement;
+        if (target.closest('[data-scrollable]') || target.closest('nav') || target.closest('.mobile-menu-scrollable')) {
+          return;
+        }
+        e.preventDefault();
+      };
+      
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollY}px`;
+      
+      // Add passive:false touchmove listener to prevent iOS scroll
+      document.addEventListener('touchmove', preventDefault, { passive: false });
+      
+      // Store for cleanup
+      window._preventScrollHandler = preventDefault;
+    } else {
+      // Remove the touchmove listener
+      if (window._preventScrollHandler) {
+        document.removeEventListener('touchmove', window._preventScrollHandler);
+        window._preventScrollHandler = null;
+      }
+      
+      // Restore body scroll
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      
+      // Restore scroll position to top
+      window.scrollTo(0, 0);
+    }
+    // Cleanup on unmount
+    return () => {
+      if (window._preventScrollHandler) {
+        document.removeEventListener('touchmove', window._preventScrollHandler);
+        window._preventScrollHandler = null;
+      }
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [mobileOpen]);
+
   const handleDropdownEnter = (href: string) => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
@@ -143,23 +207,11 @@ export default function Navbar() {
               
               {/* Brand */}
               <Link href="/" className="flex items-center gap-3 group">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${
-                  scrolled
-                    ? "bg-gradient-to-br from-[#2563eb] to-blue-600 shadow-md shadow-[#2563eb]/20 group-hover:shadow-lg group-hover:shadow-[#2563eb]/30 group-hover:scale-105"
-                    : "bg-gradient-to-br from-[#2563eb] to-blue-600 shadow-md shadow-[#2563eb]/20 group-hover:shadow-lg group-hover:shadow-[#2563eb]/30 group-hover:scale-105"
-                }`}>
-                  <Rocket className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex flex-col">
-                  <span className={`text-xl font-black tracking-tight transition-all duration-500 ${
-                    scrolled ? "text-slate-900 group-hover:text-[#2563eb]" : "text-slate-800 group-hover:text-[#2563eb]"
-                  }`}>
-                    Shallavar
-                  </span>
-                  <span className="text-[10px] font-semibold text-blue-600/70 tracking-widest uppercase -mt-1">
-                    Technologies
-                  </span>
-                </div>
+                <img 
+                  src="/logo-full.png" 
+                  alt="Shallavar Technologies" 
+                  className="h-16 w-auto object-contain transition-all duration-500 group-hover:opacity-90"
+                />
               </Link>
 
               {/* Desktop Nav */}
@@ -296,12 +348,13 @@ export default function Navbar() {
         <div className="h-full bg-white flex flex-col shadow-2xl">
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#2563eb] to-blue-600 rounded-lg flex items-center justify-center">
-                <Rocket className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-lg font-bold text-slate-900">Menu</span>
-            </div>
+            <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
+              <img 
+                src="/logo-full.png" 
+                alt="Shallavar Technologies" 
+                className="h-14 w-auto object-contain"
+              />
+            </Link>
             <button
               className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 transition-all duration-300"
               onClick={() => setMobileOpen(false)}

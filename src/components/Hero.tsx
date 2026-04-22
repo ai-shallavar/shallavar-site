@@ -64,7 +64,7 @@ export default function Hero() {
         </div>
 
         {/* Trust Indicators */}
-        <div className="pt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-on-surface-variant">
+        <div className="pt-12 pb-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-on-surface-variant">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
               <span className="text-primary text-sm font-bold">✓</span>
@@ -87,7 +87,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
         <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
           <div className="w-1 h-3 bg-primary rounded-full animate-bounce" />
         </div>

@@ -7,7 +7,7 @@ export default function TrustStrip() {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-8 relative z-20 -mt-16">
+    <section className="max-w-7xl mx-auto px-8 relative z-20 -mt-12">
       <div className="bg-surface-container-lowest rounded-3xl py-12 px-8 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-premium border-border/30 text-center">
         {stats.map((stat, i) => (
           <div key={i} className="space-y-2">
