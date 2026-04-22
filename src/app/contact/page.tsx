@@ -3,6 +3,19 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useState, useTransition } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  ChevronDown,
+  Globe,
+  Sparkles,
+  MessageSquare,
+} from "lucide-react";
 
 export default function ContactPage() {
   const [isPending, startTransition] = useTransition();
@@ -28,229 +41,340 @@ export default function ContactPage() {
     });
   };
 
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: "Call Us Directly",
+      subtitle: "Available Mon-Fri, 9am-6pm IST",
+      detail: "+91 86600 39954",
+      link: "tel:+918660039954",
+      gradient: "from-blue-50 to-cyan-50 border-blue-100",
+      iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
+    },
+    {
+      icon: Mail,
+      title: "Email Support",
+      subtitle: "We aim to reply within 2 hours.",
+      detail: "hello@shallavar.in",
+      link: "mailto:hello@shallavar.in",
+      gradient: "from-violet-50 to-purple-50 border-violet-100",
+      iconBg: "bg-gradient-to-br from-violet-500 to-purple-500",
+    },
+    {
+      icon: MapPin,
+      title: "Headquarters",
+      subtitle: "Innovation Hub, Karnataka",
+      detail: "View on Google Maps",
+      link: "https://maps.google.com",
+      gradient: "from-orange-50 to-red-50 border-orange-100",
+      iconBg: "bg-gradient-to-br from-orange-500 to-red-500",
+    },
+    {
+      icon: Clock,
+      title: "Business Hours",
+      subtitle: "Monday to Friday",
+      detail: "9:00 AM - 6:00 PM IST",
+      link: "#",
+      gradient: "from-emerald-50 to-teal-50 border-emerald-100",
+      iconBg: "bg-gradient-to-br from-emerald-500 to-teal-500",
+    },
+  ];
+
+  const services = [
+    { value: "web", label: "Website Development" },
+    { value: "mobile", label: "Mobile App Development" },
+    { value: "cloud", label: "Cloud & Deployment" },
+    { value: "design", label: "UI/UX Design" },
+    { value: "seo", label: "SEO Optimization" },
+    { value: "support", label: "Maintenance & Support" },
+    { value: "other", label: "Other" },
+  ];
+
+  const budgets = [
+    { value: "under25k", label: "Under ₹25,000" },
+    { value: "25k-50k", label: "₹25,000 - ₹50,000" },
+    { value: "50k-1l", label: "₹50,000 - ₹1,00,000" },
+    { value: "1l-5l", label: "₹1,00,000 - ₹5,00,000" },
+    { value: "5l+", label: "₹5,00,000+" },
+    { value: "discuss", label: "Let's Discuss" },
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-24">
-        {/* Header */}
-        <section className="space-y-6 max-w-3xl">
-          <h1 className="font-headline text-4xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-tight">
-            Let&apos;s start a{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary">
-              conversation
-            </span>
-          </h1>
-          <p className="font-body text-lg text-on-surface-variant leading-relaxed max-w-2xl">
-            Whether you have a question about our services, pricing, or anything else — our team is ready to answer all your questions. We usually reply within 24 hours.
-          </p>
+      <main className="pt-28 pb-20">
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-blue-50 via-white to-violet-50 pb-20 pt-16">
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-violet-100/40 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+          
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Sparkles className="w-4 h-4" />
+              We typically respond within 24 hours
+            </div>
+            <h1 className="font-headline text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-tight mb-6">
+              Let's start a{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
+                conversation
+              </span>
+            </h1>
+            <p className="font-body text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+              Whether you have a question about our services, pricing, or anything else — our team is ready to help.
+            </p>
+          </div>
         </section>
 
-        {/* Success / Error */}
-        {status === "success" && (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-green-800 font-body">
-            ✅ Message sent successfully! We&apos;ll get back to you soon.
-          </div>
-        )}
-        {status === "error" && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-red-800 font-body">{errorMsg}</div>
-        )}
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* Form */}
-          <div className="lg:col-span-7 bg-surface-container-lowest rounded-2xl p-8 md:p-12 shadow-sm border border-outline-variant/10">
-            <form onSubmit={handleSubmit} className="space-y-8" noValidate>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-on-surface font-label">
-                    Full Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none transition-colors duration-200 placeholder:text-on-surface-variant/50"
-                    placeholder="Jane Doe"
-                    type="text"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-on-surface font-label">
-                    Email Address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none transition-colors duration-200 placeholder:text-on-surface-variant/50"
-                    placeholder="jane@company.com"
-                    type="email"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-on-surface font-label">
-                    Phone Number
-                  </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none transition-colors duration-200 placeholder:text-on-surface-variant/50"
-                    placeholder="+91 XXXXX XXXXX"
-                    type="tel"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="company" className="text-sm font-medium text-on-surface font-label">
-                    Company
-                  </label>
-                  <input
-                    id="company"
-                    name="company"
-                    className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none transition-colors duration-200 placeholder:text-on-surface-variant/50"
-                    placeholder="Acme Inc."
-                    type="text"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="service" className="text-sm font-medium text-on-surface font-label">
-                    Service of Interest
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl pl-4 pr-10 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none appearance-none transition-colors duration-200"
-                  >
-                    <option value="" disabled>
-                      Select a service
-                    </option>
-                    <option value="web">Website Development</option>
-                    <option value="mobile">Mobile App Development</option>
-                    <option value="cloud">Cloud &amp; Deployment</option>
-                    <option value="design">UI/UX Design</option>
-                    <option value="seo">SEO Optimization</option>
-                    <option value="support">Maintenance &amp; Support</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="budget" className="text-sm font-medium text-on-surface font-label">
-                    Estimated Budget
-                  </label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl pl-4 pr-10 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none appearance-none transition-colors duration-200"
-                  >
-                    <option value="" disabled>
-                      Select a range
-                    </option>
-                    <option value="under25k">Under ₹25,000</option>
-                    <option value="25k-50k">₹25,000 - ₹50,000</option>
-                    <option value="50k-1l">₹50,000 - ₹1,00,000</option>
-                    <option value="1l-5l">₹1,00,000 - ₹5,00,000</option>
-                    <option value="5l+">₹5,00,000+</option>
-                    <option value="discuss">Let&apos;s Discuss</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-on-surface font-label">
-                  How can we help?
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full bg-surface-container-low border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface focus:bg-surface-container-lowest focus:border-primary/30 outline-none transition-colors duration-200 resize-none placeholder:text-on-surface-variant/50"
-                  placeholder="Tell us a bit about your project..."
-                  rows={5}
-                />
-              </div>
-
-              <div className="pt-4 flex items-center justify-between">
-                <p className="text-xs text-on-surface-variant max-w-[280px]">
-                  By submitting, you agree to our privacy policy.
-                </p>
-                <button
-                  type="submit"
-                  disabled={isPending}
-                  className="bg-gradient-to-br from-primary-container to-primary text-on-primary rounded-full px-8 py-3.5 font-label font-semibold text-sm hover:-translate-y-0.5 transition-all duration-300 ease-out-expo shadow-[0_8px_24px_rgba(0,62,199,0.2)] disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2"
-                >
-                  {isPending ? (
-                    <>
-                      <span className="material-symbols-outlined text-sm animate-spin">sync</span>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </form>
-          </div>
-
-          {/* Info */}
-          <div className="lg:col-span-5 space-y-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
-              {[
-                {
-                  icon: "call",
-                  title: "Call Us Directly",
-                  desc: "Available Mon-Fri, 9am-6pm IST",
-                  link: "tel:+918005550199",
-                  linkText: "+91 800-555-0199",
-                  accent: "primary",
-                  bg: "primary-fixed",
-                },
-                {
-                  icon: "mail",
-                  title: "Email Support",
-                  desc: "We aim to reply within 2 hours.",
-                  link: "mailto:hello@shallavar.in",
-                  linkText: "hello@shallavar.in",
-                  accent: "primary",
-                  bg: "primary-fixed",
-                },
-                {
-                  icon: "location_on",
-                  title: "Headquarters",
-                  desc: "100 Innovation Drive, Suite 400, Bengaluru, KA",
-                  link: "https://maps.google.com",
-                  linkText: "View on Google Maps",
-                  accent: "tertiary",
-                  bg: "tertiary-fixed",
-                },
-              ].map((info) => (
-                <div
+        {/* Main Content */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Left Column - Contact Info Cards */}
+            <div className="lg:col-span-5 space-y-4">
+              {contactInfo.map((info, index) => (
+                <a
                   key={info.title}
-                  className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/15 hover:-translate-y-1 transition-all duration-300 ease-out-expo shadow-sm"
+                  href={info.link}
+                  target={info.link.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className={`group block bg-white rounded-2xl p-6 border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-visible relative z-[1] hover:z-[2]`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`${info.bg} w-12 h-12 rounded-full flex items-center justify-center shrink-0`}>
-                      <span className={`material-symbols-outlined ${info.accent === "tertiary" ? "text-tertiary" : "text-primary"}`}>{info.icon}</span>
+                    <div className={`${info.iconBg} w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-lg`}>
+                      <info.icon className="w-5 h-5 text-white" />
                     </div>
-                    <div>
-                      <h3 className="font-headline text-lg font-bold text-on-surface mb-1">{info.title}</h3>
-                      <p className="font-body text-sm text-on-surface-variant mb-2">{info.desc}</p>
-                      <a href={info.link} target={info.link.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="text-primary font-semibold hover:opacity-80 transition-opacity text-sm">
-                        {info.linkText}
-                      </a>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-headline text-base font-bold text-on-surface mb-0.5">
+                        {info.title}
+                      </h3>
+                      <p className="text-sm text-on-surface-variant mb-1">{info.subtitle}</p>
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all duration-200">
+                        {info.detail}
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
+
+              {/* Trust Badge */}
+              <div className="mt-8 bg-white rounded-2xl p-6 border border-outline/10 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  <h3 className="font-headline font-bold text-on-surface">Why choose us?</h3>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    "Dedicated project manager for every client",
+                    "Transparent pricing with no hidden fees",
+                    "Post-launch support & maintenance plans",
+                    "100% source code ownership included",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Column - Form */}
+            <div className="lg:col-span-7">
+              <div className="bg-white rounded-2xl p-8 md:p-10 border border-outline/10 shadow-sm sticky top-28">
+                <div className="flex items-center gap-3 mb-8">
+                  <MessageSquare className="w-5 h-5 text-primary" />
+                  <h2 className="font-headline text-xl font-bold text-on-surface">Send us a message</h2>
+                </div>
+
+                {/* Success / Error */}
+                {status === "success" && (
+                  <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3 text-on-surface">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <p className="text-sm font-medium text-emerald-800">Message sent successfully! We'll get back to you soon.</p>
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3 text-on-surface">
+                    <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
+                    <p className="text-sm font-medium text-red-800">{errorMsg}</p>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  {/* Row 1: Name & Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-semibold text-on-surface">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        required
+                        className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 placeholder:text-on-surface-variant/40"
+                        placeholder="Jane Doe"
+                        type="text"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-semibold text-on-surface">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        required
+                        className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 placeholder:text-on-surface-variant/40"
+                        placeholder="jane@company.com"
+                        type="email"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 2: Phone & Company */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="phone" className="text-sm font-semibold text-on-surface">
+                        Phone Number
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 placeholder:text-on-surface-variant/40"
+                        placeholder="+91 XXXXX XXXXX"
+                        type="tel"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="company" className="text-sm font-semibold text-on-surface">
+                        Company
+                      </label>
+                      <input
+                        id="company"
+                        name="company"
+                        className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 placeholder:text-on-surface-variant/40"
+                        placeholder="Acme Inc."
+                        type="text"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 3: Service & Budget */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="service" className="text-sm font-semibold text-on-surface">
+                        Service of Interest
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="service"
+                          name="service"
+                          className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 pr-10 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 appearance-none"
+                        >
+                          <option value="" disabled>Select a service</option>
+                          {services.map((s) => (
+                            <option key={s.value} value={s.value}>{s.label}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant pointer-events-none" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="budget" className="text-sm font-semibold text-on-surface">
+                        Estimated Budget
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="budget"
+                          name="budget"
+                          className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 pr-10 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 appearance-none"
+                        >
+                          <option value="" disabled>Select a range</option>
+                          {budgets.map((b) => (
+                            <option key={b.value} value={b.value}>{b.label}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant pointer-events-none" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-semibold text-on-surface">
+                      How can we help? <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      className="w-full bg-surface-container-lowest border border-outline/20 rounded-xl px-4 py-3 text-on-surface focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200 resize-none placeholder:text-on-surface-variant/40"
+                      placeholder="Tell us a bit about your project, goals, and timeline..."
+                      rows={5}
+                    />
+                  </div>
+
+                  {/* Submit */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                    <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                      <Globe className="w-3.5 h-3.5" />
+                      <span>By submitting, you agree to our privacy policy.</span>
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={isPending}
+                      className="w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 text-white rounded-xl px-8 py-3.5 font-label font-semibold hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
+                    >
+                      {isPending ? (
+                        <>
+                          <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          </svg>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Bottom CTA Section */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+          <div className="relative overflow-hidden bg-gradient-to-br from-primary to-blue-700 rounded-3xl p-10 md:p-14 text-center">
+            {/* Decorative circles */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4" />
+            
+            <div className="relative">
+              <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-white mb-4">
+                Prefer a direct conversation?
+              </h2>
+              <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto">
+                Schedule a free 30-minute discovery call with our team. We'll discuss your project and provide expert recommendations.
+              </p>
+              <a
+                href="tel:+918660039954"
+                className="inline-flex items-center gap-2 bg-white text-primary font-semibold px-8 py-3.5 rounded-xl hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
+              >
+                <Phone className="w-4 h-4" />
+                Call +91 86600 39954
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

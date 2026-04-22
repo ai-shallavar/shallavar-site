@@ -1,129 +1,76 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCards from "@/components/Services";
 import ProcessFlow from "@/components/ProcessFlow";
 
 export default function ServicesPage() {
-  const serviceDetails = [
-    {
-      id: "web",
-      icon: "language",
-      title: "Website Development",
-      description: "Bespoke web platforms engineered for speed, scalability, and seamless user experiences across all devices. We build everything from landing pages to complex web applications using modern frameworks and best practices.",
-      features: ["Custom Design & Development", "Headless CMS Integration", "Performance Optimization", "Security Hardening", "Scalable Architecture"],
-    },
-    {
-      id: "mobile",
-      icon: "smartphone",
-      title: "Mobile App Development",
-      description: "Native and cross-platform mobile solutions that connect your brand directly to your audience's fingertips. From consumer apps to enterprise mobility solutions.",
-      features: ["iOS & Android Development", "React Native & Flutter", "App Store Optimization", "Offline Capabilities", "Push Notifications"],
-    },
-    {
-      id: "cloud",
-      icon: "cloud",
-      title: "Cloud Hosting & Deployment",
-      description: "Secure, high-availability cloud infrastructure management ensuring your applications remain robust and responsive. We architect for scale from day one.",
-      features: ["AWS / GCP / Azure", "CI/CD Pipelines", "Auto-scaling Infrastructure", "Monitoring & Alerting", " Disaster Recovery"],
-    },
-    {
-      id: "design",
-      icon: "design_services",
-      title: "UI/UX Design",
-      description: "Intuitive, aesthetically striking interfaces rooted in deep user research and elegant interaction models. Every pixel is intentional.",
-      features: ["User Research & Personas", "Wireframing & Prototyping", "Design Systems", "Accessibility (WCAG)", "Usability Testing"],
-    },
-    {
-      id: "support",
-      icon: "build",
-      title: "Maintenance & Support",
-      description: "Continuous monitoring, security updates, and dedicated technical support to keep your digital assets flawless.",
-      features: ["24/7 Monitoring", "Security Patching", "Performance Reviews", "Content Updates", "Dedicated Support Channel"],
-    },
-    {
-      id: "seo",
-      icon: "rocket_launch",
-      title: "SEO-Ready Launch",
-      description: "Strategic deployment optimized for search engines from day one, ensuring maximum visibility and organic growth.",
-      features: ["Technical SEO", "On-Page Optimization", "Schema Markup", "Core Web Vitals", "Analytics Integration"],
-    },
-  ];
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-32">
-        {/* Hero */}
-        <section className="space-y-6 max-w-3xl">
-          <h1 className="font-headline text-4xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-tight">
-            Architecting Digital{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary">
-              Excellence.
-            </span>
-          </h1>
-          <p className="font-body text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl">
-            Our core disciplines are designed to elevate your brand from concept to deployment. We do not just build software; we curate high-performance digital ecosystems tailored for modern enterprises.
-          </p>
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-24 md:py-32">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-float" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-float-delayed" />
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-4xl mx-auto space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/80 backdrop-blur-sm mb-4">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="font-label text-sm font-semibold text-primary uppercase tracking-widest">Our Services</span>
+              </div>
+              <h1 className="font-headline text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-tight">
+                Architecting Digital{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
+                  Excellence
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl mx-auto">
+                We don't just build software — we curate high-performance digital ecosystems tailored for modern enterprises. From concept to deployment, our disciplines elevate your brand.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Service Cards */}
         <ServiceCards />
 
-        {/* Detailed Services */}
-        <section className="space-y-16">
-          <h2 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-on-surface">
-            In Detail
-          </h2>
-          <div className="space-y-24">
-            {serviceDetails.map((service, i) => (
-              <div
-                key={service.id}
-                id={service.id}
-                className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${
-                  i % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
-              >
-                <div className={i % 2 === 1 ? "md:order-2" : ""}>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 bg-primary-fixed rounded-2xl flex items-center justify-center text-primary">
-                      <span className="material-symbols-outlined text-3xl">{service.icon}</span>
-                    </div>
-                    <h3 className="font-headline text-3xl font-bold text-on-surface">{service.title}</h3>
+        {/* Process Flow */}
+        <ProcessFlow />
+
+        {/* Why Choose Us Section */}
+        <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 py-24 md:py-32 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[100px]" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[100px]" />
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-white">
+                Why Choose Shallavar?
+              </h2>
+              <p className="text-slate-300 font-body text-xl max-w-2xl mx-auto">
+                We combine technical expertise with creative vision to deliver exceptional results.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { number: "100+", label: "Projects Delivered" },
+                { number: "50+", label: "Happy Clients" },
+                { number: "3+", label: "Years Experience" },
+                { number: "24/7", label: "Support Available" },
+              ].map((stat, i) => (
+                <div key={i} className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <div className="font-headline text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">
+                    {stat.number}
                   </div>
-                  <p className="font-body text-lg text-on-surface-variant leading-relaxed mb-8">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {service.features.map((feat) => (
-                      <li key={feat} className="flex items-center gap-3">
-                        <span className="material-symbols-outlined text-primary text-lg flex-shrink-0">
-                          check_circle
-                        </span>
-                        <span className="font-body text-on-surface">{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-slate-400 font-body">{stat.label}</p>
                 </div>
-                <div className={`${i % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
-                  <div className="bg-surface-container-lowest rounded-2xl p-12 shadow-sm border border-outline-variant/10 flex items-center justify-center min-h-[300px]">
-                    <div className="text-center space-y-4">
-                      <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary-container to-primary rounded-3xl flex items-center justify-center shadow-lg">
-                        <span className="material-symbols-outlined text-white text-5xl">{service.icon}</span>
-                      </div>
-                      <p className="font-label text-on-surface-variant text-sm">
-                        Professional {service.title.toLowerCase()} solutions
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
-
-        <ProcessFlow />
       </main>
       <Footer />
     </div>

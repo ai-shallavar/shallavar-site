@@ -1,77 +1,107 @@
+"use client";
+
+import { Bolt, Mail, MapPin, X, Link2, GitBranch } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
+  const socials = [
+    { icon: X, href: "https://twitter.com", label: "Twitter" },
+    { icon: Link2, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: GitBranch, href: "https://github.com", label: "GitHub" },
+  ];
+
+  const services = [
+    { name: "Web Development", href: "/services/web-development" },
+    { name: "Mobile Apps", href: "/services/mobile-apps" },
+    { name: "UI/UX Design", href: "/services/ui-ux-design" },
+    { name: "Cloud Deployment", href: "/services/cloud-deployment" },
+    { name: "Dashboards", href: "/services/dashboards" },
+    { name: "Support", href: "/services/support" },
+  ];
+
+  const company = [
+    { name: "About", href: "/about" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "Insights", href: "/insights" },
+    { name: "Contact", href: "/contact" },
+  ];
+
   return (
-    <footer className="bg-slate-50 dark:bg-slate-950 w-full pt-20 pb-10 border-t border-slate-100 dark:border-slate-800">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-4 sm:px-8">
-        {/* Brand */}
-        <div className="md:col-span-2">
-          <div className="text-xl font-bold text-on-surface mb-4 font-headline tracking-tight">
-            Shallavar Technologies
-          </div>
-          <p className="font-body text-base text-on-surface-variant leading-relaxed mb-6 max-w-sm">
-            Curating exceptional digital experiences for modern brands. Simplified Tech, Significant Impact.
-          </p>
-          <p className="font-body text-sm text-on-surface-variant/70">
-            © {new Date().getFullYear()} Shallavar Technologies (shallavar.in). All rights reserved.
-          </p>
-        </div>
-
-        {/* Links */}
-        <div>
-          <h4 className="font-headline font-bold mb-4 text-on-surface text-sm uppercase tracking-wider">Pages</h4>
-          <ul className="space-y-3">
-            {[
-              ["Home", "/"],
-              ["About", "/about"],
-              ["Services", "/services"],
-              ["Pricing", "/pricing"],
-              ["Contact", "/contact"],
-            ].map(([label, href]) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-200 block"
+    <footer className="bg-surface-container mt-auto border-t border-outline/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div className="md:col-span-1">
+            <Link href="/" className="flex items-center gap-3 mb-6 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary/30 transition-all duration-300">
+                <Bolt className="w-6 h-6 text-white" />
+              </div>
+              <span className="font-headline font-extrabold text-2xl tracking-tight">Shallavar</span>
+            </Link>
+            <p className="text-on-surface-variant mb-6 leading-relaxed">Premium digital experiences for ambitious brands. We build, deploy, and scale.</p>
+            <div className="flex gap-3">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center hover:bg-primary hover:text-white text-on-surface-variant transition-all duration-300"
                 >
-                  {label}
-                </Link>
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-headline font-bold text-lg mb-6 text-on-surface">Services</h4>
+            <ul className="space-y-3">
+              {services.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-on-surface-variant hover:text-primary transition-colors duration-300">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-headline font-bold text-lg mb-6 text-on-surface">Company</h4>
+            <ul className="space-y-3">
+              {company.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-on-surface-variant hover:text-primary transition-colors duration-300">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-headline font-bold text-lg mb-6 text-on-surface">Contact</h4>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-on-surface-variant">
+                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors duration-300">
+                  hello@shallavar.com
+                </a>
               </li>
-            ))}
-          </ul>
+              <li className="flex items-center gap-2 text-on-surface-variant">
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>India</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <h4 className="font-headline font-bold mb-4 text-on-surface text-sm uppercase tracking-wider">Connect</h4>
-          <ul className="space-y-3">
-            <li>
-              <a
-                href="mailto:hello@shallavar.in"
-                className="text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-200 block"
-              >
-                hello@shallavar.in
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/company/shallavar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-200 block"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/shallavar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-200 block"
-              >
-                GitHub
-              </a>
-            </li>
-          </ul>
+        <div className="border-t border-outline/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-on-surface-variant text-sm">&copy; {new Date().getFullYear()} Shallavar Technologies. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#" className="text-on-surface-variant hover:text-primary text-sm transition-colors duration-300">Privacy Policy</a>
+            <a href="#" className="text-on-surface-variant hover:text-primary text-sm transition-colors duration-300">Terms of Service</a>
+          </div>
         </div>
       </div>
     </footer>

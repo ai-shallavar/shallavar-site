@@ -1,87 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f8f9fa;
-  --color-on-primary: #ffffff;
-  --color-inverse-surface: #2e3132;
-  --color-on-tertiary-fixed: #3c0800;
-  --color-tertiary: #952200;
-  --color-on-surface: #191c1d;
-  --color-surface-variant: #e1e3e4;
-  --color-on-secondary-container: #253b89;
-  --color-on-primary-fixed-variant: #0038b6;
-  --color-primary-container: #0052ff;
-  --color-on-tertiary: #ffffff;
-  --color-on-primary-fixed: #001452;
-  --color-inverse-primary: #b7c4ff;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-high: #e7e8e9;
-  --color-secondary: #4459a8;
-  --color-inverse-on-surface: #f0f1f2;
-  --color-on-tertiary-fixed-variant: #891e00;
-  --color-outline: #737688;
-  --color-on-error-container: #93000a;
+  /* Core colors matching UX design */
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
   --color-surface-dim: #d9dadb;
-  --color-primary: #003ec7;
-  --color-outline-variant: #c3c5d9;
   --color-surface-bright: #f8f9fa;
-  --color-on-tertiary-container: #ffddd5;
-  --color-surface-container-low: #f3f4f5;
-  --color-on-secondary-fixed-variant: #2b418f;
-  --color-on-background: #191c1d;
-  --color-surface: #f8f9fa;
-  --color-on-surface-variant: #434656;
-  --color-on-primary-container: #dfe3ff;
+  --color-surface-container-low: #f3f4f6;
+  --color-surface-container: #f9fafb;
   --color-surface-container-highest: #e1e3e4;
-  --color-primary-fixed: #dde1ff;
-  --color-secondary-fixed-dim: #b7c4ff;
-  --color-on-error: #ffffff;
-  --color-surface-tint: #004ced;
-  --color-error: #ba1a1a;
-  --color-primary-fixed-dim: #b7c4ff;
-  --color-on-secondary-fixed: #001452;
-  --color-surface-container: #edeeef;
-  --color-secondary-fixed: #dde1ff;
-  --color-tertiary-container: #bf3003;
-  --color-secondary-container: #95aafe;
-  --color-error-container: #ffdad6;
-  --color-tertiary-fixed-dim: #ffb4a1;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-variant: #e1e3e4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-tint: #2563eb;
+
+  /* Primary colors */
+  --color-primary: #2563eb;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #dbeafe;
+  --color-on-primary-container: #1e3a8a;
+  --color-primary-fixed: #dbeafe;
+  --color-primary-fixed-dim: #93c5fd;
+  --color-on-primary-fixed: #001452;
+  --color-on-primary-fixed-variant: #0038b6;
+  --color-inverse-primary: #b7c4ff;
+
+  /* Secondary colors */
+  --color-secondary: #4459a8;
   --color-on-secondary: #ffffff;
+  --color-secondary-container: #95aafe;
+  --color-on-secondary-container: #253b89;
+  --color-secondary-fixed: #dde1ff;
+  --color-secondary-fixed-dim: #b7c4ff;
+  --color-on-secondary-fixed: #001452;
+  --color-on-secondary-fixed-variant: #2b418f;
+
+  /* Tertiary colors */
+  --color-tertiary: #952200;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #bf3003;
+  --color-on-tertiary-container: #ffddd5;
   --color-tertiary-fixed: #ffdbd2;
+  --color-tertiary-fixed-dim: #ffb4a1;
+  --color-on-tertiary-fixed: #3c0800;
+  --color-on-tertiary-fixed-variant: #891e00;
+
+  /* Error colors */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Outline & inverse */
+  --color-outline: #6b7280;
+  --color-outline-variant: #d1d5db;
+  --color-inverse-surface: #2e3132;
+  --color-inverse-on-surface: #f0f1f2;
+
+  /* On-colors */
+  --color-on-surface: #111827;
+  --color-on-surface-variant: #4b5563;
+  --color-on-background: #111827;
+
+  /* Border radius */
+  --radius-default: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+
+  /* Box shadows */
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 40px -10px rgba(37, 99, 235, 0.3);
+  --shadow-premium: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+
+  /* Font families */
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
 }
 
 @layer base {
   body {
     @apply bg-background text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-headline), sans-serif;
+  }
+
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-transform: normal;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-manrope), sans-serif;
+  .material-symbols-outlined[filled],
+  .material-symbols-filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 }
 
-@utility ease-out-expo {
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+@layer utilities {
+  /* Hero gradient - matches design exactly */
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 100%),
+      radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(147, 197, 253, 0.1) 0%, transparent 50%);
+  }
+
+  /* Glass panel - matches design spec: 70% opacity + 24px blur */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Gradient text - matches design spec */
+  .text-gradient {
+    background: linear-gradient(to right, #1e3a8a, #2563eb, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Primary button gradient - TL to BR */
+  .btn-primary-gradient {
+    background: linear-gradient(135deg, #0052ff 0%, #003ec7 100%);
+  }
+
+  /* Smooth ease-out-expo transitions (design mandate) */
+  .ease-out-expo {
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Ambient shadow - design spec: soft lift */
+  .ambient-shadow {
+    box-shadow: 0 10px 48px -10px rgba(0, 62, 199, 0.04);
+  }
+
+  /* Soft shadow for cards */
+  .soft-lift {
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Ghost border - 15% outline variant */
+  .ghost-border {
+    border: 1px solid rgba(195, 197, 217, 0.15);
+  }
+
+  /* Card hover lift animation */
+  .hover-lift {
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
 }
 
-@utility font-headline {
-  font-family: var(--font-manrope), sans-serif;
+/* Float animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
-@utility font-body {
-  font-family: var(--font-inter), sans-serif;
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
-@utility font-label {
-  font-family: var(--font-inter), sans-serif;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-@keyframes fadeInUp {
+.animate-float-delayed {
+  animation: float 7s ease-in-out 2s infinite;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -89,19 +222,12 @@
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
