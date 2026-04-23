@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <div className="relative overflow-hidden mb-6 group w-fit -ml-10">
+            <div className="relative overflow-hidden mb-6 group w-fit">
               <Link href="/" className="flex items-center gap-3">
                 <img 
                   src="/logo-full-square.png" 

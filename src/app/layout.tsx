@@ -70,8 +70,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/logo-icon.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/logo-icon.png" />
+        <link rel="icon" href="/logo-icon-white-bg.png" sizes="32x32" />
+        <link rel="icon" href="/logo-icon-white-bg.png" sizes="16x16" />
+        <link rel="apple-touch-icon" href="/logo-icon-white-bg.png" sizes="180x180" />
+        <link rel="shortcut icon" href="/logo-icon-white-bg.png" />
         <meta name="theme-color" content="#2563eb" />
         <meta property="og:image" content="/logo-full.png" />
         <meta property="twitter:image" content="/logo-full.png" />
