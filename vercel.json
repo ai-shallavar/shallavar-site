@@ -1,9 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
-      "source": "(.*)",
-      "destination": "https://shallavar.vercel.app/$1",
-      "permanent": true
+      "source": "/(.*)",
+      "destination": "/$1"
     }
   ]
 }
