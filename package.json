@@ -14,6 +14,7 @@
     "monitor:logs": "tail -50 .memory-monitor.log 2>/dev/null || echo 'No monitor logs yet'"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "lucide-react": "^1.8.0",
     "next": "16.2.4",
     "react": "19.2.4",
