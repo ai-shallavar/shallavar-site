@@ -203,15 +203,15 @@ export default function Navbar() {
             : "bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl shadow-sm"
         }`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-20">
+            <div className="flex items-center justify-between h-28">
               
               {/* Brand */}
               <Link href="/" className="flex items-center gap-3 group">
-                <img 
-                  src="/logo-full.png" 
-                  alt="Shallavar Technologies" 
-                  className="h-16 w-auto object-contain transition-all duration-500 group-hover:opacity-90"
-                />
+                  <img 
+                    src="/logo-full.png" 
+                    alt="Shallavar Technologies" 
+                    className="h-24 w-auto object-contain transition-all duration-500 group-hover:opacity-90"
+                  />
               </Link>
 
               {/* Desktop Nav */}
@@ -352,7 +352,7 @@ export default function Navbar() {
               <img 
                 src="/logo-full.png" 
                 alt="Shallavar Technologies" 
-                className="h-14 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </Link>
             <button
