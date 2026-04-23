@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,48 +18,72 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shallavar.com"),
   title: {
-    default: "Shallavar Technologies — Simplified Tech, Significant Impact",
-    template: "%s | Shallavar Technologies",
+    default: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
+    template: "%s | Shallavar Technologies Bangalore",
   },
   description:
-    "Shallavar Technologies delivers high-performance websites, intuitive mobile applications, and scalable cloud solutions. Simplified Tech, Significant Impact.",
+    "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards & provide 24/7 tech support. Free consultation. Call +91 86600 39954.",
   keywords: [
-    "digital agency",
-    "web development",
-    "mobile app development",
-    "cloud solutions",
-    "UI/UX design",
-    "SEO optimization",
-    "technology consulting",
+    "web development company Bangalore",
+    "mobile app development Bangalore",
+    "software development company Bangalore",
+    "web design company Bangalore",
+    "app development company Bangalore",
+    "IT company Bangalore",
+    "startup tech company Bangalore",
+    "website development Bangalore",
+    "React Native development Bangalore",
+    "Next.js development company India",
+    "UI UX design Bangalore",
+    "cloud deployment services Bangalore",
+    "dashboard development Bangalore",
+    "website maintenance Bangalore",
+    "affordable web development Bangalore",
+    "best web developer Bangalore",
     "Shallavar Technologies",
-    "shallavar.in",
+    "shallavar.com",
   ],
   authors: [{ name: "Shallavar Technologies" }],
-  metadataBase: new URL("https://shallavar.in"),
+  creator: "Shallavar Technologies",
+  publisher: "Shallavar Technologies",
+  robots: {
+    index: true,
+    follow: true,
+     "max-snippet": -1,
+     "max-image-preview": "large",
+     "max-video-preview": -1,
+   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
     siteName: "Shallavar Technologies",
-    title: "Shallavar Technologies — Simplified Tech, Significant Impact",
+    title: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
     description:
-      "High-performance websites, intuitive mobile applications, and scalable cloud solutions for brands that refuse to blend in.",
-    url: "https://shallavar.in",
+      "Top-rated web & mobile app development company in Bangalore. Custom websites, iOS/Android apps, UI/UX design, dashboards & 24/7 support. Free consultation.",
+    url: "https://shallavar.com",
     images: [
       {
         url: "/logo-full.png",
         width: 1200,
         height: 630,
-        alt: "Shallavar Technologies",
+        alt: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shallavar Technologies",
-    description: "Simplified Tech, Significant Impact.",
+    site: "@shallavar_tech",
+    creator: "@shallavar_tech",
+    title: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
+    description: "Top-rated web & mobile app development company in Bangalore. Custom websites, iOS/Android apps, UI/UX design, dashboards & 24/7 support.",
     images: ["/logo-full.png"],
+  },
+  category: "Web Development & Mobile App Development",
+  verification: {
+    google: "your-google-verification-code",
   },
 };
 
@@ -67,6 +92,149 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Shallavar Technologies",
+    "url": "https://shallavar.com",
+    "telephone": "+918660039954",
+    "email": "hello@shallavar.com",
+    "description": "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards and provide 24/7 tech support.",
+    "logo": "https://shallavar.com/logo-full.png",
+    "image": "https://shallavar.com/logo-full.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Banashankari",
+      "addressLocality": "Bangalore",
+      "addressRegion": "Karnataka",
+      "postalCode": "560070",
+      "addressCountry": "IN",
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-1.2972",
+      "longitude": "77.4277",
+    },
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Banashankari, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "JP Nagar, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "Whitefield, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "MG Road, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "Hebbala, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "Majestic, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "Kaggalipura, Bangalore",
+      },
+      {
+        "@type": "Place",
+        "name": "South Bangalore",
+      },
+    ],
+    "priceRange": "₹₹",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "knowsAbout": [
+      "Web Development",
+      "Mobile App Development",
+      "UI/UX Design",
+      "Next.js",
+      "React Native",
+      "Flutter",
+      "Cloud Deployment",
+      "Dashboard Development",
+      "Software Development",
+    ],
+    "sameAs": [
+      "https://twitter.com/shallavar_tech",
+      "https://linkedin.com/company/shallavar-technologies",
+      "https://github.com/ai-shallavar",
+    ],
+    "foundingDate": "2024",
+    "serviceArea": [
+      "India",
+      "Bangalore",
+      "Bengaluru",
+      "Karnataka",
+    ],
+    "contactOption": [
+      {
+        "@type": "ContactOption",
+        "contactType": "customer service",
+        "phone": "+918660039954",
+        "availableChannel": {
+          "@type": "ContactChannel",
+          "serviceLanguage": ["English", "Hindi", "Kannada"],
+          "availableOnline": true,
+        },
+      },
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a website cost in Bangalore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our website development starts from ₹12,500 for a starter package. Pricing depends on complexity, features, and timeline. Contact us for a free custom quote.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "What is the typical timeline for mobile app development in Bangalore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most mobile app projects are completed within 6-12 weeks depending on complexity. We provide a detailed timeline during the discovery phase.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide post-launch support and maintenance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! All our packages include post-launch support. We also offer ongoing retainer plans starting from ₹10,000/month for continuous maintenance and updates.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "What makes you different from other IT companies in Bangalore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We focus on quality over quantity, offer transparent pricing with no hidden fees, provide dedicated project managers, and build for long-term success. Our 98% client satisfaction rate speaks for itself.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with startups and small businesses in Bangalore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! We specialize in working with startups and small businesses in Bangalore. Our starter plan at ₹12,500 is specifically designed for small businesses and entrepreneurs.",
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -75,8 +243,37 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/logo-icon-white-bg.png" sizes="180x180" />
         <link rel="shortcut icon" href="/logo-icon-white-bg.png" />
         <meta name="theme-color" content="#2563eb" />
-        <meta property="og:image" content="/logo-full.png" />
-        <meta property="twitter:image" content="/logo-full.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="language" content="English" />
+        <meta name="region" content="Bangalore, Karnataka, India" />
+        <meta name="rating" content="general" />
+        <meta name="revisit-after" content="3 days" />
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Script
+          id="faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          async
+          defer
+        />
+        <Script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX', { page_path: window.location.pathname });
+            `,
+          }}
+        />
       </head>
       <body className={`${manrope.variable} ${inter.variable}`}>
         <div className="flex flex-col min-h-screen">

@@ -1,7 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { type ComponentType, type SVGProps } from "react";
 
 // Color theme definitions for each service
 export const SERVICE_THEMES = {
@@ -56,8 +55,8 @@ export const SERVICE_THEMES = {
     hoverBorder: "hover:border-service-dashboard/50",
     shadow: "shadow-dashboard",
     gradientFrom: "from-service-dashboard",
-    gradientTo: "to-[#E11D48]",
-    bgLight: "bg-rose-50",
+    gradientTo: "to-[#0891B2]",
+    bgLight: "bg-cyan-50",
     textOnPrimary: "text-on-service-dashboard",
   },
   support: {
@@ -71,39 +70,12 @@ export const SERVICE_THEMES = {
     bgLight: "bg-amber-50",
     textOnPrimary: "text-on-service-support",
   },
-} as const;
+};
 
-export type ServiceThemeKey = keyof typeof SERVICE_THEMES;
-
-// Feature item type
-export interface ServiceFeature {
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  desc: string;
-}
-
-// Pricing plan type
-export interface ServicePricingPlan {
-  name: string;
-  price: string;
-  desc: string;
-  features: string[];
-  popular?: boolean;
-}
-
-// Tech stack items type
-export type TechStackItem = string;
-
-// SLA stat type
-export interface SLAStat {
-  number: string;
-  label: string;
-}
-
-export interface ServicePageProps {
-  theme: ServiceThemeKey;
+export type ServicePageProps = {
+  theme: "web" | "mobile" | "design" | "cloud" | "dashboard" | "support";
   badgeLabel: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   heroTitle: string;
   heroHighlight: string;
   heroSubtitle: string;
@@ -111,31 +83,27 @@ export interface ServicePageProps {
   plansLink?: string;
   featuresTitle: string;
   featuresSubtitle: string;
-  features: ServiceFeature[];
-  slaStats?: SLAStat[];
+  features: { icon: ComponentType<SVGProps<SVGSVGElement>>; title: string; desc: string }[];
+  slaStats?: { number: string; label: string }[];
   techTitle: string;
   techSubtitle: string;
-  techStack: TechStackItem[];
+  techStack: string[];
   pricingTitle: string;
   pricingSubtitle: string;
-  pricing: ServicePricingPlan[];
+  pricing: { name: string; price: string; desc: string; features: string[]; popular?: boolean }[];
   ctaTitle: string;
   ctaSubtitle: string;
-}
+};
 
-/**
- * Shared Service Page Component
- * Provides a consistent structure for all service pages with theme-aware styling.
- */
 export default function ServicePage({
   theme,
   badgeLabel,
-  icon: Icon,
+  icon: HeroIcon,
   heroTitle,
   heroHighlight,
   heroSubtitle,
   ctaText,
-  plansLink = "/plans",
+  plansLink,
   featuresTitle,
   featuresSubtitle,
   features,
@@ -152,53 +120,53 @@ export default function ServicePage({
   const t = SERVICE_THEMES[theme];
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className={`relative overflow-hidden bg-gradient-to-br ${t.gradientFrom}-container via-background py-24 md:py-36`}>
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div
-            className={`absolute top-20 left-10 w-96 h-96 ${t.container} bg-opacity-50 rounded-full mix-blend-multiply filter blur-[128px] animate-pulse`}
-          />
-          <div
-            className={`absolute bottom-20 right-10 w-[28rem] h-[28rem] rounded-full mix-blend-multiply filter blur-[128px] animate-pulse`}
-            style={{ animationDelay: "1s" }}
-          />
+    <div className="min-h-screen">
+      {/* Breadcrumb */}
+      <section className="bg-surface-container-lowest border-b border-outline-variant/10 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center text-sm text-on-surface-variant">
+            <a href="/" className="hover:text-on-surface transition-colors">Home</a>
+            <span className="mx-2">/</span>
+            <a href="/services" className="hover:text-on-surface transition-colors">Services</a>
+            <span className="mx-2">/</span>
+            <span className="text-on-surface font-medium">{badgeLabel}</span>
+          </nav>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${t.container} backdrop-blur-sm`}>
-              <Icon className={`w-4 h-4 ${t.primary}`} />
-              <span className={`font-label text-sm font-semibold ${t.primary} uppercase tracking-widest`}>
-                {badgeLabel}
-              </span>
+      </section>
+
+      {/* Hero Section */}
+      <section className={`relative overflow-hidden ${t.bgLight}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className={`inline-flex items-center gap-2 px-4 py-2 ${t.container} ${t.border} rounded-full mb-8`}>
+              <HeroIcon className={`w-5 h-5 ${t.primary}`} />
+              <span className={`${t.primary} font-label text-sm font-bold uppercase tracking-wide`}>{badgeLabel}</span>
             </div>
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className={`w-16 h-16 ${t.container} rounded-2xl flex items-center justify-center`}>
-                <Icon className={`w-8 h-8 ${t.primary}`} />
-              </div>
-            </div>
-            <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-on-surface leading-tight">
+            <h1 className={`font-headline text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-6`}>
               {heroTitle}{" "}
               <span className={`text-transparent bg-clip-text bg-gradient-to-r ${t.gradientFrom} ${t.gradientTo}`}>
                 {heroHighlight}
               </span>
             </h1>
-            <p className="font-body text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl mx-auto">
+            <p className={`text-xl md:text-2xl text-on-surface-variant mb-10 leading-relaxed max-w-3xl mx-auto`}>
               {heroSubtitle}
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Link
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
                 href="/contact"
-                className={`bg-gradient-to-r ${t.gradientFrom} ${t.gradientTo} text-white px-8 py-3.5 rounded-full font-label font-semibold hover:shadow-lg ${t.shadow} hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2`}
+                className={`inline-flex items-center justify-center px-8 py-4 ${t.container} ${t.primary} font-label text-base font-bold rounded-lg shadow-lg ${t.hoverBorder} hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5`}
               >
-                {ctaText} <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href={plansLink}
-                className="px-8 py-3.5 rounded-full font-label font-semibold text-on-surface bg-surface-container-lowest border border-outline-variant/20 hover:bg-surface-container-highest transition-all duration-300"
-              >
-                View Plans
-              </Link>
+                {ctaText}
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+              {plansLink && (
+                <a
+                  href={plansLink}
+                  className={`inline-flex items-center justify-center px-8 py-4 bg-surface-container-low font-label text-base font-bold rounded-lg border ${t.border} text-on-surface hover:bg-surface-container-highest transition-all duration-300`}
+                >
+                  View Plans
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -289,99 +257,89 @@ export default function ServicePage({
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="bg-surface-container-lowest py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className={`inline-block px-4 py-1.5 ${t.container} ${t.primary} font-label text-xs font-bold rounded-full uppercase tracking-wider mb-4`}>
-              Pricing Plans
-            </span>
-            <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">
-              {pricingTitle}
-            </h2>
-            <p className="text-on-surface-variant text-xl max-w-2xl mx-auto">
-              {pricingSubtitle}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {pricing.map((plan) => (
-              <div
-                key={plan.name}
-                className={`relative rounded-2xl p-8 transition-all duration-300 ${
-                  plan.popular
-                    ? `bg-gradient-to-br ${t.gradientFrom} to-[${plan.popular ? "var(--color-service-web-gradient-end, #2563EB)" : "#2563EB"}] text-white shadow-xl ${t.shadow} md:-translate-y-4`
-                    : "bg-surface-container-lowest border border-outline-variant/15 hover:border-service-web/30 hover:shadow-lg"
-                }`}
-              >
-                {plan.popular && (
-                  <span className="inline-block px-3 py-1 bg-white/20 text-on-service-web font-label text-xs font-bold rounded-full mb-4 uppercase tracking-wider">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className={`font-headline text-2xl font-bold mb-2 ${plan.popular ? "text-on-service-web" : "text-on-surface"}`}>
-                  {plan.name}
-                </h3>
-                <p className={`text-sm mb-6 ${plan.popular ? "text-on-service-web/80" : "text-on-surface-variant"}`}>
-                  {plan.desc}
-                </p>
-                <div className={`font-headline text-4xl font-extrabold mb-8 ${plan.popular ? "text-on-service-web" : "text-on-surface"}`}>
-                  {plan.price}
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feat) => (
-                    <li key={feat} className="flex items-center gap-3">
-                      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${plan.popular ? "text-on-service-web" : t.primary}`} />
-                      <span className={plan.popular ? "text-on-service-web/90" : "text-on-surface-variant"}>
-                        {feat}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/contact"
-                  className={`block w-full py-3.5 rounded-full font-label font-semibold text-sm text-center transition-all duration-300 ${
-                    plan.popular
-                      ? "bg-white text-[#5B81E2] hover:bg-gray-100 shadow-lg border-2 border-white/50 hover:shadow-xl hover:scale-105"
-                      : `bg-gradient-to-r ${t.gradientFrom} ${t.gradientTo} text-white border-2 border-transparent hover:shadow-lg hover:scale-105`
-                  }`}
-                >
-                  Get Started
-                </Link>
+        {/* Pricing */}
+        <section className="bg-surface-container-lowest py-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <span className={`inline-block px-4 py-1.5 ${t.container} ${t.primary} font-label text-xs font-bold rounded-full uppercase tracking-wider mb-4`}>
+               Pricing Plans
+              </span>
+              <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">
+                {pricingTitle}
+              </h2>
+              <p className="text-on-surface-variant text-xl max-w-2xl mx-auto">
+                {pricingSubtitle}
+              </p>
+            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {pricing.map((plan, i) => (
+                  <div
+                 key={i}
+                 className={`group relative pricing-card ${plan.popular ? `pricing-card-popular pricing-card-popular-${theme}` : `pricing-card-${theme}`} transition-all duration-400`}
+                  >
+                    {/* Decorative gradient glow on hover */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${t.gradientFrom}/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+                  
+      {/* Card content wrapper with flexbox layout for proper button alignment */}
+                      <div className="relative overflow-visible flex flex-col flex-1">
+                        {plan.popular && (
+                          <div className={`popular-badge popular-badge-${theme}`}>
+                           ✨ Most Popular
+                          </div>
+                       )}
+                       
+                        <div className="mb-6">
+                          <h3 className={`font-headline text-2xl font-bold text-on-surface mb-2`}>{plan.name}</h3>
+                          <p className="text-on-surface-variant text-sm">{plan.desc}</p>
+                        </div>
+                     
+                        <div className="pricing-price-display">
+                          <span className="pricing-price-amount">{plan.price}</span>
+                        </div>
+                     
+                        <ul className="pricing-features-list flex-grow mb-8">
+                          {plan.features.map((feature, j) => (
+                            <li key={j} className="flex items-start gap-3">
+                              <CheckCircle2 className={`w-5 h-5 ${t.primary} mt-0.5 flex-shrink-0`} />
+                              <span className="text-on-surface-variant text-sm">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        
+                        <div className="mt-auto">
+                          <a
+                      href="/contact"
+                      className={`pricing-btn ${plan.popular ? `pricing-btn-${theme}` : 'pricing-btn-outline'} transition-all duration-300 block text-center`}
+                        >
+                         {plan.popular ? 'Get Started' : 'Choose Plan'}
+                         <ArrowRight className={`ml-2 w-4 h-4 ${plan.popular ? 'text-white' : 'text-on-surface-variant'} transition-transform duration-300`} />
+                        </a>
+                      </div>
+                      </div>
+                  </div>
+                ))}
               </div>
-            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* CTA Section */}
-      <section className={`relative overflow-hidden py-24 bg-gradient-to-br ${t.gradientFrom} to-[${t.gradientTo.replace("to-", "")}]`}>
-        <div className="absolute inset-0 opacity-10">
-          <Icon className="absolute top-10 right-20 w-40 h-40 text-white" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className={`font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-12 ${t.textOnPrimary}`}>
+      <section className={`py-20 ${t.bgLight}`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">
             {ctaTitle}
           </h2>
-          <p className={`${t.textOnPrimary}/80 text-lg mb-8 max-w-2xl mx-auto`}>
+          <p className="text-xl text-on-surface-variant mb-8 max-w-2xl mx-auto">
             {ctaSubtitle}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className={`inline-flex items-center gap-2 bg-on-service-web text-service-web px-8 py-4 rounded-full font-label font-semibold hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300`}
-            >
-              Get Free Consultation <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href={plansLink}
-              className={`inline-flex items-center gap-2 bg-on-service-web/10 backdrop-blur-sm border border-on-service-web/30 ${t.textOnPrimary} px-8 py-4 rounded-full font-label font-semibold hover:bg-on-service-web/20 transition-all duration-300`}
-            >
-              View All Plans
-            </Link>
-          </div>
+          <a
+            href="/contact"
+            className={`inline-flex items-center justify-center px-10 py-5 ${t.container} ${t.primary} font-label text-lg font-bold rounded-lg shadow-lg ${t.hoverBorder} hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5`}
+          >
+            Contact Us Today
+            <ArrowRight className="ml-2 w-6 h-6" />
+          </a>
         </div>
       </section>
-    </>
+    </div>
   );
 }

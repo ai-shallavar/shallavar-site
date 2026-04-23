@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 interface PricingCard {
   name: string;
   description: string;
@@ -75,7 +73,7 @@ const webPricing: PricingCard[] = [
   },
 ];
 
-function PricingCard({ card, delay }: { card: PricingCard; delay: number }) {
+function PricingCard({ card }: { card: PricingCard }) {
   const gradientBtn =
     card.ctaType === "gradient"
       ? "bg-gradient-to-br from-primary to-secondary text-on-primary hover:opacity-90 transition-all duration-300 shadow-[0_4px_24px_rgba(0,62,199,0.2)]"
@@ -85,10 +83,10 @@ function PricingCard({ card, delay }: { card: PricingCard; delay: number }) {
 
   return (
     <div
-      className={`rounded-lg p-8 relative overflow-hidden transition-transform duration-300 ${
+      className={`rounded-lg p-8 relative overflow-hidden transition-transform duration-300 flex flex-col h-full ${
         card.highlighted
-          ? "bg-white shadow-[0_8px_48px_rgba(91,129,226,0.10)] transform md:-translate-y-4 border-[#5B81E2]/30 flex flex-col h-full z-10"
-          : "bg-white border-[#E8DFEE] shadow-sm flex flex-col h-full hover:-translate-y-2 hover:shadow-lg"
+           ? "bg-white shadow-[0_8px_48px_rgba(91,129,226,0.10)] border-[2px] border-[#5B81E2]/40 z-10"
+           : "bg-white border border-[#E8DFEE] shadow-sm hover:-translate-y-2 hover:shadow-lg"
       }`}
     >
       {card.highlighted && (
@@ -136,9 +134,9 @@ export default function PricingGrid() {
   return (
     <div className="mb-32">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {webPricing.map((card, i) => (
-          <PricingCard key={card.name} card={card} delay={i * 100} />
-        ))}
+{webPricing.map((card) => (
+            <PricingCard key={card.name} card={card} />
+          ))}
       </div>
     </div>
   );

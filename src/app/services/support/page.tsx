@@ -1,73 +1,67 @@
-"use client";
-
-import { Headphones, Clock, Wrench, ShieldCheck, MessageCircle, Activity } from "lucide-react";
+import { Metadata } from "next";
+import { Headset } from "lucide-react";
 import ServicePage from "@/components/ServicePage";
+import { metadata as pageMetadata } from "./metadata";
+
+export const metadata: Metadata = pageMetadata;
 
 const features = [
-  { icon: Clock, title: "24/7 Monitoring", desc: "Round-the-clock system monitoring with proactive issue detection and instant alerts." },
-  { icon: Wrench, title: "Bug Fixes & Patches", desc: "Rapid response to bugs and security patches keeping your applications secure." },
-  { icon: ShieldCheck, title: "Performance Optimization", desc: "Continuous performance tuning and database optimization for peak efficiency." },
-  { icon: MessageCircle, title: "Dedicated Support", desc: "Direct access to your development team via Slack, email, or phone." },
-  { icon: Clock, title: "Feature Updates", desc: "Ongoing feature enhancements based on user feedback and analytics." },
-  { icon: Activity, title: "Incident Response", desc: "Structured incident management with root cause analysis and prevention plans." },
-];
-
-const slaStats = [
-  { number: "< 1hr", label: "Critical Response" },
-  { number: "< 4hrs", label: "High Priority" },
-  { number: "99.9%", label: "Uptime SLA" },
-  { number: "< 24hrs", label: "Bug Fixes" },
+       { icon: Headset, title: "24/7 Help Desk", desc: "Round-the-clock support via phone, email, and live chat for urgent issues." },
+       { icon: Headset, title: "Bug Fixing", desc: "Rapid identification and resolution of bugs with minimal business disruption." },
+       { icon: Headset, title: "Performance Tuning", desc: "Systematic optimization of code, database queries, and server configurations." },
+       { icon: Headset, title: "Security Updates", desc: "Regular security patches, vulnerability scans, and dependency updates." },
+       { icon: Headset, title: "Feature Development", desc: "Ongoing feature additions and enhancements based on user feedback." },
+       { icon: Headset, title: "Monthly Reports", desc: "Detailed reports on uptime, performance, issues resolved, and recommendations." },
 ];
 
 const techStack = [
-  "GitHub", "Jira", "Slack", "Datadog", "Sentry",
-  "PagerDuty", "Notion", "Linear", "Vercel", "Railway"
+        "AWS", "Docker", "GitHub", "Datadog", "Sentry",
+        "Jira", "Slack", "PostgreSQL", "Redis", "Nginx"
 ];
 
 const pricing = [
-  {
-    name: "Basic Care",
-    price: "₹10,000/mo",
-    desc: "Essential maintenance and monitoring",
-    features: ["Monthly Updates", "Basic Monitoring", "Email Support", "Backup Management"],
-  },
-  {
-    name: "Priority Care",
-    price: "₹25,000/mo",
-    desc: "Comprehensive support with fast response times",
-    features: ["Weekly Updates", "24/7 Monitoring", "Priority Support", "Performance Reports", "Security Scanning"],
-    popular: true,
-  },
-  {
-    name: "Enterprise Care",
-    price: "₹50,000/mo",
-    desc: "Full-service support with dedicated team",
-    features: ["Dedicated Developer", "Instant Response", "Feature Development", "Architecture Reviews", "SLA Guarantee"],
-  },
+         {
+        name: "Basic Support",
+        price: "₹10,000/mo",
+        desc: "Essential maintenance and support",
+        features: ["Email Support", "Bug Fixes", "Monthly Report", "Security Updates"],
+         },
+         {
+        name: "Premium Support",
+        price: "₹25,000/mo",
+        desc: "Priority support with faster response",
+        features: ["24/7 Phone Support", "Performance Tuning", "Feature Updates", "Monthly Reports", "Backup Management"],
+        popular: true,
+         },
+         {
+        name: "Enterprise Support",
+        price: "₹50,000/mo",
+        desc: "Comprehensive support with dedicated team",
+        features: ["Dedicated Team", "SLA Guarantee", "Feature Development", "Infrastructure Management", "Disaster Recovery"],
+         },
 ];
 
 export default function SupportPage() {
-  return (
-    <ServicePage
-      theme="support"
-      badgeLabel="Support & Maintenance"
-      icon={Headphones}
-      heroTitle="Always-On"
-      heroHighlight="Support"
-      heroSubtitle="Your applications deserve expert care even after launch. Our support plans ensure your digital products stay fast, secure, and up-to-date — 24/7."
-      ctaText="Get Support"
-      featuresTitle="Support Services"
-      featuresSubtitle="Comprehensive maintenance and support to keep your applications running smoothly."
-      features={features}
-      slaStats={slaStats}
-      techTitle="Support Tools"
-      techSubtitle="Industry-standard tools for efficient support delivery."
-      techStack={techStack}
-      pricingTitle="Support Plans"
-      pricingSubtitle="Choose the support level that fits your needs."
-      pricing={pricing}
-      ctaTitle="Need Reliable Support?"
-      ctaSubtitle="Our team is ready to keep your applications running at peak performance."
-    />
-  );
+     return (
+            <ServicePage
+            theme="support"
+            badgeLabel="Support"
+            icon={Headset}
+            heroTitle="Ongoing"
+            heroHighlight="Support"
+            heroSubtitle="Reliable IT support and maintenance services ensuring your applications run smoothly. We handle the tech so you can focus on your business."
+            ctaText="Contact Us"
+            featuresTitle="Support Services"
+            featuresSubtitle="Comprehensive support to keep your applications running smoothly."
+            features={features}
+            techTitle="Support Tools"
+            techSubtitle="Industry-leading tools for monitoring and issue resolution."
+            techStack={techStack}
+            pricingTitle="Support Plans"
+            pricingSubtitle="Transparent pricing for reliable ongoing support."
+            pricing={pricing}
+            ctaTitle="Need Support?"
+            ctaSubtitle="Get in touch — our team is available 24/7 to help."
+            />
+        );
 }

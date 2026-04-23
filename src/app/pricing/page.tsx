@@ -1,5 +1,59 @@
+import { Metadata } from "next";
+
 import PricingGrid from "@/components/PricingGrid";
 import CTA from "@/components/CTA";
+
+export const metadata: Metadata = {
+  title: "Web Development Pricing Bangalore — Website Cost ₹12,500 to ₹75,000, Mobile Apps ₹1,25,000+",
+  description:
+       "Transparent web development pricing in Bangalore. Website ₹12,500 (Starter), ₹75,000 (Professional). Mobile apps from ₹1,25,000. No hidden fees. Call +91 86600 39954 for free quote.",
+  keywords: [
+       "web development pricing Bangalore",
+       "website cost Bangalore",
+       "how much does a website cost in Bangalore",
+       "hire web developer Bangalore affordable",
+       "best mobile app development company Bengaluru",
+       "build app for my business Bangalore",
+       "startup website design company Bangalore",
+       "freelance vs agency web development Bangalore",
+       "React Native vs Flutter Bangalore developer",
+       "custom software development for startups Bangalore",
+       "website redesign services Bangalore 2025",
+       "on-demand app development Bangalore",
+      ],
+  robots: {
+    index: true,
+    follow: true,
+       "max-snippet": -1,
+       "max-image-preview": "large",
+      },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Shallavar Technologies",
+    title: "Web Development Pricing Bangalore — Website ₹12,500 to ₹75,000",
+    description: "Transparent web development pricing in Bangalore. Website ₹12,500 (Starter), ₹75,000 (Professional). Mobile apps from ₹1,25,000.",
+    url: "https://shallavar.com/pricing",
+    images: [{
+       url: "/logo-full.png",
+       width: 1200,
+       height: 630,
+       alt: "Web Development Pricing Bangalore — Shallavar Technologies",
+       type: "image/png",
+      }],
+     },
+  twitter: {
+    card: "summary_large_image",
+    site: "@shallavar_tech",
+    creator: "@shallavar_tech",
+    title: "Web Development Pricing Bangalore — Website ₹12,500 to ₹75,000",
+    description: "Transparent web development pricing in Bangalore. Website ₹12,500 (Starter), ₹75,000 (Professional). Mobile apps from ₹1,25,000.",
+    images: ["/logo-full.png"],
+     },
+  alternates: {
+    canonical: "https://shallavar.com/pricing",
+      },
+};
 
 export default function PricingPage() {
   return (

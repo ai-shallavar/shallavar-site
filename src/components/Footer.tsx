@@ -82,21 +82,29 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-headline font-bold text-lg mb-6 text-on-surface">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-on-surface-variant">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors duration-300">
-                  hello@shallavar.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2 text-on-surface-variant">
-                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>India</span>
-              </li>
-            </ul>
-          </div>
+            <div>
+              <h4 className="font-headline font-bold text-lg mb-6 text-on-surface">Contact</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-on-surface-variant">
+                  <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors duration-300">
+                    hello@shallavar.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-on-surface-variant">
+                  <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="https://maps.google.com/?q=Banashankari,Bangalore" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">
+                    Banashankari, Bangalore 560070, Karnataka, India
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-on-surface-variant">
+                  <Bolt className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="tel:+918660039954" className="hover:text-primary transition-colors duration-300">
+                    +91 86600 39954
+                  </a>
+                </li>
+              </ul>
+            </div>
         </div>
 
         <div className="border-t border-outline/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">

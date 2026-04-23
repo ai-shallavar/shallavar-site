@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, Menu, X, Code, Smartphone, Palette, Cloud, Headphones, LayoutDashboard, Rocket, Phone } from "lucide-react";
+import { ChevronDown, Menu, X, Code, Smartphone, Palette, Cloud, Headphones, LayoutDashboard, Phone } from "lucide-react";
 
 // Extend Window interface for custom property
 declare global {
@@ -103,9 +103,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+   const prevPathnameRef = useRef<string | null>(null);
+
+   useEffect(() => {
+     if (prevPathnameRef.current !== null && prevPathnameRef.current !== pathname) {
+       if (mobileOpen) {
+         setMobileOpen(false);
+         }
+       }
+     prevPathnameRef.current = pathname;
+       }, [pathname, mobileOpen]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -183,9 +190,7 @@ export default function Navbar() {
     return pathname.startsWith(href);
   };
 
-  const isDropdownLink = (href: string) => {
-    return navLinks.some(link => link.children && link.children.some((c: ServiceDropdownItem) => c.href === href));
-  };
+// isDropdownLink removed - was assigned but never used
 
   return (
     <>

@@ -1,6 +1,61 @@
+import { Metadata } from "next";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500, Professional ₹75,000, Enterprise Custom",
+  description:
+      "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom pricing. 50% off on Starter plan. React, Next.js, mobile apps. Call +91 86600 39954.",
+  keywords: [
+       "web development plans Bangalore",
+       "website pricing Bangalore",
+       "affordable web development Bangalore",
+       "cheap website design Bengaluru",
+       "best web developer Bangalore",
+       "startup website design company Bangalore",
+       "small business website Bangalore under 50000",
+       "web development company Bangalore",
+       "mobile app development cost India 2025",
+       "website development for restaurants Bangalore",
+       "ecommerce website for small business Bangalore",
+       "website maintenance plans Bangalore",
+      ],
+  robots: {
+    index: true,
+    follow: true,
+       "max-snippet": -1,
+       "max-image-preview": "large",
+      },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Shallavar Technologies",
+    title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500",
+    description: "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom. 50% off on Starter plan.",
+    url: "https://shallavar.com/plans",
+    images: [{
+       url: "/logo-full.png",
+       width: 1200,
+       height: 630,
+       alt: "Web Development Plans & Pricing Bangalore — Shallavar Technologies",
+       type: "image/png",
+      }],
+     },
+  twitter: {
+    card: "summary_large_image",
+    site: "@shallavar_tech",
+    creator: "@shallavar_tech",
+    title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500",
+    description: "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom. 50% off on Starter plan.",
+    images: ["/logo-full.png"],
+     },
+  alternates: {
+    canonical: "https://shallavar.com/plans",
+     },
+};
+
 import {
   Rocket,
   CheckCircle2,

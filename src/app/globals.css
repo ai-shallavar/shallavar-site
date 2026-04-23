@@ -197,7 +197,353 @@
     box-shadow: 0 10px 40px rgba(244, 63, 94, 0.2);
   }
 
-  .shadow-support {
-    box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
-  }
+   .shadow-support {
+     box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+    }
+
+   /* ========== Elegant Pricing Card Styles ========== */
+   
+     /* Pricing card container with elegant styling and flexbox layout for button alignment */
+     .pricing-card {
+     position: relative;
+     border-radius: 20px;
+     padding: 2.5rem 2rem;
+     background: linear-gradient(145deg, rgba(255, 255, 255, 1) 0%, rgba(249, 250, 251, 1) 100%);
+     border: 1px solid rgba(203, 213, 225, 0.5);
+     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+     overflow: visible;
+     backdrop-filter: blur(10px);
+     display: flex;
+     flex-direction: column;
+     }
+   
+   .pricing-card::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     height: 4px;
+     border-radius: 20px 20px 0 0;
+     opacity: 0;
+     transition: opacity 0.4s ease;
+   }
+   
+   .pricing-card:hover {
+     transform: translateY(-8px);
+     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+     border-color: rgba(148, 163, 184, 0.4);
+   }
+   
+   .pricing-card:hover::before {
+     opacity: 1;
+   }
+   
+   /* Web Development pricing card */
+   .pricing-card-web::before {
+     background: linear-gradient(90deg, #3B82F6, #2563EB);
+   }
+   .pricing-card-web:hover {
+     box-shadow: 0 25px 60px rgba(59, 130, 246, 0.25);
+   }
+   
+   /* Mobile Apps pricing card */
+   .pricing-card-mobile::before {
+     background: linear-gradient(90deg, #10B981, #059669);
+   }
+   .pricing-card-mobile:hover {
+     box-shadow: 0 25px 60px rgba(16, 185, 129, 0.25);
+   }
+   
+   /* UI/UX Design pricing card */
+   .pricing-card-design::before {
+     background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+   }
+   .pricing-card-design:hover {
+     box-shadow: 0 25px 60px rgba(139, 92, 246, 0.25);
+   }
+   
+   /* Cloud Deployment pricing card */
+   .pricing-card-cloud::before {
+     background: linear-gradient(90deg, #6366F1, #4F46E5);
+   }
+   .pricing-card-cloud:hover {
+     box-shadow: 0 25px 60px rgba(99, 102, 241, 0.25);
+   }
+   
+   /* Dashboards pricing card */
+   .pricing-card-dashboard::before {
+     background: linear-gradient(90deg, #F43F5E, #E11D48);
+   }
+   .pricing-card-dashboard:hover {
+     box-shadow: 0 25px 60px rgba(244, 63, 94, 0.25);
+   }
+   
+   /* Support pricing card */
+   .pricing-card-support::before {
+     background: linear-gradient(90deg, #F59E0B, #D97706);
+   }
+   .pricing-card-support:hover {
+     box-shadow: 0 25px 60px rgba(245, 158, 11, 0.25);
+   }
+   
+/* Popular / highlighted pricing card */
+.pricing-card-popular {
+ background: linear-gradient(145deg, rgba(239, 243, 255, 1) 0%, rgba(219, 234, 254, 1) 100%);
+ border: 2px solid rgba(59, 130, 246, 0.4);
+ position: relative;
+ z-index: 1;
+}
+
+.pricing-card-popular:hover {
+ transform: translateY(-8px);
+}
+   
+   /* Popular card accent colors per theme */
+   .pricing-card-popular-web {
+     background: linear-gradient(145deg, rgba(219, 234, 255, 1) 0%, rgba(191, 219, 254, 1) 100%);
+     border-color: rgba(59, 130, 246, 0.6);
+   }
+   .pricing-card-popular-mobile {
+     background: linear-gradient(145deg, rgba(209, 250, 229, 1) 0%, rgba(166, 240, 207, 1) 100%);
+     border-color: rgba(16, 185, 129, 0.6);
+   }
+   .pricing-card-popular-design {
+     background: linear-gradient(145deg, rgba(237, 233, 254, 1) 0%, rgba(221, 214, 254, 1) 100%);
+     border-color: rgba(139, 92, 246, 0.6);
+   }
+   .pricing-card-popular-cloud {
+     background: linear-gradient(145deg, rgba(224, 231, 255, 1) 0%, rgba(199, 210, 254, 1) 100%);
+     border-color: rgba(99, 102, 241, 0.6);
+   }
+   .pricing-card-popular-dashboard {
+     background: linear-gradient(145deg, rgba(255, 228, 230, 1) 0%, rgba(255, 213, 218, 1) 100%);
+     border-color: rgba(244, 63, 94, 0.6);
+   }
+   .pricing-card-popular-support {
+     background: linear-gradient(145deg, rgba(254, 243, 199, 1) 0%, rgba(254, 233, 169, 1) 100%);
+     border-color: rgba(245, 158, 11, 0.6);
+   }
+   
+   /* Elegant CTA Button for pricing cards */
+   .pricing-btn {
+     position: relative;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     padding: 0.875rem 1.5rem;
+     font-weight: 700;
+     font-size: 0.95rem;
+     letter-spacing: 0.025em;
+     border-radius: 12px;
+     border: none;
+     cursor: pointer;
+     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+     overflow: hidden;
+     text-transform: none;
+     z-index: 1;
+   }
+   
+   .pricing-btn::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: -100%;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+     transition: left 0.6s ease;
+   }
+   
+   .pricing-btn:hover::before {
+     left: 100%;
+   }
+   
+   .pricing-btn:hover {
+     transform: translateY(-2px);
+     filter: brightness(1.08);
+   }
+   
+   .pricing-btn:active {
+     transform: translateY(0px);
+     filter: brightness(0.98);
+   }
+   
+   /* Primary filled button (for popular plan) */
+   .pricing-btn-primary {
+     color: #FFFFFF;
+     background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(37, 99, 235, 0.95) 100%);
+     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-primary:hover {
+     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.45), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   /* Outline button (for other plans) */
+   .pricing-btn-outline {
+     color: #1C1B1F;
+     background: rgba(255, 255, 255, 0.8);
+     border: 2px solid rgba(203, 213, 225, 0.8);
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+   }
+   .pricing-btn-outline:hover {
+     background: rgba(249, 250, 251, 0.95);
+     border-color: rgba(148, 163, 184, 0.6);
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+   }
+   
+   /* Per-theme filled button variants */
+   .pricing-btn-web {
+     background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-web:hover {
+     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   .pricing-btn-mobile {
+     background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-mobile:hover {
+     box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   .pricing-btn-design {
+     background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-design:hover {
+     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   .pricing-btn-cloud {
+     background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-cloud:hover {
+     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   .pricing-btn-dashboard {
+     background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(244, 63, 94, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-dashboard:hover {
+     box-shadow: 0 8px 25px rgba(244, 63, 94, 0.5), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   .pricing-btn-support {
+     background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+   }
+   .pricing-btn-support:hover {
+     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5), 0 2px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   /* Feature list styling for pricing cards */
+   .pricing-features-list {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+   }
+   
+   .pricing-features-list li {
+     display: flex;
+     align-items: flex-start;
+     gap: 0.75rem;
+     padding: 0.5rem 0;
+     font-size: 0.9rem;
+     color: rgba(80, 95, 96, 1);
+     border-bottom: 1px solid rgba(212, 199, 230, 0.15);
+     transition: all 0.2s ease;
+   }
+   
+   .pricing-features-list li:last-child {
+     border-bottom: none;
+   }
+   
+   .pricing-features-list li:hover {
+     padding-left: 0.5rem;
+   }
+   
+   /* Price display styling */
+   .pricing-price-display {
+     display: flex;
+     align-items: baseline;
+     gap: 0.25rem;
+     margin-bottom: 1.5rem;
+     padding-bottom: 1.5rem;
+     border-bottom: 2px solid rgba(212, 199, 230, 0.3);
+   }
+   
+   .pricing-price-amount {
+     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+     font-size: 2.75rem;
+     font-weight: 800;
+     line-height: 1;
+     background: linear-gradient(135deg, #1C1B1F 0%, #505F60 100%);
+     -webkit-background-clip: text;
+     background-clip: text;
+     -webkit-text-fill-color: transparent;
+   }
+   
+    /* Badge glow effect for popular plan */
+    .popular-badge {
+     position: absolute;
+     top: -3.4rem;
+     left: 50%;
+     transform: translateX(-50%);
+     padding: 0.375rem 1.25rem;
+     font-size: 0.75rem;
+     font-weight: 700;
+     letter-spacing: 0.05em;
+     text-transform: uppercase;
+     white-space: nowrap;
+     z-index: 2;
+     border-radius: 9999px;
+    }
+   
+   .popular-badge-web {
+     background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+   }
+   
+   .popular-badge-mobile {
+     background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+   }
+   
+   .popular-badge-design {
+     background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+   }
+   
+   .popular-badge-cloud {
+     background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+   }
+   
+   .popular-badge-dashboard {
+     background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
+   }
+   
+   .popular-badge-support {
+     background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+     color: #FFFFFF;
+     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+   }
 }

@@ -28,23 +28,23 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Heading */}
-        <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight text-on-surface leading-[0.95]">
-          We Build{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
-            Digital
-          </span>
-          <br />
-          Products That{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
-            Thrive
-          </span>
-        </h1>
+          {/* Heading */}
+          <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-on-surface leading-[0.95] px-4">
+            Best{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
+              Web & Mobile App Development
+            </span>
+            <br />
+            Company in{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
+              Bangalore
+            </span>
+          </h1>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl mx-auto font-light px-4">
-          From stunning websites to powerful mobile apps and enterprise dashboards — we craft experiences that captivate users and accelerate growth.
-        </p>
+          {/* Subtitle */}
+          <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl mx-auto font-light px-4">
+            Bangalore's trusted tech partner — from stunning websites to powerful mobile apps and enterprise dashboards. We craft digital experiences that captivate users and accelerate growth for startups and enterprises across India.
+          </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">

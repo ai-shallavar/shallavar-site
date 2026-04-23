@@ -1,8 +1,8 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { useState } from "react";
+
 import {
   BookOpen,
   TrendingUp,
@@ -406,8 +406,7 @@ export default function InsightsPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+        </main>
+      </div>
   );
 }
