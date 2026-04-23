@@ -339,10 +339,10 @@ export default function ServicePage({
                 </ul>
                 <Link
                   href="/contact"
-                  className={`block w-full py-3 rounded-full font-label font-semibold text-sm text-center transition-all duration-300 ${
+                  className={`block w-full py-3.5 rounded-full font-label font-semibold text-sm text-center transition-all duration-300 ${
                     plan.popular
-                      ? "bg-on-service-web text-service-web hover:bg-surface-container-low"
-                      : `bg-gradient-to-r ${t.gradientFrom} ${t.gradientTo} text-white hover:shadow-lg`
+                      ? "bg-white text-[#5B81E2] hover:bg-gray-100 shadow-lg border-2 border-white/50 hover:shadow-xl hover:scale-105"
+                      : `bg-gradient-to-r ${t.gradientFrom} ${t.gradientTo} text-white border-2 border-transparent hover:shadow-lg hover:scale-105`
                   }`}
                 >
                   Get Started

@@ -132,11 +132,11 @@ export default function ServiceCards() {
             hoverBg: "bg-primary/10",
           };
           return (
-            <Link
-              key={i}
-              href={service.href}
-              className="group relative overflow-hidden rounded-3xl bg-surface border-outline/20 hover:border-outline/40 hover:shadow-xl transition-all duration-500 ease-out-expo"
-            >
+              <Link
+                key={i}
+                href={service.href}
+                className="group relative overflow-hidden rounded-3xl bg-white border-[#E8DFEE] hover:border-primary/40 shadow-sm hover:shadow-xl transition-all duration-500 ease-out-expo"
+              >
               {/* Colored top bar per service */}
               <div className={`h-1.5 ${colors.topBar}`} />
               

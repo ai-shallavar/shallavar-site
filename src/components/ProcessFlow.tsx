@@ -57,9 +57,9 @@ export default function ProcessFlow() {
               <div
                 className={`${
                   Step.highlighted
-                    ? "bg-gradient-to-br from-primary to-blue-600 text-white shadow-xl ring-4 ring-primary/20"
-                    : "bg-surface-container text-on-surface border-2 border-outline/15"
-                } rounded-full w-20 h-20 flex items-center justify-center mb-6 transition-all duration-300 hover:scale-110`}
+                    ? "bg-gradient-to-br from-primary to-blue-600 text-white shadow-xl ring-4 ring-[#5B81E2]/20"
+                    : "bg-white text-on-surface border-2 border-[#E8DFEE] shadow-sm"
+                } rounded-full w-20 h-20 flex items-center justify-center mb-6 transition-all duration-300 hover:scale-110 hover:border-primary/30 hover:shadow-md`}
               >
                 <Step.icon className="w-8 h-8" />
               </div>

@@ -50,14 +50,14 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary to-blue-600 text-white px-10 py-4 rounded-full font-label font-semibold text-lg hover:shadow-xl hover:shadow-primary/25 hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#5B81E2] to-[#005FC7] text-white px-10 py-4 rounded-full font-label font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-[#5B81E2]/40 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 border border-white/20 hover:border-white/40"
           >
             Get Free Consultation
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-label font-semibold text-lg text-on-surface bg-surface border-outline/20 hover:bg-surface-container-lowest hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-label font-semibold text-lg text-[#1C1B1F] bg-white border-[#D4C7E6]/60 hover:bg-[#F6F5F5] hover:border-[#5B81E2]/50 hover:shadow-lg transition-all duration-300"
           >
             Explore Services
           </Link>

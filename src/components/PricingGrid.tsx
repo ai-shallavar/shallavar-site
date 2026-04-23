@@ -85,10 +85,10 @@ function PricingCard({ card, delay }: { card: PricingCard; delay: number }) {
 
   return (
     <div
-      className={`bg-surface-container-lowest rounded-lg p-8 relative overflow-hidden transition-transform duration-300 ${
+      className={`rounded-lg p-8 relative overflow-hidden transition-transform duration-300 ${
         card.highlighted
-          ? "shadow-[0_8px_48px_rgba(0,62,199,0.08)] transform md:-translate-y-4 border border-primary/10 flex flex-col h-full z-10"
-          : "border border-outline-variant/15 flex flex-col h-full hover:-translate-y-2"
+          ? "bg-white shadow-[0_8px_48px_rgba(91,129,226,0.10)] transform md:-translate-y-4 border-[#5B81E2]/30 flex flex-col h-full z-10"
+          : "bg-white border-[#E8DFEE] shadow-sm flex flex-col h-full hover:-translate-y-2 hover:shadow-lg"
       }`}
     >
       {card.highlighted && (
@@ -99,7 +99,7 @@ function PricingCard({ card, delay }: { card: PricingCard; delay: number }) {
       )}
 
       {card.badge && (
-        <span className="inline-block px-3 py-1 bg-primary/10 text-primary font-label text-xs font-bold rounded-full mb-4 tracking-wider uppercase">
+          <span className="inline-block px-3 py-1 bg-[#5B81E2]/10 text-primary font-label text-xs font-bold rounded-full mb-4 tracking-wider uppercase">
           {card.badge}
         </span>
       )}

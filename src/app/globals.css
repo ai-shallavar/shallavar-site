@@ -15,6 +15,17 @@
   --color-on-primary: #FFFFFF;
   --color-primary-container: #E1E0F5;
   --color-on-primary-container: #21005D;
+  
+  /* Secondary color family */
+  --color-secondary: #005FC7;
+  --color-on-secondary: #FFFFFF;
+  --color-secondary-container: #D3E1FB;
+  --color-on-secondary-container: #001B44;
+  
+  /* UI/UX Design service colors (missing - now added) */
+  --color-service-uiux: #8B5CF6;
+  --color-service-uiux-container: #EDE9FE;
+  --color-service-uiux-gradient-end: #7C3AED;
 
   /* Service-specific color families - consistent naming convention */
   /* Each service has: container (light bg), text (primary color), gradient-end (darker shade for gradients) */

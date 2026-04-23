@@ -44,12 +44,12 @@ export default function FAQ() {
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-3">
+      <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="border border-outline/15 rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary/30">
+          <div key={index} className="border border-[#E8DFEE] rounded-2xl overflow-hidden bg-white shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md">
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              className="w-full flex items-center justify-between p-6 text-left bg-surface-container-lowest hover:bg-surface-container transition-colors duration-300"
+              className="w-full flex items-center justify-between p-6 text-left bg-white hover:bg-[#F6F5F5] transition-colors duration-300"
             >
               <span className="font-headline font-bold text-on-surface pr-4">{faq.question}</span>
               <ChevronDown className={`w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`} />
