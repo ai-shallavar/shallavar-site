@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, Menu, X, Code, Smartphone, Palette, Cloud, Headphones, LayoutDashboard, Rocket, Phone } from "lucide-react";
+import { ChevronDown, ChevronUp, Menu, X, Code, Smartphone, Palette, Cloud, Headphones, LayoutDashboard, Rocket, Phone } from "lucide-react";
 
 // Extend Window interface for custom property
 declare global {
@@ -64,7 +64,11 @@ function MobileDropdownItem({
         onClick={() => setOpen(!open)}
       >
         <span>{link.label}</span>
-        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
+        {open ? (
+          <ChevronUp className="w-4 h-4 text-[#2563eb]" />
+        ) : (
+          <ChevronDown className="w-4 h-4 text-slate-400" />
+        )}
       </button>
       <div className={`overflow-hidden transition-all duration-500 ease-in-out ${open ? "max-h-96 opacity-100 mt-2 mb-2" : "max-h-0 opacity-0"}`}>
         <div className="pl-4 border-l-2 border-blue-100 space-y-1">
@@ -233,11 +237,11 @@ export default function Navbar() {
                           }`}
                         >
                           {link.label}
-                          <ChevronDown
-                            className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                              activeDropdown === link.href ? "rotate-180" : ""
-                            } ${isActive(link.href) ? "text-[#2563eb]" : "text-slate-400"}`}
-                          />
+                          {activeDropdown === link.href ? (
+                            <ChevronUp className="w-3.5 h-3.5 text-[#2563eb]" />
+                          ) : (
+                            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                          )}
                         </button>
                         {/* Dropdown */}
                         <div
