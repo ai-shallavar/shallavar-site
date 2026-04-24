@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef } from "react";
 
 import {
   Mail,
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 export default function ContactPage() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -31,8 +32,24 @@ export default function ContactPage() {
           method: "POST",
           body: formData,
         });
-        if (!res.ok) throw new Error("Submission failed");
+        if (!res.ok) {
+          // Parse the specific error message from the API response
+          let errorMessage = "Submission failed. Please check your inputs.";
+          try {
+            const body = await res.json();
+            if (body?.error) {
+              errorMessage = body.error;
+            }
+          } catch {
+            // Fall back to default message if JSON parsing fails
+          }
+          setStatus("error");
+          setErrorMsg(errorMessage);
+          return;
+        }
         setStatus("success");
+        // Clear the form after successful submission
+        formRef.current?.reset();
       } catch {
         setStatus("error");
         setErrorMsg("Something went wrong. Please try again or email us directly.");
@@ -202,7 +219,7 @@ export default function ContactPage() {
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" noValidate>
                   {/* Row 1: Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-2">
