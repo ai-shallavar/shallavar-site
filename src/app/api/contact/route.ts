@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import nodemailer from "nodemailer";
+
+// Email provider priority: Resend (temp) → Brevo (after domain purchase) → Gmail (fallback)
+// Configure ONLY ONE in Vercel: RESEND_API_KEY (temp) or BREVO_API_KEY (after domain purchase)
 
 export async function POST(request: Request) {
   try {
@@ -51,47 +55,26 @@ export async function POST(request: Request) {
     console.log(`Service: ${service}`);
     console.log(`Budget: ${budget}`);
     console.log(`Message: ${message}`);
-    console.log("=========================");
+    console.log("=======================");
 
-    // Send email using Gmail SMTP (no third-party email service needed)
     const TO_EMAIL = process.env.CONTACT_FORM_TO_EMAIL || "ai.shallavar@gmail.com";
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const BREVO_API_KEY = process.env.BREVO_API_KEY;
     const GMAIL_USER = process.env.GMAIL_USER;
     const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
-    if (GMAIL_USER && GMAIL_APP_PASSWORD) {
-      try {
-        // Create transporter using Gmail SMTP
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: GMAIL_USER,
-            pass: GMAIL_APP_PASSWORD,
-          },
-        });
+    // Track email sending status
+    let emailStatus: { adminSent: boolean; customerSent: boolean } = { adminSent: false, customerSent: false };
 
-        // Verify SMTP connection
-        await transporter.verify();
-
-        // HTML email template with table-based layout for maximum email client compatibility
-        const html = `
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    // Build HTML email template
+    const buildHTML = () => {
+      return `<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="x-apple-disable-message-reformatting">
   <title>New Contact Form Inquiry</title>
-  <!--[if mso]>
-  <noscript>
-    <xml>
-      <o:OfficeDocumentSettings>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-      </o:OfficeDocumentSettings>
-    </xml>
-  </noscript>
-  <![endif]-->
   <style>
-    .reset-table { border-collapse:collapse; padding:0; }
     .message-text { white-space:pre-wrap; word-break:break-word; }
     @media (max-width:600px) {
       .container-width { width:100% !important; }
@@ -104,10 +87,7 @@ export async function POST(request: Request) {
   <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f1f5f9;">
     <tr>
       <td align="center" style="padding:30px 10px;">
-        <!-- Main Container -->
         <table class="container-width" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          
-          <!-- Header -->
           <tr>
             <td align="center" style="background:linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);padding:36px 40px;">
               <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -115,7 +95,7 @@ export async function POST(request: Request) {
                   <td align="center" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td style="font-size:36px;line-height:1;margi-right:12px;">📬</td>
+                        <td style="font-size:36px;line-height:1;margin-right:12px;">📬</td>
                         <td style="font-size:26px;font-weight:700;color:#ffffff;padding-bottom:6px;">New Contact Form Inquiry</td>
                       </tr>
                     </table>
@@ -129,15 +109,10 @@ export async function POST(request: Request) {
               </table>
             </td>
           </tr>
-
-          <!-- Divider Line -->
           <tr><td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="height:4px;background:linear-gradient(to right, #2563eb, #3b82f6, #2563eb);"></td></tr></table></td></tr>
-
-          <!-- Content Body -->
           <tr>
             <td class="padding-mobile" style="padding:36px 40px 20px;">
               <table class="reset-table" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <!-- Field Header -->
                 <tr>
                   <td style="padding-bottom:20px;">
                     <table cellpadding="0" cellspacing="0" border="0">
@@ -148,155 +123,180 @@ export async function POST(request: Request) {
                     </table>
                   </td>
                 </tr>
-
-                <!-- Info Table -->
                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;">
-                  
-                  <!-- Name -->
                   <tr>
                     <td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#f8fafc;">
                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Name</td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:6px;font-size:15px;color:#1e293b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;"><strong>${name}</strong></td>
-                        </tr>
+                        <tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Name</td></tr>
+                        <tr><td style="padding-top:6px;font-size:15px;color:#1e293b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;"><strong>${name}</strong></td></tr>
                       </table>
                     </td>
                   </tr>
-
-                  <!-- Email -->
                   <tr>
                     <td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#ffffff;">
                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Email</td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:6px;font-size:15px;"><a href="mailto:${email}" style="color:#2563eb;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${email}</a></td>
-                        </tr>
+                        <tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Email</td></tr>
+                        <tr><td style="padding-top:6px;font-size:15px;"><a href="mailto:${email}" style="color:#2563eb;text-decoration:none;">${email}</a></td></tr>
                       </table>
                     </td>
                   </tr>
-
-                  ${phone ? `<tr>
-                    <td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#f8fafc;">
-                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Phone</td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:6px;font-size:15px;"><a href="tel:${phone}" style="color:#2563eb;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${phone}</a></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>` : ""}
-
-                  ${company ? `<tr>
-                    <td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#ffffff;">
-                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Company</td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:6px;font-size:15px;color:#1e293b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${company}</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>` : ""}
-
-                  ${service ? `<tr>
-                    <td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#f8fafc;">
-                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Service of Interest</td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:6px;font-size:15px;color:#1e293b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${service}</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>` : ""}
-
-                  ${budget ? `<tr>
-                    <td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#ffffff;">
-                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">Estimated Budget</td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:6px;font-size:15px;color:#1e293b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${budget}</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>` : ""}
+                  ${phone ? `<tr><td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#f8fafc;"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">Phone</td></tr><tr><td style="padding-top:6px;font-size:15px;"><a href="tel:${phone}" style="color:#2563eb;text-decoration:none;">${phone}</a></td></tr></table></td></tr>` : ""}
+                  ${company ? `<tr><td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#ffffff;"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">Company</td></tr><tr><td style="padding-top:6px;font-size:15px;color:#1e293b;">${company}</td></tr></table></td></tr>` : ""}
+                  ${service ? `<tr><td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#f8fafc;"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">Service of Interest</td></tr><tr><td style="padding-top:6px;font-size:15px;color:#1e293b;">${service}</td></tr></table></td></tr>` : ""}
+                  ${budget ? `<tr><td style="padding:16px 20px;border-bottom:1px solid #e2e8f0;background-color:#ffffff;"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">Estimated Budget</td></tr><tr><td style="padding-top:6px;font-size:15px;color:#1e293b;">${budget}</td></tr></table></td></tr>` : ""}
                 </table>
-
-                <!-- Message Section -->
                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:24px;">
-                  <tr>
-                    <td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding-bottom:10px;">Message</td>
-                  </tr>
-                  <tr>
-                    <td style="background-color:#f0f7ff;border-left:4px solid #2563eb;padding:20px;border-radius:0 8px 8px 0;">
-                      <p class="message-text" style="margin:0;font-size:14px;line-height:1.7;color:#1e293b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">${message}</p>
-                    </td>
-                  </tr>
+                  <tr><td style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;padding-bottom:10px;">Message</td></tr>
+                  <tr><td style="background-color:#f0f7ff;border-left:4px solid #2563eb;padding:20px;border-radius:0 8px 8px 0;"><p class="message-text" style="margin:0;font-size:14px;line-height:1.7;color:#1e293b;">${message}</p></td></tr>
                 </table>
-
               </table>
             </td>
           </tr>
-
-          <!-- Divider Line -->
           <tr><td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="height:1px;background-color:#e2e8f0;"></td></tr></table></td></tr>
-
-          <!-- Footer -->
           <tr>
             <td align="center" style="background-color:#f8fafc;padding:24px 40px;border-radius:0 0 12px 12px;">
-              <table cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td style="font-size:12px;color:#94a3b8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;">
-                    This is an automated notification from the Shallavar contact form.
-                  </td>
-                </tr>
-              </table>
+              <p style="font-size:12px;color:#94a3b8;margin:0;">This is an automated notification from the Shallavar contact form.</p>
             </td>
           </tr>
-
         </table>
-        <!-- End Main Container -->
       </td>
     </tr>
   </table>
 </body>
 </html>`;
+    };
 
-        // Send email to admin
-        await transporter.sendMail({
-          from: `"${name}" <${GMAIL_USER}>`,
+    const plainText = `New Contact Form Submission
+
+From: ${name}
+Email: ${email}
+Phone: ${phone || "Not provided"}
+Company: ${company || "Not provided"}
+Service: ${service || "Not selected"}
+Budget: ${budget || "Not selected"}
+
+Message:
+${message}
+
+---
+This email was sent from the Shallavar contact form.`;
+
+    // Try email providers in order of preference
+    // TEMP: Resend with noreply@resend.co (no domain verification needed)
+    // LATER (after buying domain): Switch to Brevo or verify domain on Resend
+    let sent = false;
+    let emailError: string | null = null;
+
+    // Method 1: Resend (TEMP — works immediately, no domain verification needed)
+    // Uses noreply@resend.co as from-address. No custom domain setup required.
+    if (!sent && RESEND_API_KEY) {
+      try {
+        const resend = new Resend(RESEND_API_KEY);
+        await resend.emails.send({
+          from: `Shallavar Contact <noreply@resend.co>`,
+          to: [TO_EMAIL],
+          cc: [email],
+          subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
+          text: plainText,
+          html: buildHTML(),
+        });
+        emailStatus.adminSent = true;
+        emailStatus.customerSent = true;
+        sent = true;
+        console.log(`Email sent via Resend (noreply@resend.co) to ${TO_EMAIL}`);
+      } catch (e: any) {
+        emailError = e.message;
+        console.error("Resend failed:", e.message);
+      }
+    }
+
+    // Method 2: Brevo (LATER — after you buy your custom domain, verify it and switch)
+    if (!sent && BREVO_API_KEY) {
+      try {
+        const brevoTransport = nodemailer.createTransport({
+          host: "smtp-relay.brevo.com",
+          port: 587,
+          secure: false,
+          auth: { user: "api", pass: BREVO_API_KEY },
+        });
+        await brevoTransport.verify();
+        await brevoTransport.sendMail({
+          from: `Shallavar Contact <noreply@shallavar.in>`,
           to: TO_EMAIL,
           cc: email,
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
-          text: `New Contact Form Submission\n\nFrom: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\nCompany: ${company || "Not provided"}\nService: ${service || "Not selected"}\nBudget: ${budget || "Not selected"}\n\nMessage:\n${message}\n\n---\nThis email was sent from the Shallavar contact form.`,
-          html,
+          text: plainText,
+          html: buildHTML(),
         });
-
-        console.log(`Email sent successfully to ${TO_EMAIL}`);
-      } catch (emailError: any) {
-        console.error("Failed to send email:", emailError.message);
-        // Don't fail the request if email fails
+        emailStatus.adminSent = true;
+        emailStatus.customerSent = true;
+        sent = true;
+        console.log(`Email sent via Brevo to ${TO_EMAIL}`);
+      } catch (e: any) {
+        emailError = emailError ? `${emailError}, Brevo: ${e.message}` : `Brevo: ${e.message}`;
+        console.error("Brevo failed:", e.message);
       }
-    } else {
-      console.log("Gmail SMTP not configured. Email sending is disabled.");
     }
 
-    return NextResponse.json({ success: true });
+    // Method 3: Gmail SMTP (emergency fallback — unreliable on Vercel)
+    if (!sent && GMAIL_USER && GMAIL_APP_PASSWORD) {
+      try {
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
+          tls: { rejectUnauthorized: false },
+        });
+        await transporter.verify();
+        await transporter.sendMail({
+          from: `Shallavar Contact <${GMAIL_USER}>`,
+          to: TO_EMAIL,
+          cc: email,
+          subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
+          text: plainText,
+          html: buildHTML(),
+        });
+        emailStatus.adminSent = true;
+        emailStatus.customerSent = true;
+        sent = true;
+        console.log(`Email sent via Gmail SMTP to ${TO_EMAIL}`);
+      } catch (e: any) {
+        emailError = emailError ? `${emailError}, Gmail: ${e.message}` : `Gmail: ${e.message}`;
+        console.error("Gmail SMTP failed:", e.message);
+      }
+    }
+
+    if (!sent) {
+      const configured = [RESEND_API_KEY && "Resend", BREVO_API_KEY && "Brevo", (GMAIL_USER && GMAIL_APP_PASSWORD) && "Gmail"].filter(Boolean).join(", ") || "none";
+      console.error(`No email sent. Providers configured: [${configured}]. Error: ${emailError || "unknown"}`);
+    }
+
+    // If email completely failed, return error with helpful message
+    if (!emailStatus.adminSent) {
+      console.warn("Email sending failed but form submission succeeded. Data logged but not emailed.");
+      // Don't fail the request - the data is logged above
+      // Return success but with a note that email delivery may have failed
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: "Your message has been received. We'll get back to you shortly!",
+          _emailWarning: emailError ? "Delivery issue detected. We're looking into it." : undefined,
+        },
+        { status: 200 }
+      );
+    }
+
+    return NextResponse.json(
+      { 
+        success: true, 
+        message: "Your message has been sent successfully! We'll get back to you shortly.",
+        emailSent: true,
+      },
+      { status: 200 }
+    );
   } catch (error: any) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "Internal server error. Please try again." },
+      { error: "Internal server error. Please try again or email us directly at hello@shallavar.in" },
       { status: 500 }
     );
   }

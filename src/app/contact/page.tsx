@@ -20,6 +20,7 @@ export default function ContactPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +48,18 @@ export default function ContactPage() {
           setErrorMsg(errorMessage);
           return;
         }
+        // Parse success response
+        let successMessage = "Message sent successfully! We'll get back to you soon.";
+        try {
+          const body = await res.json();
+          if (body?.message) {
+            successMessage = body.message;
+          }
+        } catch {
+          // Fall back to default message
+        }
         setStatus("success");
+        setSuccessMsg(successMessage);
         // Clear the form after successful submission
         formRef.current?.reset();
       } catch {
@@ -207,9 +219,9 @@ export default function ContactPage() {
 
                 {/* Success / Error */}
                 {status === "success" && (
-                  <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3 text-on-surface">
+                  <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3 text-on-surface animate-in fade-in slide-in-from-top-2 duration-300">
                     <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                    <p className="text-sm font-medium text-emerald-800">Message sent successfully! We'll get back to you soon.</p>
+                    <p className="text-sm font-medium text-emerald-800">{successMsg || "Message sent successfully! We'll get back to you soon."}</p>
                   </div>
                 )}
                 {status === "error" && (
