@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 
 // Email provider priority: Resend (temp) → Brevo (after domain purchase) → Gmail (fallback)
 // Configure ONLY ONE in Vercel: RESEND_API_KEY (temp) or BREVO_API_KEY (after domain purchase)
-
+// force redeploy
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
