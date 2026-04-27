@@ -1,13 +1,18 @@
 "use client";
 
-import { Bolt, Mail, MapPin, X, Link2, GitBranch } from "lucide-react";
+import { Bolt, Mail, MapPin, X, GitBranch } from "lucide-react";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Footer() {
   const socials = [
     { icon: X, href: "https://twitter.com", label: "Twitter" },
-    { icon: Link2, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: GitBranch, href: "https://github.com", label: "GitHub" },
+    // TODO: Update Facebook link - currently empty placeholder (href: "#"), change to your Facebook profile URL
+    { icon: FaFacebook, href: "#", label: "Facebook" },
+    // TODO: Update Instagram link - currently empty placeholder (href: "#"), change to your Instagram profile URL
+    { icon: FaInstagram, href: "#", label: "Instagram" },
+    // TODO: Update LinkedIn link - currently empty placeholder (href: "#"), change to your LinkedIn profile URL
+    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
   ];
 
   const services = [
