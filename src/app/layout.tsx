@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Shallavar Technologies Bangalore",
   },
   description:
-    "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards & provide 24/7 tech support. Free consultation. Call +91 86600 39954.",
+    "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards & provide 24/7 tech support. Free consultation. Call +91 94821 37212.",
   keywords: [
     "web development company Bangalore",
     "mobile app development Bangalore",
@@ -99,7 +99,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     "name": "Shallavar Technologies",
     "url": "https://shallavar.com",
-    "telephone": "+918660039954",
+    "telephone": "+919482137212",
     "email": "hello@shallavar.com",
     "description": "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards and provide 24/7 tech support.",
     "logo": "https://shallavar.com/logo-full.png",
@@ -180,7 +180,7 @@ export default function RootLayout({
       {
         "@type": "ContactOption",
         "contactType": "customer service",
-        "phone": "+918660039954",
+        "phone": "+919482137212",
         "availableChannel": {
           "@type": "ContactChannel",
           "serviceLanguage": ["English", "Hindi", "Kannada"],

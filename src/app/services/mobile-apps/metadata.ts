@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Mobile App Development Bangalore — iOS, Android, React Native & Flutter Developers",
   description:
-     "Top mobile app development company in Bangalore. We build iOS, Android, React Native & Flutter apps. App Store submission, MVP development & full-cycle mobile solutions. Call +91 86600 39954.",
+     "Top mobile app development company in Bangalore. We build iOS, Android, React Native & Flutter apps. App Store submission, MVP development & full-cycle mobile solutions. Call +91 94821 37212.",
   keywords: [
      "mobile app development Bangalore",
      "iOS app development Bangalore",

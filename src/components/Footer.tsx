@@ -99,8 +99,8 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-2 text-on-surface-variant">
                   <Bolt className="w-4 h-4 text-primary flex-shrink-0" />
-                  <a href="tel:+918660039954" className="hover:text-primary transition-colors duration-300">
-                    +91 86600 39954
+                  <a href="tel:+919482137212" className="hover:text-primary transition-colors duration-300">
+                    +91 94821 37212
                   </a>
                 </li>
               </ul>

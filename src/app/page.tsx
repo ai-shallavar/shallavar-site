@@ -10,7 +10,7 @@ import CTA from "@/components/CTA";
 export const metadata: Metadata = {
   title: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
   description:
-     "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards & provide 24/7 tech support. Free consultation. Call +91 86600 39954.",
+     "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards & provide 24/7 tech support. Free consultation. Call +91 94821 37212.",
   keywords: [
      "web development company Bangalore",
      "mobile app development Bengaluru",

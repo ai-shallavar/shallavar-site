@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const WHATSAPP_NUMBER = "918660039954";
+const WHATSAPP_NUMBER = "919482137212";
 const WHATSAPP_MESSAGE = encodeURIComponent("Hi Shallavar Tech! I'm interested in your services.");
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 

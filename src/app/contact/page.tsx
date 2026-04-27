@@ -74,8 +74,8 @@ export default function ContactPage() {
       icon: Phone,
       title: "Call Us Directly",
       subtitle: "Available Mon-Fri, 9am-6pm IST",
-      detail: "+91 86600 39954",
-      link: "tel:+918660039954",
+      detail: "+91 94821 37212",
+      link: "tel:+919482137212",
       gradient: "from-blue-50 to-cyan-50 border-blue-100",
       iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
     },
@@ -393,11 +393,11 @@ export default function ContactPage() {
                 Schedule a free 30-minute discovery call with our team. We'll discuss your project and provide expert recommendations.
               </p>
               <a
-                href="tel:+918660039954"
+                href="tel:+919482137212"
                 className="inline-flex items-center gap-2 bg-white text-primary font-semibold px-8 py-3.5 rounded-xl hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
               >
                 <Phone className="w-4 h-4" />
-                Call +91 86600 39954
+                Call +91 94821 37212
               </a>
             </div>
           </div>

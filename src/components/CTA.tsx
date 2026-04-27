@@ -23,7 +23,7 @@ export default function CTA() {
               Contact Us <ArrowRight className="w-5 h-5" />
             </a>
             <a
-              href="https://wa.me/918660039954"
+              href="https://wa.me/919482137212"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-[#25D366] text-white rounded-full px-10 py-4 font-headline font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 text-lg flex items-center justify-center gap-2"

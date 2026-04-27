@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Web Development Company Bangalore — Custom Websites, Next.js & React Developers",
   description:
-    "Top web development company in Bangalore. We build custom websites, Next.js apps, React web apps, e-commerce stores & landing pages. SEO-ready, fast & responsive. Free consultation. Call +91 86600 39954.",
+    "Top web development company in Bangalore. We build custom websites, Next.js apps, React web apps, e-commerce stores & landing pages. SEO-ready, fast & responsive. Free consultation. Call +91 94821 37212.",
   keywords: [
     "web development company Bangalore",
     "Next.js developer Bangalore",

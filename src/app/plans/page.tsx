@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500, Professional ₹75,000, Enterprise Custom",
   description:
-      "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom pricing. 50% off on Starter plan. React, Next.js, mobile apps. Call +91 86600 39954.",
+      "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom pricing. 50% off on Starter plan. React, Next.js, mobile apps. Call +91 94821 37212.",
   keywords: [
        "web development plans Bangalore",
        "website pricing Bangalore",

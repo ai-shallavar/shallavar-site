@@ -307,11 +307,11 @@ export default function Navbar() {
               {/* Desktop Right Actions */}
               <div className="hidden lg:flex items-center gap-3">
                 <a
-                  href="tel:+918660039954"
+                  href="tel:+919482137212"
                   className="flex items-center gap-2 text-slate-500 hover:text-[#2563eb] transition-all duration-300 text-sm font-medium"
                 >
                   <Phone className="w-4 h-4" />
-                  +91 86600 39954
+                  +91 94821 37212
                 </a>
                 <div className="w-px h-6 bg-slate-200" />
                 <Link
@@ -403,9 +403,9 @@ export default function Navbar() {
 
           {/* Footer */}
           <div className="px-6 py-5 border-t border-slate-100 space-y-4 bg-slate-50/50">
-            <a href="tel:+918660039954" className="flex items-center gap-3 text-slate-600 hover:text-[#2563eb] transition-colors duration-300">
+            <a href="tel:+919482137212" className="flex items-center gap-3 text-slate-600 hover:text-[#2563eb] transition-colors duration-300">
               <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">+91 86600 39954</span>
+              <span className="text-sm font-medium">+91 94821 37212</span>
             </a>
             <Link
               href="/contact"

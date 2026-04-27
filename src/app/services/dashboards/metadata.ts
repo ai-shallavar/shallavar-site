@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Dashboard Development Bangalore — Admin Dashboards, CMS & BI Solutions",
   description:
-                  "Top dashboard development company in Bangalore. We build admin dashboards, CMS, BI dashboards, data visualization & custom business intelligence tools. Call +91 86600 39954.",
+                  "Top dashboard development company in Bangalore. We build admin dashboards, CMS, BI dashboards, data visualization & custom business intelligence tools. Call +91 94821 37212.",
   keywords: [
                   "dashboard development Bangalore",
                   "admin dashboard development Bangalore",

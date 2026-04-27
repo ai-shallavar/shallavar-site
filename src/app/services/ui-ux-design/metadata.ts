@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "UI/UX Design Company Bangalore — Product Design, Figma & User Experience Design",
   description:
-       "Top UI/UX design company in Bangalore. We create stunning product design, Figma UI, user experience design, wireframes & app design for startups & enterprises. Call +91 86600 39954.",
+       "Top UI/UX design company in Bangalore. We create stunning product design, Figma UI, user experience design, wireframes & app design for startups & enterprises. Call +91 94821 37212.",
   keywords: [
        "UI UX design company Bangalore",
        "product design agency Bangalore",

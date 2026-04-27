@@ -6,7 +6,7 @@ import CTA from "@/components/CTA";
 export const metadata: Metadata = {
   title: "Web Development Pricing Bangalore — Website Cost ₹12,500 to ₹75,000, Mobile Apps ₹1,25,000+",
   description:
-       "Transparent web development pricing in Bangalore. Website ₹12,500 (Starter), ₹75,000 (Professional). Mobile apps from ₹1,25,000. No hidden fees. Call +91 86600 39954 for free quote.",
+       "Transparent web development pricing in Bangalore. Website ₹12,500 (Starter), ₹75,000 (Professional). Mobile apps from ₹1,25,000. No hidden fees. Call +91 94821 37212 for free quote.",
   keywords: [
        "web development pricing Bangalore",
        "website cost Bangalore",

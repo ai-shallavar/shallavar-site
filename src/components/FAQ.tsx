@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "How do I hire a web developer in Bangalore for my project?",
     answer:
-      "Simply fill out our contact form or call +91 86600 39954 for a free consultation. We'll discuss your requirements, provide a detailed proposal, and start your project within days — not weeks.",
+      "Simply fill out our contact form or call +91 94821 37212 for a free consultation. We'll discuss your requirements, provide a detailed proposal, and start your project within days — not weeks.",
   },
 ];
 

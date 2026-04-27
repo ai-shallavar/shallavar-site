@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
   description:
-        "Contact Shallavar Technologies for web development, mobile app development, UI/UX design & cloud deployment services in Bangalore. Free consultation. Call +91 86600 39954. Visit us at Banashankari, Bangalore.",
+        "Contact Shallavar Technologies for web development, mobile app development, UI/UX design & cloud deployment services in Bangalore. Free consultation. Call +91 94821 37212. Visit us at Banashankari, Bangalore.",
   keywords: [
         "contact Shallavar Technologies",
         "web development company Bangalore",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     siteName: "Shallavar Technologies",
     title: "Contact Shallavar Technologies — Web & Mobile App Development Bangalore",
-    description: "Contact Shallavar Technologies for web development, mobile app development, UI/UX design & cloud deployment. Call +91 86600 39954. Visit Banashankari, Bangalore.",
+    description: "Contact Shallavar Technologies for web development, mobile app development, UI/UX design & cloud deployment. Call +91 94821 37212. Visit Banashankari, Bangalore.",
     url: "https://shallavar.com/contact",
     images: [{
        url: "/logo-full.png",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     site: "@shallavar_tech",
     creator: "@shallavar_tech",
     title: "Contact Shallavar Technologies — Web & Mobile App Development Bangalore",
-    description: "Contact Shallavar Technologies for web development, mobile app development, UI/UX design & cloud deployment. Call +91 86600 39954.",
+    description: "Contact Shallavar Technologies for web development, mobile app development, UI/UX design & cloud deployment. Call +91 94821 37212.",
     images: ["/logo-full.png"],
       },
   alternates: {

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cloud Deployment Services Bangalore — AWS, DevOps, CI/CD & Vercel Deployment",
   description:
-             "Top cloud deployment services in Bangalore. AWS deployment, DevOps, CI/CD pipelines, Vercel Next.js deployment & cloud infrastructure for startups. Call +91 86600 39954.",
+             "Top cloud deployment services in Bangalore. AWS deployment, DevOps, CI/CD pipelines, Vercel Next.js deployment & cloud infrastructure for startups. Call +91 94821 37212.",
   keywords: [
              "cloud deployment services Bangalore",
              "AWS deployment India",

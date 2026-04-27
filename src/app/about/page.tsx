@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "About Shallavar Technologies — Bangalore's Trusted Web & Mobile App Development Company",
   description:
-      "Shallavar Technologies is a leading web and mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design & dashboards for startups & enterprises. 98% client satisfaction. Call +91 86600 39954.",
+      "Shallavar Technologies is a leading web and mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design & dashboards for startups & enterprises. 98% client satisfaction. Call +91 94821 37212.",
   keywords: [
       "about Shallavar Technologies",
       "web development company Bangalore",
@@ -239,10 +239,10 @@ export default function AboutPage() {
                    {' '}Talk <Rocket className="w-4 h-4" />
                 </Link>
                 <a
-                  href="tel:+918660039954"
+                  href="tel:+919482137212"
                   className="inline-flex items-center gap-2 bg-white text-on-surface px-8 py-4 rounded-full font-label font-semibold border border-outline/10 hover:border-primary/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <Phone className="w-4 h-4" /> +91 86600 39954
+                  <Phone className="w-4 h-4" /> +91 94821 37212
                 </a>
               </div>
               <div className="mt-8 flex flex-col items-center gap-3 text-on-surface-variant">

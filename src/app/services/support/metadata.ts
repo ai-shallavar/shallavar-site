@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "IT Support & Maintenance Services Bangalore — Ongoing Tech Support, Application Support",
   description:
-                      "Top IT support and maintenance company in Bangalore. We provide 24/7 tech support, application support, bug fixing, performance optimization & ongoing maintenance. Call +91 86600 39954.",
+                      "Top IT support and maintenance company in Bangalore. We provide 24/7 tech support, application support, bug fixing, performance optimization & ongoing maintenance. Call +91 94821 37212.",
   keywords: [
                       "IT support Bangalore",
                       "maintenance services Bangalore",

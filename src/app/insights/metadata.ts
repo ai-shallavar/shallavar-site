@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tech Blog & Insights — Web Development, Mobile Apps, UI/UX Design Bangalore | Shallavar",
   description:
-         "Insights on web development, mobile apps, UI/UX design, cloud deployment from Shallavar Technologies — Bangalore's leading tech company. Learn about React, Next.js, Flutter, SEO best practices. Free consultation: +91 86600 39954.",
+         "Insights on web development, mobile apps, UI/UX design, cloud deployment from Shallavar Technologies — Bangalore's leading tech company. Learn about React, Next.js, Flutter, SEO best practices. Free consultation: +91 94821 37212.",
   keywords: [
          "web development blog Bangalore",
          "mobile app development blog",
