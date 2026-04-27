@@ -1,6 +1,6 @@
 "use client";
 
-import { Bolt, Mail, MapPin, X, GitBranch } from "lucide-react";
+import { Bolt, GitBranch, Mail, MapPin, Phone, X } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 
@@ -92,8 +92,8 @@ export default function Footer() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-2 text-on-surface-variant">
                   <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                  <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors duration-300">
-                    hello@shallavar.com
+                  <a href="mailto:hello@shallavar.in" className="hover:text-primary transition-colors duration-300">
+                    hello@shallavar.in
                   </a>
                 </li>
                 <li className="flex items-center gap-2 text-on-surface-variant">
@@ -103,7 +103,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className="flex items-center gap-2 text-on-surface-variant">
-                  <Bolt className="w-4 h-4 text-primary flex-shrink-0" />
+                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                   <a href="tel:+919482137212" className="hover:text-primary transition-colors duration-300">
                     +91 94821 37212
                   </a>
