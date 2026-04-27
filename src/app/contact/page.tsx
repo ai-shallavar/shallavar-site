@@ -87,6 +87,7 @@ export default function ContactPage() {
       link: "mailto:hello@shallavar.in",
       gradient: "from-violet-50 to-purple-50 border-violet-100",
       iconBg: "bg-gradient-to-br from-violet-500 to-purple-500",
+      secondary: "shallavar.tech@gmail.com",
     },
     {
       icon: MapPin,
@@ -176,6 +177,11 @@ export default function ContactPage() {
                         {info.title}
                       </h3>
                       <p className="text-sm text-on-surface-variant mb-1">{info.subtitle}</p>
+                      {info.secondary && (
+                        <a href={`mailto:${info.secondary}`} className="block text-xs text-on-surface-variant/70 hover:text-primary transition-colors mb-1">
+                          {info.secondary}
+                        </a>
+                      )}
                       <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all duration-200">
                         {info.detail}
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -250,9 +250,15 @@ export default function AboutPage() {
                   <MapPin className="w-4 h-4 text-primary" />
                   <span>Banashankari, Bangalore 560070, Karnataka, India</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-primary" />
-                  <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors">hello@shallavar.com</a>
+                <div className="flex flex-col gap-1 items-center">
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-primary" />
+                    <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors">hello@shallavar.com</a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-primary" />
+                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors text-sm">shallavar.tech@gmail.com</a>
+                  </div>
                 </div>
               </div>
             </div>

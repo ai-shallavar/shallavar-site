@@ -92,9 +92,14 @@ export default function Footer() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-2 text-on-surface-variant">
                   <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                  <a href="mailto:hello@shallavar.in" className="hover:text-primary transition-colors duration-300">
-                    hello@shallavar.in
-                  </a>
+                  <div className="flex flex-col gap-1">
+                    <a href="mailto:hello@shallavar.in" className="hover:text-primary transition-colors duration-300">
+                      hello@shallavar.in
+                    </a>
+                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors duration-300 text-xs">
+                      shallavar.tech@gmail.com
+                    </a>
+                  </div>
                 </li>
                 <li className="flex items-center gap-2 text-on-surface-variant">
                   <MapPin className="w-4 h-4 text-primary flex-shrink-0" />

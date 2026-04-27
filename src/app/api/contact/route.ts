@@ -58,6 +58,7 @@ export async function POST(request: Request) {
     console.log("=======================");
 
     const TO_EMAIL = process.env.CONTACT_FORM_TO_EMAIL || "ai.shallavar@gmail.com";
+    const CC_EMAIL = "shallavar.tech@gmail.com";
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
     const GMAIL_USER = process.env.GMAIL_USER;
@@ -194,8 +195,8 @@ This email was sent from the Shallavar contact form.`;
         const resend = new Resend(RESEND_API_KEY);
         await resend.emails.send({
           from: `Shallavar Contact <noreply@resend.co>`,
-          to: [TO_EMAIL],
-          cc: [email],
+           to: [TO_EMAIL, CC_EMAIL],
+           cc: [email],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
           text: plainText,
           html: buildHTML(),
@@ -222,8 +223,8 @@ This email was sent from the Shallavar contact form.`;
         await brevoTransport.verify();
         await brevoTransport.sendMail({
           from: `Shallavar Contact <noreply@shallavar.in>`,
-          to: TO_EMAIL,
-          cc: email,
+           to: TO_EMAIL,
+           cc: [email, CC_EMAIL],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
           text: plainText,
           html: buildHTML(),
@@ -249,8 +250,8 @@ This email was sent from the Shallavar contact form.`;
         await transporter.verify();
         await transporter.sendMail({
           from: `Shallavar Contact <${GMAIL_USER}>`,
-          to: TO_EMAIL,
-          cc: email,
+           to: TO_EMAIL,
+           cc: [email, CC_EMAIL],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
           text: plainText,
           html: buildHTML(),
@@ -296,7 +297,7 @@ This email was sent from the Shallavar contact form.`;
   } catch (error: any) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "Internal server error. Please try again or email us directly at hello@shallavar.in" },
+        { error: "Internal server error. Please try again or email us directly at hello@shallavar.in or shallavar.tech@gmail.com" },
       { status: 500 }
     );
   }
