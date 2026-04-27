@@ -96,7 +96,7 @@ export default function Footer() {
                     <a href="mailto:hello@shallavar.in" className="hover:text-primary transition-colors duration-300">
                       hello@shallavar.in
                     </a>
-                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors duration-300 text-xs">
+                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors duration-300">
                       shallavar.tech@gmail.com
                     </a>
                   </div>

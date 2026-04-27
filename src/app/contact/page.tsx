@@ -178,7 +178,7 @@ export default function ContactPage() {
                       </h3>
                       <p className="text-sm text-on-surface-variant mb-1">{info.subtitle}</p>
                       {info.secondary && (
-                        <a href={`mailto:${info.secondary}`} className="block text-xs text-on-surface-variant/70 hover:text-primary transition-colors mb-1">
+                        <a href={`mailto:${info.secondary}`} className="block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors mb-1">
                           {info.secondary}
                         </a>
                       )}

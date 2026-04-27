@@ -257,7 +257,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-primary" />
-                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors text-sm">shallavar.tech@gmail.com</a>
+                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors">shallavar.tech@gmail.com</a>
                   </div>
                 </div>
               </div>
