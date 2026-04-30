@@ -23,10 +23,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://shallavar.com"),
   title: {
     default: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
-    template: "%s | Shallavar Technologies Bangalore",
+    template: "%s | Shallavar Technologies",
   },
   description:
-    "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards & provide 24/7 tech support. Free consultation. Call +91 94821 37212.",
+    "Top-rated web & mobile app development company in Bangalore. Custom websites, iOS/Android apps, UI/UX design, dashboards & 24/7 support. Free consultation. Call +91 94821 37212. hello@shallavar.com",
   keywords: [
     "web development company Bangalore",
     "mobile app development Bangalore",
@@ -46,6 +46,12 @@ export const metadata: Metadata = {
     "best web developer Bangalore",
     "Shallavar Technologies",
     "shallavar.com",
+    "hello@shallavar.com",
+    "best IT company Bangalore 2026",
+    "tech company Banashankari Bangalore",
+    "full stack development Bangalore",
+    "custom software development Bangalore",
+    "ecommerce website development Bangalore",
   ],
   authors: [{ name: "Shallavar Technologies" }],
   creator: "Shallavar Technologies",
@@ -98,13 +104,12 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Shallavar Technologies",
-    "url": "https://shallavar.in",
+    "url": "https://shallavar.com",
     "telephone": "+919482137212",
-    "email": "hello@shallavar.in",
-    "additionalEmail": "shallavar.tech@gmail.com",
-    "description": "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards and provide 24/7 tech support.",
-    "logo": "https://shallavar.in/logo-full.png",
-    "image": "https://shallavar.in/logo-full.png",
+    "email": "hello@shallavar.com",
+    "description": "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards and provide 24/7 tech support. Free consultation.",
+    "logo": "https://shallavar.com/logo-full.png",
+    "image": "https://shallavar.com/logo-full.png",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Banashankari",
@@ -115,8 +120,8 @@ export default function RootLayout({
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "-1.2972",
-      "longitude": "77.4277",
+      "latitude": "12.9716",
+      "longitude": "77.5946",
     },
     "areaServed": [
       {

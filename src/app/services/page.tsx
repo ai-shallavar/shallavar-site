@@ -1,5 +1,64 @@
+import { Metadata } from "next";
 import ServiceCards from "@/components/Services";
 import ProcessFlow from "@/components/ProcessFlow";
+
+export const metadata: Metadata = {
+  title: "Our Services — Web Development, Mobile Apps, UI/UX Design & Cloud Deployment Bangalore",
+  description:
+    "Shallavar Technologies offers complete digital services in Bangalore: custom web development (Next.js, React), iOS/Android mobile apps, UI/UX design, cloud deployment, dashboards & 24/7 support. Free consultation: +91 94821 37212.",
+  keywords: [
+    "web development services Bangalore",
+    "mobile app development services Bangalore",
+    "UI/UX design services Bangalore",
+    "cloud deployment services Bangalore",
+    "dashboard development Bangalore",
+    "website maintenance Bangalore",
+    "Next.js development company Bangalore",
+    "React Native app development Bangalore",
+    "Flutter development Bangalore",
+    "full stack development services Bangalore",
+    "IT services Bangalore",
+    "custom software development Bangalore",
+    "ecommerce development Bangalore",
+    "Shallavar services",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Shallavar Technologies",
+    title: "Our Services — Web Development, Mobile Apps, UI/UX Design & Cloud Deployment Bangalore",
+    description:
+      "Complete digital services in Bangalore: custom web development (Next.js, React), iOS/Android mobile apps, UI/UX design, cloud deployment & 24/7 support.",
+    url: "https://shallavar.com/services",
+    images: [
+      {
+        url: "/logo-full.png",
+        width: 1200,
+        height: 630,
+        alt: "Shallavar Technologies Services — Web & Mobile App Development Bangalore",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@shallavar_tech",
+    creator: "@shallavar_tech",
+    title: "Our Services — Web Development, Mobile Apps, UI/UX Design & Cloud Deployment Bangalore",
+    description:
+      "Complete digital services in Bangalore: custom web development (Next.js, React), iOS/Android mobile apps, UI/UX design & cloud deployment.",
+    images: ["/logo-full.png"],
+  },
+  alternates: {
+    canonical: "https://shallavar.com/services",
+  },
+};
 
 export default function ServicesPage() {
   return (

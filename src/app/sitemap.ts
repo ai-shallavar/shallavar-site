@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://shallavar.in";
+  const baseUrl = "https://shallavar.com";
 
   // Static pages
   const staticPages = [

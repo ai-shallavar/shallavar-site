@@ -211,7 +211,7 @@ This email was sent from the Shallavar contact form.`;
       }
     }
 
-    // Method 2: Brevo (LATER — after you buy your custom domain, verify it and switch)
+    // Method 2: Brevo (verify your domain on Brevo and switch)
     if (!sent && BREVO_API_KEY) {
       try {
         const brevoTransport = nodemailer.createTransport({
@@ -222,7 +222,7 @@ This email was sent from the Shallavar contact form.`;
         });
         await brevoTransport.verify();
         await brevoTransport.sendMail({
-          from: `Shallavar Contact <noreply@shallavar.in>`,
+          from: `Shallavar Contact <noreply@shallavar.com>`,
            to: TO_EMAIL,
            cc: [email, CC_EMAIL],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
@@ -297,7 +297,7 @@ This email was sent from the Shallavar contact form.`;
   } catch (error: any) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-        { error: "Internal server error. Please try again or email us directly at hello@shallavar.in or shallavar.tech@gmail.com" },
+        { error: "Internal server error. Please try again or email us directly at hello@shallavar.com" },
       { status: 500 }
     );
   }

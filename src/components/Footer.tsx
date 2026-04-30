@@ -93,11 +93,8 @@ export default function Footer() {
                 <li className="flex items-center gap-2 text-on-surface-variant">
                   <Mail className="w-4 h-4 text-primary flex-shrink-0" />
                   <div className="flex flex-col gap-1">
-                    <a href="mailto:hello@shallavar.in" className="hover:text-primary transition-colors duration-300">
-                      hello@shallavar.in
-                    </a>
-                    <a href="mailto:shallavar.tech@gmail.com" className="hover:text-primary transition-colors duration-300">
-                      shallavar.tech@gmail.com
+                    <a href="mailto:hello@shallavar.com" className="hover:text-primary transition-colors duration-300">
+                      hello@shallavar.com
                     </a>
                   </div>
                 </li>
