@@ -195,7 +195,7 @@ This email was sent from the Shallavar contact form.`;
       try {
         const resend = new Resend(RESEND_API_KEY);
         const resendResponse = await resend.emails.send({
-          from: `Shallavar Contact <no-reply@resend.dev>`,
+          from: `Shallavar Contact <no-reply@shallavar.com>`,
           to: [TO_EMAIL, CC_EMAIL],
           cc: [email],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
