@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import nodemailer from "nodemailer";
 
-// Email provider priority: Resend (temp) → Brevo (after domain purchase) → Gmail (fallback)
-// Configure ONLY ONE in Vercel: RESEND_API_KEY (temp) or BREVO_API_KEY (after domain purchase)
+// Configure RESEND_API_KEY in Vercel
 // force redeploy
 export async function POST(request: Request) {
   try {
@@ -58,11 +56,7 @@ export async function POST(request: Request) {
     console.log("=======================");
 
     const TO_EMAIL = process.env.CONTACT_FORM_TO_EMAIL || "ai.shallavar@gmail.com";
-    const CC_EMAIL = "shallavar.tech@gmail.com";
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const GMAIL_USER = process.env.GMAIL_USER;
-    const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
     // Track email sending status
     const emailStatus: { adminSent: boolean; customerSent: boolean } = { adminSent: false, customerSent: false };
@@ -182,29 +176,22 @@ ${message}
 ---
 This email was sent from the Shallavar contact form.`;
 
-    // Try email providers in order of preference
-    // TEMP: Resend with noreply@resend.co (no domain verification needed)
-    // LATER (after buying domain): Switch to Brevo or verify domain on Resend
     let sent = false;
     let emailError: string | null = null;
 
-    // Method 1: Resend (works immediately, no domain verification needed)
-    // Uses no-reply@resend.dev as from-address (Resend's current free sending domain)
-    // NOTE: noreply@resend.co is DEPRECATED — must use no-reply@resend.dev
-    if (!sent && RESEND_API_KEY) {
+    if (RESEND_API_KEY) {
       try {
         const resend = new Resend(RESEND_API_KEY);
         const resendResponse = await resend.emails.send({
           from: `Shallavar Contact <no-reply@shallavar.com>`,
-          to: [TO_EMAIL, CC_EMAIL],
+          to: [TO_EMAIL],
           cc: [email],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
           text: plainText,
           html: buildHTML(),
         });
-        console.log(`✅ Resend API success! ID: ${JSON.stringify(resendResponse)}`);
-        console.log(`📧 Email sent via Resend (no-reply@resend.dev)`);
-        console.log(`   To: ${TO_EMAIL}, CC: ${CC_EMAIL}, BCC(to sender): ${email}`);
+        console.log(`✅ Email sent via Resend`);
+        console.log(`   To: ${TO_EMAIL}, CC: ${email}`);
         emailStatus.adminSent = true;
         emailStatus.customerSent = true;
         sent = true;
@@ -214,65 +201,8 @@ This email was sent from the Shallavar contact form.`;
       }
     }
 
-    // Method 2: Brevo (verify your domain on Brevo and switch)
-    if (!sent && BREVO_API_KEY) {
-      try {
-        const brevoTransport = nodemailer.createTransport({
-          host: "smtp-relay.brevo.com",
-          port: 587,
-          secure: false,
-          auth: { user: "api", pass: BREVO_API_KEY },
-        });
-        await brevoTransport.verify();
-        await brevoTransport.sendMail({
-          from: `Shallavar Contact <noreply@shallavar.com>`,
-           to: TO_EMAIL,
-           cc: [email, CC_EMAIL],
-          subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
-          text: plainText,
-          html: buildHTML(),
-        });
-        emailStatus.adminSent = true;
-        emailStatus.customerSent = true;
-        sent = true;
-        console.log(`Email sent via Brevo to ${TO_EMAIL}`);
-      } catch (e: unknown) {
-        const brevoErr = e instanceof Error ? e.message : String(e);
-        emailError = emailError ? `${emailError}, Brevo: ${brevoErr}` : `Brevo: ${brevoErr}`;
-        console.error("Brevo failed:", brevoErr);
-      }
-    }
-
-    // Method 3: Gmail SMTP (emergency fallback — unreliable on Vercel)
-    if (!sent && GMAIL_USER && GMAIL_APP_PASSWORD) {
-      try {
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
-          tls: { rejectUnauthorized: false },
-        });
-        await transporter.verify();
-        await transporter.sendMail({
-          from: `Shallavar Contact <${GMAIL_USER}>`,
-           to: TO_EMAIL,
-           cc: [email, CC_EMAIL],
-          subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
-          text: plainText,
-          html: buildHTML(),
-        });
-        emailStatus.adminSent = true;
-        emailStatus.customerSent = true;
-        sent = true;
-        console.log(`Email sent via Gmail SMTP to ${TO_EMAIL}`);
-      } catch (e: unknown) {
-        const gmailErr = e instanceof Error ? e.message : String(e);
-        emailError = emailError ? `${emailError}, Gmail: ${gmailErr}` : `Gmail: ${gmailErr}`;
-        console.error("Gmail SMTP failed:", gmailErr);
-      }
-    }
-
     if (!sent) {
-      const configured = [RESEND_API_KEY && "Resend", BREVO_API_KEY && "Brevo", (GMAIL_USER && GMAIL_APP_PASSWORD) && "Gmail"].filter(Boolean).join(", ") || "none";
+      const configured = RESEND_API_KEY ? "Resend" : "none";
       console.error(`No email sent. Providers configured: [${configured}]. Error: ${emailError || "unknown"}`);
     }
 
