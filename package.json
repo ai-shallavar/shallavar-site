@@ -8,10 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "clean": "rm -rf .next node_modules/.cache",
-    "monitor:start": "chmod +x monitor-and-recover.sh && ./monitor-and-recover.sh",
-    "monitor:stop": "pkill -f 'monitor-and-recover.sh' 2>/dev/null && echo 'Monitor stopped'",
-    "monitor:logs": "tail -50 .memory-monitor.log 2>/dev/null || echo 'No monitor logs yet'"
+    "clean": "rm -rf .next node_modules/.cache"
   },
   "dependencies": {
     "@vercel/speed-insights": "^2.0.0",

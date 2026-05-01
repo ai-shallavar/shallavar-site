@@ -5,15 +5,35 @@ import { Resend } from "resend";
 // force redeploy
 export async function POST(request: Request) {
   try {
-    const formData = await request.formData();
+    // Handle both JSON and formData submissions
+    const contentType = request.headers.get("content-type") || "";
+    let name = "";
+    let email = "";
+    let phone = "";
+    let company = "";
+    let service = "";
+    let budget = "";
+    let message = "";
 
-    const name = formData.get("name")?.toString() || "";
-    const email = formData.get("email")?.toString() || "";
-    const phone = formData.get("phone")?.toString() || "";
-    const company = formData.get("company")?.toString() || "";
-    const service = formData.get("service")?.toString() || "";
-    const budget = formData.get("budget")?.toString() || "";
-    const message = formData.get("message")?.toString() || "";
+    if (contentType.includes("application/json")) {
+      const body = await request.json();
+      name = body.name?.toString() || "";
+      email = body.email?.toString() || "";
+      phone = body.phone?.toString() || "";
+      company = body.company?.toString() || "";
+      service = body.service?.toString() || "";
+      budget = body.budget?.toString() || "";
+      message = body.message?.toString() || "";
+    } else {
+      const formData = await request.formData();
+      name = formData.get("name")?.toString() || "";
+      email = formData.get("email")?.toString() || "";
+      phone = formData.get("phone")?.toString() || "";
+      company = formData.get("company")?.toString() || "";
+      service = formData.get("service")?.toString() || "";
+      budget = formData.get("budget")?.toString() || "";
+      message = formData.get("message")?.toString() || "";
+    }
 
     // Validate required fields - return specific messages
     const missingFields: string[] = [];

@@ -182,39 +182,3 @@ export default function ServiceCards() {
     </section>
   );
 }
-
-export function ServiceDetailSection() {
-  const details = [
-    {
-      icon: Code,
-      title: "Custom Development",
-      description: "Every project starts with understanding your unique requirements. We architect solutions that scale.",
-    },
-    {
-      icon: Sparkles,
-      title: "Modern Tech Stack",
-      description: "React, Next.js, Node.js, Python - we use the best tools for your specific project needs.",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Rigorous Testing",
-      description: "Comprehensive QA ensures your product works flawlessly across all devices and browsers.",
-    },
-  ];
-
-  return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {details.map((item, i) => (
-          <div key={i} className="flex flex-col items-center text-center p-8 rounded-2xl bg-surface-container-lowest hover:bg-white hover:shadow-lg transition-all duration-300">
-            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-5">
-              <item.icon className="w-8 h-8 text-primary" />
-            </div>
-            <h3 className="font-headline font-bold text-xl mb-3 text-on-surface">{item.title}</h3>
-            <p className="text-on-surface-variant leading-relaxed">{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}

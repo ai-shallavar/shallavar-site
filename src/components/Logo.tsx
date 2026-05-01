@@ -19,7 +19,22 @@ export default function Logo({
   const [isHovered, setIsHovered] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Detect mobile/touch device and set permanent hover state for mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768;
+      setIsMobile(isTouchDevice);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // On mobile, always show hover effect; on desktop, use mouse state
+  const effectiveHover = isMobile ? true : isHovered;
 
   const sizeClasses = {
     sm: "h-10",
@@ -33,9 +48,9 @@ export default function Logo({
     return () => clearTimeout(timer);
   }, []);
 
-  // Track mouse position for parallax effect on header logo
+  // Track mouse position for parallax effect on header logo (desktop only)
   useEffect(() => {
-    if (variant !== "icon-only" || !animated) return;
+    if (variant !== "icon-only" || !animated || isMobile) return;
     
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -50,7 +65,7 @@ export default function Logo({
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [variant, animated]);
+  }, [variant, animated, isMobile]);
 
   // For header variant, render butterfly icon + brand name text horizontally
   if (variant === "header") {
@@ -58,8 +73,8 @@ export default function Logo({
       <div
         ref={containerRef}
         className={`relative inline-flex items-center gap-1.5 ${className}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
       >
         {/* Animated butterfly icon on the left */}
         <div
@@ -77,8 +92,8 @@ export default function Logo({
                 style={{
                   top: "50%",
                   left: "50%",
-                  opacity: isHovered ? 0.9 : 0,
-                  transform: `translate(-50%, -50%) rotate(${hasEntered ? 360 : 0}deg) translateX(${isHovered ? 24 : 18}px)`,
+                  opacity: effectiveHover ? 0.9 : 0,
+                  transform: `translate(-50%, -50%) rotate(${hasEntered ? 360 : 0}deg) translateX(${effectiveHover ? 24 : 18}px)`,
                   transition: "opacity 0.5s ease, transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
                   boxShadow: "0 0 8px rgba(65,146,217,0.6)",
                 }}
@@ -88,8 +103,8 @@ export default function Logo({
                 style={{
                   top: "50%",
                   left: "50%",
-                  opacity: isHovered ? 0.8 : 0,
-                  transform: `translate(-50%, -50%) rotate(${hasEntered ? 180 : 0}deg) translateX(${isHovered ? 28 : 20}px)`,
+                  opacity: effectiveHover ? 0.8 : 0,
+                  transform: `translate(-50%, -50%) rotate(${hasEntered ? 180 : 0}deg) translateX(${effectiveHover ? 28 : 20}px)`,
                   transition: "opacity 0.5s ease 0.2s, transform 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s",
                   boxShadow: "0 0 10px rgba(255,255,255,0.8)",
                 }}
@@ -102,13 +117,13 @@ export default function Logo({
             className="relative w-full h-full"
             style={{
               transform: hasEntered 
-                ? `translate(${isHovered ? mousePos.x * 6 : mousePos.x * 3}px, ${isHovered ? mousePos.y * 6 : mousePos.y * 3}px)`
+                ? `translate(${effectiveHover ? mousePos.x * 6 : mousePos.x * 3}px, ${effectiveHover ? mousePos.y * 6 : mousePos.y * 3}px)`
                 : "translateY(20px) scale(0.8)",
               opacity: hasEntered ? 1 : 0,
               transition: "transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease",
             }}
           >
-            <ButterflyIcon animated={animated} isHovered={isHovered} />
+            <ButterflyIcon animated={animated} isHovered={effectiveHover} />
           </div>
         </div>
 
@@ -118,10 +133,10 @@ export default function Logo({
             className="font-headline font-bold tracking-tight transition-all duration-500 ease-out"
             style={{
               fontSize: size === "lg" ? "20px" : size === "sm" ? "14px" : "17px",
-              color: "#1C1B1F",
+              color: "#16315B",
               lineHeight: 1.2,
-              transform: animated && isHovered ? "translateX(4px)" : "translateX(0)",
-              textShadow: animated && isHovered ? "drop-shadow(0 0 8px rgba(65,146,217,0.3))" : "none",
+              transform: animated && effectiveHover ? "translateX(4px)" : "translateX(0)",
+              textShadow: animated && effectiveHover ? "drop-shadow(0 0 8px rgba(65,146,217,0.3))" : "none",
               transition: "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.5s ease-out",
             }}
           >
@@ -131,10 +146,10 @@ export default function Logo({
             className="font-label font-medium tracking-[0.25em] uppercase transition-all duration-500 ease-out"
             style={{
               fontSize: size === "lg" ? "10px" : size === "sm" ? "9px" : "10px",
-              color: isHovered ? "#4192D9" : "#505F60",
+              color: effectiveHover ? "#4192D9" : "#505F60",
               lineHeight: 1.2,
-              transform: animated && isHovered ? "translateX(4px)" : "translateX(0)",
-              letterSpacing: isHovered ? "0.35em" : "0.25em",
+              transform: animated && effectiveHover ? "translateX(4px)" : "translateX(0)",
+              letterSpacing: effectiveHover ? "0.35em" : "0.25em",
               transition: "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.5s ease-out, letter-spacing 0.5s ease-out",
             }}
           >
@@ -153,8 +168,8 @@ export default function Logo({
         className={`relative inline-flex items-center justify-center ${
           variant === "icon-only" ? "aspect-square " + sizeClasses[size] : sizeClasses[size]
         } ${className}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
       >
         {/* Orbiting sparkle particles */}
         {animated && (
@@ -164,8 +179,8 @@ export default function Logo({
               style={{
                 top: "50%",
                 left: "50%",
-                opacity: isHovered ? 0.9 : 0,
-                transform: `translate(-50%, -50%) rotate(${hasEntered ? 360 : 0}deg) translateX(${isHovered ? 32 : 24}px)`,
+                opacity: effectiveHover ? 0.9 : 0,
+                transform: `translate(-50%, -50%) rotate(${hasEntered ? 360 : 0}deg) translateX(${effectiveHover ? 32 : 24}px)`,
                 transition: "opacity 0.5s ease, transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 boxShadow: "0 0 8px rgba(65,146,217,0.6)",
               }}
@@ -175,8 +190,8 @@ export default function Logo({
               style={{
                 top: "50%",
                 left: "50%",
-                opacity: isHovered ? 0.7 : 0,
-                transform: `translate(-50%, -50%) rotate(${hasEntered ? -360 : 0}deg) translateX(${isHovered ? 28 : 20}px)`,
+                opacity: effectiveHover ? 0.7 : 0,
+                transform: `translate(-50%, -50%) rotate(${hasEntered ? -360 : 0}deg) translateX(${effectiveHover ? 28 : 20}px)`,
                 transition: "opacity 0.5s ease 0.1s, transform 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s",
                 boxShadow: "0 0 6px rgba(22,50,91,0.5)",
               }}
@@ -186,8 +201,8 @@ export default function Logo({
               style={{
                 top: "50%",
                 left: "50%",
-                opacity: isHovered ? 0.8 : 0,
-                transform: `translate(-50%, -50%) rotate(${hasEntered ? 180 : 0}deg) translateX(${isHovered ? 36 : 26}px)`,
+                opacity: effectiveHover ? 0.8 : 0,
+                transform: `translate(-50%, -50%) rotate(${hasEntered ? 180 : 0}deg) translateX(${effectiveHover ? 36 : 26}px)`,
                 transition: "opacity 0.5s ease 0.2s, transform 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s",
                 boxShadow: "0 0 10px rgba(255,255,255,0.8)",
               }}
@@ -200,13 +215,13 @@ export default function Logo({
           className="relative w-full h-full"
           style={{
             transform: hasEntered 
-              ? `translate(${isHovered ? mousePos.x * 6 : mousePos.x * 3}px, ${isHovered ? mousePos.y * 6 : mousePos.y * 3}px)`
+              ? `translate(${effectiveHover ? mousePos.x * 6 : mousePos.x * 3}px, ${effectiveHover ? mousePos.y * 6 : mousePos.y * 3}px)`
               : "translateY(20px) scale(0.8)",
             opacity: hasEntered ? 1 : 0,
             transition: "transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease",
           }}
         >
-          <ButterflyIcon animated={animated} isHovered={isHovered} />
+          <ButterflyIcon animated={animated} isHovered={effectiveHover} />
         </div>
       </div>
     );
@@ -221,39 +236,39 @@ export default function Logo({
   return (
     <div
       className={`relative inline-flex items-center ${sizeClasses[size]} ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
-      {/* Floating particles on hover */}
+      {/* Floating particles - always active on mobile */}
       {animated && (
         <>
           {/* Particle 1 - top left */}
           <div
             className="absolute w-1 h-1 rounded-full bg-[#4192D9] transition-all duration-700 ease-out"
             style={{
-              top: isHovered ? "-4px" : "20%",
-              left: isHovered ? "-8px" : "10%",
-              opacity: isHovered ? 1 : 0,
-              transform: isHovered ? "scale(1.5)" : "scale(0.5)",
+              top: effectiveHover ? "-4px" : "20%",
+              left: effectiveHover ? "-8px" : "10%",
+              opacity: effectiveHover ? 1 : 0,
+              transform: effectiveHover ? "scale(1.5)" : "scale(0.5)",
             }}
           />
           {/* Particle 2 - top right */}
           <div
             className="absolute w-1.5 h-1.5 rounded-full bg-[#16325B] transition-all duration-700 ease-out delay-75"
             style={{
-              top: isHovered ? "-2px" : "15%",
-              right: isHovered ? "-6px" : "10%",
-              opacity: isHovered ? 1 : 0,
-              transform: isHovered ? "scale(1.3)" : "scale(0.3)",
+              top: effectiveHover ? "-2px" : "15%",
+              right: effectiveHover ? "-6px" : "10%",
+              opacity: effectiveHover ? 1 : 0,
+              transform: effectiveHover ? "scale(1.3)" : "scale(0.3)",
             }}
           />
           {/* Particle 3 - bottom */}
           <div
             className="absolute w-0.5 h-1 rounded-full bg-[#4192D9] transition-all duration-700 ease-out delay-150"
             style={{
-              bottom: isHovered ? "2px" : "30%",
-              left: isHovered ? "4px" : "50%",
-              opacity: isHovered ? 0.8 : 0,
+              bottom: effectiveHover ? "2px" : "30%",
+              left: effectiveHover ? "4px" : "50%",
+              opacity: effectiveHover ? 0.8 : 0,
             }}
           />
         </>
@@ -267,8 +282,8 @@ export default function Logo({
         height={0}
         className={`relative h-full w-auto object-contain transition-all duration-500 ease-out`}
         style={{
-          transform: animated && isHovered ? "translateY(-2px)" : "translateY(0)",
-          filter: animated && isHovered ? "drop-shadow(0 4px 12px rgba(65,146,217,0.25))" : "drop-shadow(0 1px 2px rgba(0,0,0,0.05))",
+          transform: animated && effectiveHover ? "translateY(-2px)" : "translateY(0)",
+          filter: animated && effectiveHover ? "drop-shadow(0 4px 12px rgba(65,146,217,0.25))" : "drop-shadow(0 1px 2px rgba(0,0,0,0.05))",
           transition: "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.5s ease-out",
         }}
         sizes="100vw"
