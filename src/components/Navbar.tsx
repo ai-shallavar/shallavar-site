@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X, Code, Smartphone, Palette, Cloud, Headphones, LayoutDashboard, Phone } from "lucide-react";
+import Logo from "@/components/Logo";
 
 // Extend Window interface for custom property
 declare global {
@@ -210,13 +211,9 @@ export default function Navbar() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-20">
               
-              {/* Brand */}
-              <Link href="/" className="flex items-center gap-3 group">
-                  <img 
-                    src="/logo-full.png" 
-                    alt="Shallavar Technologies" 
-                    className="h-16 w-auto object-contain transition-all duration-500 group-hover:opacity-90"
-                  />
+              {/* Brand - Butterfly icon + brand name with advanced animations */}
+              <Link href="/" className="group" aria-label="Shallavar Technologies Home">
+                  <Logo variant="header" size="lg" animated={true} />
               </Link>
 
               {/* Desktop Nav */}
@@ -354,11 +351,7 @@ export default function Navbar() {
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
             <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
-              <img 
-                src="/logo-full.png" 
-                alt="Shallavar Technologies" 
-                className={`w-auto object-contain transition-all duration-500 ${mobileOpen ? "h-16" : "h-12"}`}
-              />
+              <Logo variant="horizontal" size="sm" animated={false} />
             </Link>
             <button
               className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 transition-all duration-300"

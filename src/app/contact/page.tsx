@@ -159,16 +159,16 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Left Column - Contact Info Cards */}
             <div className="lg:col-span-5 space-y-4">
-              {contactInfo.map((info, index) => (
-                <a
-                  key={info.title}
-                  href={info.link}
-                  target={info.link.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className={`group block bg-white rounded-2xl p-6 border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-visible relative z-[1] hover:z-[2]`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="flex items-start gap-4">
+              {contactInfo.map((info) => {
+                const isExternal = info.link.startsWith("http");
+                return (
+                  <a
+                    key={info.title}
+                    href={info.link}
+                    {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className={`group block bg-white rounded-2xl p-6 border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-visible relative z-[1] hover:z-[2]`}
+                  >
+                    <div className="flex items-start gap-4">
                     <div className={`${info.iconBg} w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-lg`}>
                       <info.icon className="w-5 h-5 text-white" />
                     </div>
@@ -178,9 +178,9 @@ export default function ContactPage() {
                       </h3>
                       <p className="text-sm text-on-surface-variant mb-1">{info.subtitle}</p>
                       {info.secondary && (
-                        <a href={`mailto:${info.secondary}`} className="block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors mb-1">
+                        <span className="block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors mb-1 cursor-pointer" onClick={(e) => { e.stopPropagation(); window.location.href = `mailto:${info.secondary}`; }}>
                           {info.secondary}
-                        </a>
+                        </span>
                       )}
                       <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all duration-200">
                         {info.detail}
@@ -189,9 +189,10 @@ export default function ContactPage() {
                         </svg>
                       </span>
                     </div>
-                  </div>
-                </a>
-              ))}
+                    </div>
+                  </a>
+                );
+              })}
 
               {/* Trust Badge */}
               <div className="mt-8 bg-white rounded-2xl p-6 border border-outline/10 shadow-sm">

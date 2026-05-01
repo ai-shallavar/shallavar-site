@@ -1,8 +1,9 @@
 "use client";
 
-import { Bolt, GitBranch, Mail, MapPin, Phone, X } from "lucide-react";
+import { Mail, MapPin, Phone, X } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   const socials = [
@@ -36,13 +37,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <div className="relative overflow-hidden mb-6 group w-fit">
+            <div className="relative overflow-hidden mb-6 w-fit">
               <Link href="/" className="flex items-center gap-3">
-                <img 
-                  src="/logo-full-square.png" 
-                  alt="Shallavar Technologies" 
-                  className="h-28 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
-                />
+                <Logo variant="vertical" size="lg" animated={true} />
               </Link>
             </div>
             <p className="text-on-surface-variant mb-6 leading-relaxed">Premium digital experiences for ambitious brands. We build, deploy, and scale.</p>

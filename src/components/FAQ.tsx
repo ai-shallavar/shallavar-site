@@ -81,7 +81,7 @@ function FAQItem({
   index: number;
   isOpen: boolean;
   onToggle: () => void;
-  icon: React.FC<any>;
+  icon: React.FC<{ className?: string }>;
 }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);

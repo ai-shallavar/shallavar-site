@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
     // Track email sending status
-    let emailStatus: { adminSent: boolean; customerSent: boolean } = { adminSent: false, customerSent: false };
+    const emailStatus: { adminSent: boolean; customerSent: boolean } = { adminSent: false, customerSent: false };
 
     // Build HTML email template
     const buildHTML = () => {
@@ -205,9 +205,9 @@ This email was sent from the Shallavar contact form.`;
         emailStatus.customerSent = true;
         sent = true;
         console.log(`Email sent via Resend (noreply@resend.co) to ${TO_EMAIL}`);
-      } catch (e: any) {
-        emailError = e.message;
-        console.error("Resend failed:", e.message);
+      } catch (e: unknown) {
+        emailError = e instanceof Error ? e.message : String(e);
+        console.error("Resend failed:", emailError);
       }
     }
 
@@ -233,9 +233,10 @@ This email was sent from the Shallavar contact form.`;
         emailStatus.customerSent = true;
         sent = true;
         console.log(`Email sent via Brevo to ${TO_EMAIL}`);
-      } catch (e: any) {
-        emailError = emailError ? `${emailError}, Brevo: ${e.message}` : `Brevo: ${e.message}`;
-        console.error("Brevo failed:", e.message);
+      } catch (e: unknown) {
+        const brevoErr = e instanceof Error ? e.message : String(e);
+        emailError = emailError ? `${emailError}, Brevo: ${brevoErr}` : `Brevo: ${brevoErr}`;
+        console.error("Brevo failed:", brevoErr);
       }
     }
 
@@ -260,9 +261,10 @@ This email was sent from the Shallavar contact form.`;
         emailStatus.customerSent = true;
         sent = true;
         console.log(`Email sent via Gmail SMTP to ${TO_EMAIL}`);
-      } catch (e: any) {
-        emailError = emailError ? `${emailError}, Gmail: ${e.message}` : `Gmail: ${e.message}`;
-        console.error("Gmail SMTP failed:", e.message);
+      } catch (e: unknown) {
+        const gmailErr = e instanceof Error ? e.message : String(e);
+        emailError = emailError ? `${emailError}, Gmail: ${gmailErr}` : `Gmail: ${gmailErr}`;
+        console.error("Gmail SMTP failed:", gmailErr);
       }
     }
 
@@ -294,7 +296,7 @@ This email was sent from the Shallavar contact form.`;
       },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Contact form error:", error);
     return NextResponse.json(
         { error: "Internal server error. Please try again or email us directly at hello@shallavar.com" },

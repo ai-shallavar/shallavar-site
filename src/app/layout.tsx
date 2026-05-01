@@ -246,10 +246,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/logo-icon-white-bg.png" sizes="32x32" />
-        <link rel="icon" href="/logo-icon-white-bg.png" sizes="16x16" />
-        <link rel="apple-touch-icon" href="/logo-icon-white-bg.png" sizes="180x180" />
-        <link rel="shortcut icon" href="/logo-icon-white-bg.png" />
+        <link rel="icon" href="/Shallavar_logos/logoOnly.png" sizes="32x32" />
+        <link rel="icon" href="/Shallavar_logos/logoOnly.png" sizes="16x16" />
+        <link rel="apple-touch-icon" href="/Shallavar_logos/logoOnly.png" sizes="180x180" />
+        <link rel="shortcut icon" href="/Shallavar_logos/logoOnly.png" />
         <meta name="theme-color" content="#2563eb" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="language" content="English" />

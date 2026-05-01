@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 import { type ComponentType, type SVGProps } from "react";
 
 // Color theme definitions for each service
@@ -125,9 +125,9 @@ export default function ServicePage({
       <section className="bg-surface-container-lowest border-b border-outline-variant/10 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center text-sm text-on-surface-variant">
-            <a href="/" className="hover:text-on-surface transition-colors">Home</a>
+            <Link href="/" className="hover:text-on-surface transition-colors">Home</Link>
             <span className="mx-2">/</span>
-            <a href="/services" className="hover:text-on-surface transition-colors">Services</a>
+             <Link href="/services" className="hover:text-on-surface transition-colors">Services</Link>
             <span className="mx-2">/</span>
             <span className="text-on-surface font-medium">{badgeLabel}</span>
           </nav>
