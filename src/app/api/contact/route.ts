@@ -194,21 +194,23 @@ This email was sent from the Shallavar contact form.`;
     if (!sent && RESEND_API_KEY) {
       try {
         const resend = new Resend(RESEND_API_KEY);
-        await resend.emails.send({
+        const resendResponse = await resend.emails.send({
           from: `Shallavar Contact <no-reply@resend.dev>`,
-           to: [TO_EMAIL, CC_EMAIL],
-           cc: [email],
+          to: [TO_EMAIL, CC_EMAIL],
+          cc: [email],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
           text: plainText,
           html: buildHTML(),
         });
+        console.log(`✅ Resend API success! ID: ${JSON.stringify(resendResponse)}`);
+        console.log(`📧 Email sent via Resend (no-reply@resend.dev)`);
+        console.log(`   To: ${TO_EMAIL}, CC: ${CC_EMAIL}, BCC(to sender): ${email}`);
         emailStatus.adminSent = true;
         emailStatus.customerSent = true;
         sent = true;
-        console.log(`Email sent via Resend (no-reply@resend.dev) to ${TO_EMAIL}`);
       } catch (e: unknown) {
         emailError = e instanceof Error ? e.message : String(e);
-        console.error("Resend failed:", emailError);
+        console.error(`❌ Resend API failed: ${emailError}`);
       }
     }
 
