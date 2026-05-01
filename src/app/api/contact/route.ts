@@ -188,13 +188,14 @@ This email was sent from the Shallavar contact form.`;
     let sent = false;
     let emailError: string | null = null;
 
-    // Method 1: Resend (TEMP — works immediately, no domain verification needed)
-    // Uses noreply@resend.co as from-address. No custom domain setup required.
+    // Method 1: Resend (works immediately, no domain verification needed)
+    // Uses no-reply@resend.dev as from-address (Resend's current free sending domain)
+    // NOTE: noreply@resend.co is DEPRECATED — must use no-reply@resend.dev
     if (!sent && RESEND_API_KEY) {
       try {
         const resend = new Resend(RESEND_API_KEY);
         await resend.emails.send({
-          from: `Shallavar Contact <noreply@resend.co>`,
+          from: `Shallavar Contact <no-reply@resend.dev>`,
            to: [TO_EMAIL, CC_EMAIL],
            cc: [email],
           subject: `New Contact Form Inquiry from ${name}${service ? ` - ${service}` : ""}`,
@@ -204,7 +205,7 @@ This email was sent from the Shallavar contact form.`;
         emailStatus.adminSent = true;
         emailStatus.customerSent = true;
         sent = true;
-        console.log(`Email sent via Resend (noreply@resend.co) to ${TO_EMAIL}`);
+        console.log(`Email sent via Resend (no-reply@resend.dev) to ${TO_EMAIL}`);
       } catch (e: unknown) {
         emailError = e instanceof Error ? e.message : String(e);
         console.error("Resend failed:", emailError);
