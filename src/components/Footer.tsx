@@ -7,13 +7,9 @@ import Logo from "@/components/Logo";
 
 export default function Footer() {
   const socials = [
-    { icon: X, href: "https://twitter.com", label: "Twitter" },
-    // TODO: Update Facebook link - currently empty placeholder (href: "#"), change to your Facebook profile URL
-    { icon: FaFacebook, href: "#", label: "Facebook" },
-    // TODO: Update Instagram link - currently empty placeholder (href: "#"), change to your Instagram profile URL
-    { icon: FaInstagram, href: "#", label: "Instagram" },
-    // TODO: Update LinkedIn link - currently empty placeholder (href: "#"), change to your LinkedIn profile URL
-    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
+    { icon: X, href: "https://x.com/shallavar", label: "X" },
+    { icon: FaInstagram, href: "https://www.instagram.com/shallavar/", label: "Instagram" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/shallavar/", label: "LinkedIn" },
   ];
 
   const services = [
@@ -97,8 +93,8 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-2 text-on-surface-variant">
                   <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                  <a href="https://maps.google.com/?q=Banashankari,Bangalore" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">
-                    Banashankari, Bangalore 560070, Karnataka, India
+                  <a href="https://maps.google.com/?q=%23180/1+Somanahalli+Gate+Kanakapura+Main+Road+Bangalore" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">
+                    #180/1, Somanahalli Gate, Kanakapura main road, Bangalore -560082
                   </a>
                 </li>
                 <li className="flex items-center gap-2 text-on-surface-variant">

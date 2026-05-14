@@ -112,10 +112,10 @@ export default function RootLayout({
     "image": "https://shallavar.com/logo-full.png",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Banashankari",
+      "streetAddress": "#180/1, Somanahalli Gate, Kanakapura main road",
       "addressLocality": "Bangalore",
       "addressRegion": "Karnataka",
-      "postalCode": "560070",
+      "postalCode": "560082",
       "addressCountry": "IN",
     },
     "geo": {
@@ -171,9 +171,9 @@ export default function RootLayout({
       "Software Development",
     ],
     "sameAs": [
-      "https://twitter.com/shallavar_tech",
-      "https://linkedin.com/company/shallavar-technologies",
-      "https://github.com/ai-shallavar",
+      "https://x.com/shallavar",
+      "https://www.instagram.com/shallavar/",
+      "https://www.linkedin.com/company/shallavar/",
     ],
     "foundingDate": "2024",
     "serviceArea": [
