@@ -22,9 +22,9 @@ const techStack = [
 const pricing = [
      {
         name: "Simple App",
-        price: "₹80,000",
-        desc: "Basic mobile application with core features",
-        features: ["Single Platform", "User Authentication", "Push Notifications", "Basic UI/UX"],
+        price: "₹60,000",
+        desc: "Single-platform mobile app with essential features and clean UI",
+        features: ["Single Platform (iOS or Android)", "User Authentication", "Push Notifications", "Clean, Responsive UI/UX", "API Integration", "Basic Admin Panel"],
      },
      {
         name: "Complex App",

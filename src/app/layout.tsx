@@ -22,7 +22,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shallavar.com"),
   title: {
-    default: "Shallavar Technologies — Web & Mobile App Development Company in Bangalore",
+    default: "Shallavar Technologies - Web & Mobile App Development Company in Bangalore",
     template: "%s | Shallavar Technologies",
   },
   description:
@@ -100,19 +100,46 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
+  // Organization + LocalBusiness combined schema
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Shallavar Technologies",
+    "alternateName": "Shallavar",
+    "url": "https://shallavar.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shallavar.com/logo-full.png",
+    },
+    "description": "Web & mobile app development company in Bangalore. Custom websites, iOS/Android apps, UI/UX design, cloud deployment & 24/7 support.",
+    "foundingDate": "2024",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-94821-37212",
+      "email": "hello@shallavar.com",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Hindi", "Kannada"],
+    },
+    "sameAs": [
+      "https://x.com/shallavar",
+      "https://www.instagram.com/shallavar/",
+      "https://www.linkedin.com/company/shallavar/",
+    ],
+  };
+
+  const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Shallavar Technologies",
+    "description": "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards and provide 24/7 tech support. Free consultation.",
     "url": "https://shallavar.com",
     "telephone": "+919482137212",
     "email": "hello@shallavar.com",
-    "description": "Top-rated web & mobile app development company in Bangalore. We build custom websites, iOS/Android apps, UI/UX design, dashboards and provide 24/7 tech support. Free consultation.",
     "logo": "https://shallavar.com/logo-full.png",
     "image": "https://shallavar.com/logo-full.png",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "#180/1, Somanahalli Gate, Kanakapura main road",
+      "streetAddress": "#180/1, Somanahalli Gate, Kanakapura Main Road",
       "addressLocality": "Bangalore",
       "addressRegion": "Karnataka",
       "postalCode": "560082",
@@ -120,8 +147,8 @@ export default function RootLayout({
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "12.9716",
-      "longitude": "77.5946",
+      "latitude": 12.9716,
+      "longitude": 77.5946,
     },
     "areaServed": [
       {
@@ -257,9 +284,33 @@ export default function RootLayout({
         <meta name="rating" content="general" />
         <meta name="revisit-after" content="3 days" />
         <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <Script
           id="local-business-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Shallavar Technologies",
+            "url": "https://shallavar.com",
+            "description": "Web & mobile app development company in Bangalore. Custom websites, iOS/Android apps, UI/UX design.",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://shallavar.com/insights?q={search_term_string}",
+              },
+              "query-input": "required name=search_term_string",
+            },
+          }) }}
         />
         <Script
           id="faq-schema"

@@ -21,9 +21,9 @@ const techStack = [
 
 const pricing = [
     {
-        name: "Landing Page",
+        name: "Starter Website",
         price: "₹25,000",
-        desc: "Single-page responsive website",
+        desc: "Clean, professional single-page website for small businesses",
         features: ["Responsive Design", "Contact Form", "Basic SEO", "1 Revision Round"],
     },
     {

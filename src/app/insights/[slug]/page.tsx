@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import Script from "next/script";
 import {
   TrendingUp,
   Code2,
@@ -185,9 +186,50 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const article = articles[slug];
   if (!article) return { title: "Article Not Found" };
+  
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "author": {
+      "@type": "Organization",
+      "name": "Shallavar Technologies",
+      "url": "https://shallavar.com",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Shallavar Technologies",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://shallavar.com/logo-full.png",
+      },
+    },
+    "datePublished": article.date,
+    "dateModified": article.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://shallavar.com/insights/${article.slug}`,
+    },
+  };
+
   return {
-    title: article.title,
+    title: `${article.title} | Shallavar Insights`,
     description: article.excerpt,
+    keywords: [article.category.toLowerCase().replace(" & ", ",").split(",").map(k => `${k.trim()} insights`).join(", ") + " technology blog"],
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      type: "article",
+      url: `https://shallavar.com/insights/${article.slug}`,
+      publishedTime: article.date,
+      authors: ["Shallavar Technologies"],
+      section: article.category,
+      tags: [article.category],
+    },
+    alternates: {
+      canonical: `https://shallavar.com/insights/${article.slug}`,
+    },
   };
 }
 
@@ -195,10 +237,42 @@ export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
   const article = articles[slug];
 
+  // Article structured data for rich snippets
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article?.title,
+    "description": article?.excerpt,
+    "author": {
+      "@type": "Organization",
+      "name": "Shallavar Technologies",
+      "url": "https://shallavar.com",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Shallavar Technologies",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://shallavar.com/logo-full.png",
+      },
+    },
+    "datePublished": article?.date,
+    "dateModified": article?.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://shallavar.com/insights/${article?.slug}`,
+    },
+  };
+
   if (!article) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
+        <Script
+          id="article-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
         <main className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-4">
             Article Not Found
@@ -217,9 +291,14 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <Script
+        id="article-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <main>
-        {/* Article Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-violet-50 pt-36 pb-20 md:pt-44 md:pb-28">
+        {/* Article Hero with semantic article tag */}
+        <article className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-violet-50 pt-36 pb-20 md:pt-44 md:pb-28">
           {/* Decorative elements */}
           <div className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${article.imageGradient} opacity-10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/2`} />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-violet-200/30 to-transparent rounded-full blur-3xl -translate-x-1/3 translate-y-1/2" />
@@ -239,9 +318,9 @@ export default async function ArticlePage({ params }: Props) {
               {article.excerpt}
             </p>
 
-            {/* Meta */}
+            {/* Meta with structured data */}
             <div className="flex items-center justify-center gap-4 text-sm text-on-surface-variant">
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5" itemProp="datePublished">
                 <Calendar className="w-4 h-4" />
                 {article.date}
               </span>
@@ -252,10 +331,10 @@ export default async function ArticlePage({ params }: Props) {
               </span>
             </div>
           </div>
-        </section>
+        </article>
 
         {/* Article Content */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16" itemProp="articleBody">
           {/* Back link */}
           <Link href="/insights" className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all duration-200 mb-12">
             <ArrowLeft className="w-4 h-4" />

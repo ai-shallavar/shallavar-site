@@ -6,10 +6,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/insights/[slug]/"],
+        disallow: ["/api/", "/_next/", "/favicon.ico"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/"],
       },
     ],
     sitemap: "https://shallavar.com/sitemap.xml",
-    host: "https://shallavar.com",
   };
 }

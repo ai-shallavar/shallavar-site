@@ -4,7 +4,6 @@ import {
   Smartphone,
   Palette,
   Cloud,
-  LayoutDashboard,
   Headphones,
   ArrowRight,
   CheckCircle2,
@@ -35,12 +34,6 @@ const services = [
     title: "Cloud & Deployment",
     description: "Scalable, secure cloud infrastructure with CI/CD pipeline automation on AWS, GCP, and Azure.",
     href: "/services/cloud-deployment",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Dashboards & CMS",
-    description: "Admin panels, content management systems, and real-time dashboards tailored to your workflows.",
-    href: "/services/dashboards",
   },
   {
     icon: Headphones,
@@ -83,14 +76,6 @@ const serviceColors: Record<string, { topBar: string; iconBg: string; iconColor:
     hoverText: "group-hover:text-service-cloud",
     linkColor: "text-service-cloud",
     hoverBg: "bg-service-cloud-container/10",
-  },
-  "/services/dashboards": {
-    topBar: "bg-gradient-to-r from-service-dashboard to-emerald-600",
-    iconBg: "bg-service-dashboard-container",
-    iconColor: "text-service-dashboard",
-    hoverText: "group-hover:text-service-dashboard",
-    linkColor: "text-service-dashboard",
-    hoverBg: "bg-service-dashboard-container/10",
   },
   "/services/support": {
     topBar: "bg-gradient-to-r from-service-support to-teal-600",

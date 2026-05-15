@@ -127,8 +127,8 @@ export default function EditorialDesignDigital() {
                  <h4 className="font-semibold text-primary mb-1">Mobile Apps</h4>
                  <p className="text-sm text-on-surface-variant">iOS, Android, Flutter, React Native</p>
                </Link>
-               <Link href="/services/dashboards" className="p-4 bg-surface-container-lowest rounded-xl border border-outline/10 hover:border-primary/20 transition-all">
-                 <h4 className="font-semibold text-primary mb-1">Dashboards</h4>
+              <Link href="/services/web-development" className="p-4 bg-surface-container-lowest rounded-xl border border-outline/10 hover:border-primary/20 transition-all">
+                <h4 className="font-semibold text-primary mb-1">Web Development</h4>
                  <p className="text-sm text-on-surface-variant">Admin panels, BI, data viz</p>
                </Link>
              </div>

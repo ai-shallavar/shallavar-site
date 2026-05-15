@@ -17,7 +17,6 @@ export default function Footer() {
     { name: "Mobile Apps", href: "/services/mobile-apps" },
     { name: "UI/UX Design", href: "/services/ui-ux-design" },
     { name: "Cloud Deployment", href: "/services/cloud-deployment" },
-    { name: "Dashboards", href: "/services/dashboards" },
     { name: "Support", href: "/services/support" },
   ];
 

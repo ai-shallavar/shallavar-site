@@ -5,41 +5,37 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500, Professional ₹75,000, Enterprise Custom",
+  title: "Simple, Honest Pricing — Shallavar Technologies Bangalore",
   description:
-      "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom pricing. 50% off on Starter plan. React, Next.js, mobile apps. Call +91 94821 37212.",
+      "Transparent web development pricing starting from ₹25,000. Custom quotes after a free 30-minute discovery call. React, Next.js, mobile apps.",
   keywords: [
-       "web development plans Bangalore",
-       "website pricing Bangalore",
-       "affordable web development Bangalore",
-       "cheap website design Bengaluru",
+       "web development pricing Bangalore",
+       "affordable website cost India",
+       "website development packages Bangalore",
        "best web developer Bangalore",
        "startup website design company Bangalore",
        "small business website Bangalore under 50000",
        "web development company Bangalore",
-       "mobile app development cost India 2025",
-       "website development for restaurants Bangalore",
-       "ecommerce website for small business Bangalore",
-       "website maintenance plans Bangalore",
-      ],
+       "Shallavar Technologies pricing",
+       ],
   robots: {
     index: true,
     follow: true,
        "max-snippet": -1,
        "max-image-preview": "large",
-      },
+     },
   openGraph: {
     type: "website",
     locale: "en_IN",
     siteName: "Shallavar Technologies",
-    title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500",
-    description: "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom. 50% off on Starter plan.",
+    title: "Simple, Honest Pricing — Shallavar Technologies Bangalore",
+    description: "Transparent web development pricing starting from ₹25,000. Custom quotes after a free 30-minute discovery call.",
     url: "https://shallavar.com/plans",
     images: [{
        url: "/logo-full.png",
        width: 1200,
        height: 630,
-       alt: "Web Development Plans & Pricing Bangalore — Shallavar Technologies",
+       alt: "Simple, Honest Pricing — Shallavar Technologies",
        type: "image/png",
       }],
      },
@@ -47,8 +43,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@shallavar_tech",
     creator: "@shallavar_tech",
-    title: "Web Development Plans & Pricing Bangalore — Starter ₹12,500",
-    description: "Affordable web development plans in Bangalore. Starter ₹12,500, Professional ₹75,000, Enterprise custom. 50% off on Starter plan.",
+    title: "Simple, Honest Pricing — Shallavar Technologies Bangalore",
+    description: "Transparent web development pricing starting from ₹25,000. Custom quotes after a free 30-minute discovery call.",
     images: ["/logo-full.png"],
      },
   alternates: {
@@ -57,85 +53,82 @@ export const metadata: Metadata = {
 };
 
 import {
-  Rocket,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
-  Flame,
 } from "lucide-react";
 
 const plans = [
   {
-    name: "Starter",
-    price: "₹12,500",
-    originalPrice: "₹25,000",
-    discount: 50,
-    period: "per project",
-    desc: "Perfect for small businesses and startups — now at an exclusive launch price.",
+    name: "Starter Website",
+    price: "₹25,000",
+    period: "one-time · delivery in 2–3 weeks",
+    desc: "Perfect for small businesses that need a clean, professional online presence fast.",
     features: [
-      "5-Page Responsive Website",
-      "Basic SEO Setup",
-      "Contact Form Integration",
-      "Mobile-First Design",
-      "1 Month Free Support",
-      "Performance Optimization",
+      "5-page responsive website",
+      "Mobile-first design",
+      "Contact form + WhatsApp button",
+      "Basic SEO setup",
+      "Google Maps integration",
+      "1 month free support",
     ],
-    cta: "Grab This Offer",
+    cta: "Get a free quote →",
     popular: false,
-    basic: true,
-    urgency: {
-      badge: "50% OFF",
-      countdownText: "⏰ Hurry! Only a few days left",
-      subtext: "We're offering this at half the price for a limited time. Don't miss out.",
-      highlightFeatures: ["Limited to first 10 customers", "Regular price ₹25,000"],
-    },
   },
   {
-    name: "Professional",
-    price: "₹75,000",
-    period: "per project",
-    desc: "Ideal for growing businesses that need advanced features and custom functionality.",
+    name: "Business Website",
+    price: "₹45,000",
+    period: "one-time · delivery in 3–4 weeks",
+    desc: "For growing businesses that need more pages, SEO, and lead generation tools.",
     features: [
-      "10-Page Custom Website",
-      "Advanced SEO & Analytics",
-      "CMS Integration",
-      "E-commerce (up to 50 products)",
-      "Custom Dashboard/Admin Panel",
-      "API Integrations",
-      "3 Months Priority Support",
-      "A/B Testing Setup",
+      "Up to 12 pages",
+      "CMS (update content yourself)",
+      "Advanced SEO setup",
+      "WhatsApp + enquiry integration",
+      "Google Analytics",
+      "3 revision rounds",
+      "3 months support",
     ],
-    cta: "Start Your Project",
+    cta: "Get a free quote →",
     popular: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    period: "let's talk",
-    desc: "For large organizations requiring complex integrations, scalability, and dedicated support.",
+    name: "Web Application",
+    price: "₹85,000+",
+    period: "based on scope · timeline discussed",
+    desc: "Custom web apps with backend, database, and admin panel for complex needs.",
     features: [
-      "Unlimited Pages",
-      "Full-Stack Development",
-      "Custom Mobile App (iOS + Android)",
-      "Advanced Security & Compliance",
-      "Multi-Cloud Deployment",
-      "Dedicated Project Manager",
-      "12 Months Support & Maintenance",
-      "SLA Guarantee (99.9% uptime)",
-      "Team Training & Documentation",
+      "Unlimited pages (CMS)",
+      "Custom backend + database",
+      "User login / admin panel",
+      "API integrations",
+      "Payment gateway",
+      "Ongoing maintenance available",
     ],
-    cta: "Contact Sales",
+    cta: "Let's discuss your project →",
     popular: false,
   },
 ];
 
-const addOns = [
-  { name: "Additional Mobile App", price: "+₹1,50,000" },
-  { name: "AI/ML Features", price: "+₹1,00,000" },
-  { name: "Advanced Security Audit", price: "+₹35,000" },
-  { name: "Performance Testing", price: "+₹25,000" },
-  { name: "Content Creation (per page)", price: "+₹2,000" },
-  { name: "Ongoing Hosting (monthly)", price: "+₹5,000/mo" },
+const steps = [
+  { num: "1", title: "Free discovery call (30 min)", desc: "We understand your business, goals, and timeline." },
+  { num: "2", title: "Custom proposal", desc: "You get a clear scope, timeline, and fixed price. No surprises." },
+  { num: "3", title: "We build, you review", desc: "Regular updates, revisions included, you stay in control." },
+  { num: "4", title: "Launch + support", desc: "We don't disappear after delivery. 1–3 months support included." },
+];
+
+const faqs = [
+  {
+    q: "Not sure which plan fits? That's completely fine — most of our clients aren't sure either before we talk. Book a free 30-minute call and we'll tell you exactly what you need (and what you don't).",
+    a: "",
+  },
+  {
+    q: "Do you work with businesses outside Bangalore?",
+    a: "Yes — we work fully remote across India. All meetings are on Google Meet or WhatsApp call.",
+  },
+  {
+    q: "What if my project doesn't fit a package?",
+    a: "We quote every project individually after understanding your needs. The packages above are starting points, not rigid boxes.",
+  },
 ];
 
 export default function PlansPage() {
@@ -151,18 +144,14 @@ export default function PlansPage() {
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10">
-                <Rocket className="w-4 h-4 text-primary" />
-                <span className="font-label text-sm font-semibold text-primary uppercase tracking-widest">Pricing Plans</span>
-              </div>
               <h1 className="font-headline text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-tight">
-                Transparent{" "}
+                Simple,{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                  Pricing
+                  Honest Pricing
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl mx-auto">
-                Choose the plan that fits your needs. All plans include our signature design quality and performance optimization.
+                Every project is different — but we believe you should have a clear starting point before we talk. These are our base packages. We'll give you an exact quote after a free 30-minute discovery call.
               </p>
             </div>
           </div>
@@ -172,88 +161,53 @@ export default function PlansPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {plans.map((plan) => (
-              <div key={plan.name} className={`relative rounded-3xl transition-all duration-500 flex flex-col min-h-[580px] ${
-                plan.basic
-                  ? "bg-gradient-to-br from-red-500 via-orange-500 to-yellow-500 text-white shadow-2xl shadow-red-500/25"
-                  : plan.popular
+              <div key={plan.name} className={`relative rounded-3xl transition-all duration-500 flex flex-col min-h-[620px] ${
+                plan.popular
                   ? "bg-gradient-to-br from-primary to-secondary text-on-primary shadow-2xl shadow-primary/30"
                   : "bg-surface-container-lowest border border-outline-variant/15 hover:border-primary/20 hover:shadow-xl"
               }`}>
 
-                {/* Inner container with consistent padding */}
                 <div className="flex flex-col p-8 lg:p-10 flex-1">
-
-                  {/* Discount Badge for Starter */}
-                  {plan.basic && (
-                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white font-label text-xs font-bold rounded-full mb-6 uppercase tracking-wider w-fit">
-                      <Flame className="w-3.5 h-3.5" /> {plan.urgency.badge} — Hurry!
-                    </span>
-                  )}
 
                   {plan.popular && (
                     <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-white/20 backdrop-blur-sm text-on-primary font-label text-xs font-bold rounded-full mb-6 uppercase tracking-wider w-fit">
-                      <Sparkles className="w-3.5 h-3.5" /> Most Popular
+                      Most Popular
                     </span>
                   )}
 
                   <h3 className={`font-headline text-2xl font-bold mb-2 ${
-                    plan.basic ? "text-white" : plan.popular ? "text-on-primary" : "text-on-surface"
+                    plan.popular ? "text-on-primary" : "text-on-surface"
                   }`}>
                     {plan.name}
                   </h3>
-                  <p className={`text-sm mb-6 ${
-                    plan.basic ? "text-white/80" : plan.popular ? "text-on-primary/80" : "text-on-surface-variant"
+                  <p className={`text-sm mb-4 ${
+                    plan.popular ? "text-on-primary/80" : "text-on-surface-variant"
                   }`}>
                     {plan.desc}
                   </p>
 
                   {/* Pricing */}
                   <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                    {plan.basic && plan.originalPrice && (
-                      <span className="font-headline text-lg font-semibold line-through text-white/50">
-                        {plan.originalPrice}
-                      </span>
-                    )}
                     <span className={`font-headline text-4xl lg:text-5xl font-extrabold ${
-                      plan.basic ? "text-white" : plan.popular ? "text-on-primary" : "text-on-surface"
+                      plan.popular ? "text-on-primary" : "text-on-surface"
                     }`}>
                       {plan.price}
                     </span>
-                    {plan.basic && (
-                      <span className="inline-flex items-center px-2.5 py-1 bg-green-400/30 backdrop-blur-sm text-white font-label text-xs font-bold rounded-full">
-                        SAVE {plan.discount}%
-                      </span>
-                    )}
                   </div>
-                  <p className={`text-sm mb-4 ${
-                    plan.basic ? "text-white/70" : plan.popular ? "text-on-primary/70" : "text-on-surface-variant"
+                  <p className={`text-sm mb-6 ${
+                    plan.popular ? "text-on-primary/70" : "text-on-surface-variant"
                   }`}>
                     {plan.period}
                   </p>
-
-                  {/* Urgency message for basic */}
-                  {plan.basic && (
-                    <div className="mb-6 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                      <p className="text-xs font-label font-semibold text-white mb-2">{plan.urgency.countdownText}</p>
-                      <ul className="space-y-1">
-                        {plan.urgency.highlightFeatures.map((feat, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-xs font-label text-white/90">
-                            <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
-                            {feat}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
 
                   <ul className="space-y-4 mb-8 flex-1">
                     {plan.features.map((feat) => (
                       <li key={feat} className="flex items-start gap-3">
                         <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                          plan.basic ? "text-white" : plan.popular ? "text-on-primary" : "text-primary"
+                          plan.popular ? "text-on-primary" : "text-primary"
                         }`} />
                         <span className={
-                          plan.basic ? "text-white/90" : plan.popular ? "text-on-primary/90" : "text-on-surface-variant"
+                          plan.popular ? "text-on-primary/90" : "text-on-surface-variant"
                         }>{feat}</span>
                       </li>
                     ))}
@@ -262,9 +216,7 @@ export default function PlansPage() {
                   <Link
                     href="/contact"
                     className={`block w-full py-4 rounded-full font-label font-semibold text-center transition-all duration-300 ${
-                      plan.basic
-                        ? "bg-white text-red-600 hover:bg-gray-100 shadow-lg"
-                        : plan.popular
+                      plan.popular
                         ? "bg-on-primary text-primary hover:bg-white/90 shadow-lg"
                         : "bg-gradient-to-r from-primary to-secondary text-on-primary hover:shadow-lg hover:shadow-primary/20"
                     }`}
@@ -275,54 +227,57 @@ export default function PlansPage() {
               </div>
             ))}
           </div>
-
-          {/* Bottom Urgency Banner */}
-          <div className="mt-16 text-center">
-            <div className="inline-flex flex-col items-center gap-3 px-8 py-5 bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 rounded-2xl border border-red-100 shadow-md max-w-lg mx-auto">
-              <div className="flex items-center gap-2">
-                <Flame className="w-5 h-5 text-red-500" />
-                <p className="font-label font-semibold text-on-surface">
-                  Starter plan at <span className="text-red-600 font-bold">50% off</span> — Only a few days left!
-                </p>
-                <Flame className="w-5 h-5 text-red-500" />
-              </div>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full font-label font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300"
-              >
-                Claim Your Spot <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
         </section>
 
-        {/* Add-ons */}
+        {/* How We Work */}
         <section className="bg-surface-container-lowest py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">
-                Optional Add-ons
+                How we work with you
               </h2>
-              <p className="text-on-surface-variant text-xl max-w-2xl mx-auto">
-                Enhance any plan with these additional services.
-              </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-              {addOns.map((addon) => (
-                <div key={addon.name} className="flex items-center justify-between p-5 rounded-xl bg-surface-container-low border border-outline-variant/15 hover:border-primary/20 hover:shadow-md transition-all duration-300">
-                  <span className="font-label font-semibold text-on-surface">{addon.name}</span>
-                  <span className="font-headline font-bold text-primary whitespace-ml-1">{addon.price}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {steps.map((step) => (
+                <div key={step.num} className="text-center">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 font-headline text-xl font-bold text-primary mb-4">
+                    {step.num}
+                  </div>
+                  <h3 className="font-headline text-lg font-bold text-on-surface mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-on-surface-variant text-sm">{step.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* FAQ CTA */}
-        <section className="bg-surface-container py-24 relative overflow-hidden">
-          <div className="absolute top-10 right-20 text-primary/10 pointer-events-none">
-            <Sparkles className="w-40 h-40" />
+        {/* FAQ */}
+        <section className="bg-surface-container py-24">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">
+                Frequently Asked Questions
+              </h2>
+            </div>
+            <div className="space-y-6">
+              {faqs.map((faq, idx) => (
+                <div key={idx} className="p-6 rounded-xl bg-surface-container-lowest border border-outline-variant/15">
+                  <h3 className="font-headline text-lg font-bold text-on-surface mb-2">
+                    {faq.q}
+                  </h3>
+                  {faq.a && (
+                    <p className="text-on-surface-variant">{faq.a}</p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
+        </section>
+
+        {/* CTA */}
+        <section className="bg-surface-container py-24 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-on-surface">
               Need a Custom Quote?

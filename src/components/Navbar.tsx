@@ -24,7 +24,6 @@ const navLinks = [
       { href: "/services/mobile-apps", label: "Mobile Apps", icon: Smartphone, description: "iOS and Android applications" },
       { href: "/services/ui-ux-design", label: "UI/UX Design", icon: Palette, description: "Human-centered design solutions" },
       { href: "/services/cloud-deployment", label: "Cloud & Deployment", icon: Cloud, description: "Scalable cloud infrastructure" },
-      { href: "/services/dashboards", label: "Dashboards & CMS", icon: LayoutDashboard, description: "Admin panels and management systems" },
       { href: "/services/support", label: "Maintenance & Support", icon: Headphones, description: "24/7 technical support" },
     ],
   },
